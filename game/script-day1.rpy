@@ -45,6 +45,8 @@ label day1:
                 jump choice1_Luci
             "Let's break these poor bastards out of here." if breakOut_flag:
                 jump breakOut
+            "I actually think I should do my job for once and let these guys go through the system..." if breakOut_flag:
+                jump badEnd
     
 
     ## One-on-one interrogations with each suspect ##
@@ -61,7 +63,7 @@ label day1:
         a "Hey. Looking cozy there."
         "Felicien tosses his head."
         f "Yeah. Fuck you."
-        a "Yowch. Pretty bad day, I guess."
+        a "Yeowch. Pretty bad day, I guess."
         f "No need to play coy with me."
         a "No, I meant it."
         if interrogateBegin_flag == False:
@@ -116,8 +118,7 @@ label day1:
             jump interrogate_Felicien
 
         label interrogate_Felicien3:
-            "You shuffle through your notes."
-            a "Okay... Got anything else for me?"
+            a "Got anything else for me?"
             f "No."
             a "Well, if anything comes to you..."
             f "I'll give you a call."
@@ -133,37 +134,67 @@ label day1:
         show reel
         with dissolve
 
-        ## fill in ##
-        "dialogue"
+        "You enter the interrogation room to a lone figure wearing a fancifully-decorated Venetian mask so that you can't see his face. He looks up with a start."
         if interrogateBegin_flag == False:
-            "You sit down before him, resting your elbows on your knees."
+            "You sit down before him, resting your elbows on your knees. He seems to cringe away from you."
             $ interrogateBegin_flag = True
+        a "Woah, easy there."
+        d "I'm sorry, I'm sorry, I did it! I killed them all!"
+        "His voice is a tearful young man's. His mask is cool and unfeeling, but he seems to be sobbing behind it."
+        a "Yeah, so I've heard. Let's just settle down now."
+        d "You caught me, you have who you want, so do anything you like to me! Please... Val, I'm sorry..."
+        "Valheo?"
+        a "Dude, you didn't kill them. We have them in custody right now. And I don't really have the authority to 'do' anything to you."
+        a "I just gotta ask you some questions real quick, 'kay?"
+        "Domani sniffles miserably and looks up at you, awaiting his doom."
         
         label interrogate_Domani:
             menu:
                 a "Let's see..."
                 "Can you give me a rundown of what happened?":
                     jump interrogate_Domani1
-                "option":
+                "What's up with the mask?":
                     jump interrogate_Domani2
                 "I think we can wrap this up.":
                     jump interrogate_Domani3
 
         label interrogate_Domani1:
-            "dialogue"
+            "You worry he might start bawling again."
+            d "I... I..."
+            a "Easy..."
+            d "...I hated that stupid job!"
+            d "Felicien wanted us to do all these sinful things! I've never been so ashamed in my life."
+            a "You mind if I ask what things?"
+            d "I hardly dare say...! Flirtation, handholding..."
+            "He takes a flustered moment."
+            d "...And then when it inevitably went wrong, he didn't do a thing about it. So I had to. It's okay if you don't understand. I'm horrible. No one else would..."
+            a "...And that's when you shot the place up."
+            "He nods, defeated."
+            d "Some terrible bloodlust came over me..."
+            a "That's okay, we hear that all the time. We'll get it all sorted."
 
             $ DomaniInterrogated1_flag = True
             jump interrogate_Domani
 
         label interrogate_Domani2:
-            "dialogue"
+            d "Oh, um..."
+            a "Just curious, because it's kinda freaking everyone out. Seems like the kind of thing some criminal higher-up would wear. But you seem alright."
+            d "No, it's not that..."
+            "He sounds embarassed."
+            a "Well, that's good. If you were that kind of scary guy, I wouldn't stand a chance."
+            d "You still wouldn't, probably."
+            a "Ah."
+            a "...Glad we got that cleared up."
 
             $ DomaniInterrogated2_flag = True
             jump interrogate_Domani
 
         label interrogate_Domani3:
-            "dialogue"
-
+            d "When will I be going to my execution?"
+            a "Oh, probably in a week. Maybe two. Things are kinda slow-going around here."
+            "He looks down."
+            d "...Okay."
+            a "Hey, cheer up. You confessed -- counts for something. See you around, maybe."
             jump notes
 
     label choice1_Kaj:
@@ -291,7 +322,7 @@ label day1:
         a "Yeahh, but I'm trying to get fired."
         v raised "Why's that?"
         a "I just don't like it, really. I'm okay with people doing whatever they want. Seems rather nosey to me to boss people around like that."
-        v upset "So...what, that's why you're doing this?"
+        v upset "So...what, that's why you're bringing me out here?"
         a "Well, yeah. If I break you out, I won't be a Carabiniere for much longer, right?"
         v -raised "Is that an offer?"
         "You shrug."
