@@ -2,13 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script-day2.rpy", line 111: expected python code
-    $ 
-      ^
-
-File "game/script-day3.rpy", line 100: Menu does not contain any choices.
-    menu:
-         ^
+File "game/definitions.rpy", line 175: expected '=' not found.
+    define screen ctc(arg=None):
+                  ^
 
 Ren'Py Version: Ren'Py 8.0.1.22070801
-Tue Aug  2 09:55:32 2022
+Wed Jan  4 14:21:18 2023

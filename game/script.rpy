@@ -4,26 +4,53 @@
     ## Game structure ##
 
     # With each call function, it goes to the label in the corresponding file and runs through the dialogue therein
+    # It also checks afterward whether the player has gotten a bad ending,
+    # because otherwise the return statement in the badEnd label just allows the game to continue on to the next day/night.
 
     # Day 1
     call day1
+    if dead == True:
+        return
+
     call night1
+    if dead == True:
+        return
 
     # Day 2
     call day2
+    if dead == True:
+        return
+
     call night2
+    if dead == True:
+        return
 
     # Day 3
     call day3
+    if dead == True:
+        return
+
     call night3
+    if dead == True:
+        return
 
     # Day 4
     call day4
+    if dead == True:
+        return
+
     call night4
+    if dead == True:
+        return
 
     # Day 5
     call day5
+    if dead == True:
+        return
+
     call night5
+    if dead == True:
+        return
 
     # Then goes to the finale whose label is below
     if day == 6:
@@ -32,16 +59,23 @@
 
     ## Placeholder end screens and score tests ##
 
+    # Bad ending screen
     label badEnd:
-        play sound "audio/start_crackle.wav"
+        $ dead = True
+
+        stop sound
         pause 1.0
+        screen black
+        with fade
+        play sound "audio/start_crackle.wav"
         play music "audio/wretched.mp3"
-
         "You died"
+        #show screen ctc
+        #with fade(3.0)
 
-        return
+    return
 
-
+    # Good end partnership selection
     label finale:
         play sound "audio/start_crackle.wav"
         pause 1.0
@@ -123,7 +157,7 @@
                 return
 
 
-        # (This is the placeholder for the aforementioned scenes)
+        # (This is the placeholder for the aforementioned scenes. winner variable will not be needed in final form)
 
         label marriage:
             "You have won [winner]'s heart."

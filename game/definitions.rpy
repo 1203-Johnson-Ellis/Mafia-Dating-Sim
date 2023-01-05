@@ -12,13 +12,18 @@ default Quinn_score = 0
 default Eligio_score = 0
 default Elhoeva_score = 0
 
+# Have you died?
 
-# Keeping track
+default dead = False
+
+# What day is it?
 
 default day = 1
 
+# I honestly don't know what this is for. It resets at the end of every day.
+
 default partner = 0
-# ^ 1 = Felicien, 2 = Domani, 3 = Kaj, 4 = Val, 5 = Luci
+# 1 = Felicien, 2 = Domani, 3 = Kaj, 4 = Val, 5 = Luci
 
 
 # Day 1 variables
@@ -163,6 +168,15 @@ image reel:
 #     show grain
 #     show reel
 #     play audio "<loop 3.0>audio/projector.mp3"
+
+
+## Bad end screen ##
+
+#define screen ctc(arg=None):
+    #text _("YOU DIED"):
+        #size 56
+        #xalign 0.98
+        #yalign 0.98
 
 
 ## Characters ##

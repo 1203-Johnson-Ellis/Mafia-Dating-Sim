@@ -101,7 +101,7 @@ label day2:
         k "Why steal it? We're already in trouble with the law."
         d "We could buy some more?"
         f "Certainly we could buy more. Since the two of you are so against stealing it, why don't you go and do that?"
-        l "We do not /need/ lingerie. We are being hunted by the carabinieri."
+        l "We do not {i}need{/i} lingerie. We are being hunted by the carabinieri."
 
         label recoveryMenu:
             # Domani ends up coming along for both of the first two options
@@ -118,7 +118,7 @@ label day2:
                     a "Luci's right. This is stupid."
                     $ Luci_score += 1
                     $ Felicien_score -= 1
-                    f ""
+                    f "Well, aren't the two of you so bright."
                     $ notLingerie = True
                     jump recoveryMenu
 

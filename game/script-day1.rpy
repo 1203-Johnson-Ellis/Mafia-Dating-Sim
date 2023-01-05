@@ -46,7 +46,7 @@ label day1:
             "Let's break these poor bastards out of here." if breakOut_flag:
                 jump breakOut
             "I actually think I should do my job for once and let these guys go through the system..." if breakOut_flag:
-                jump badEnd
+                jump system
     
 
     ## One-on-one interrogations with each suspect ##
@@ -285,13 +285,13 @@ label day1:
 
         "Val is sitting stiffly, looking weary, but their eyes focus on you when you enter."
         a "Long day?"
-        v @ upset "You could say that."
+        v "You could say that."
         "You cross your legs and take the cigarette from between your lips."
         a "You want anything? We can go on a date or something. I don't much like doing interrogations."
-        v @ raised "Is that so? I'd be happy to go out with you somewhere. Beats this. No one's so much as given me laudanum for the bullet in my arm."
+        v raised "Is that so? I'd be happy to go out with you somewhere. Beats this. No one's so much as given me laudanum for the bullet in my arm."
         "You shake your head."
         a closed @ shut downturned "Fuckin' animals."
-        v "I'll say. Can I have a smoke?"
+        v -raised "I'll say. Can I have a smoke?"
         "You shrug, pull out your cigarette pack, and frown to yourself."
         a @ upturned -closed "I'm all out..."
         menu:
@@ -324,10 +324,10 @@ label day1:
         a "I just don't like it, really. I'm okay with people doing whatever they want. Seems rather nosey to me to boss people around like that."
         v upset "So...what, that's why you're bringing me out here?"
         a "Well, yeah. If I break you out, I won't be a Carabiniere for much longer, right?"
-        v -raised "Is that an offer?"
+        v -upset "Is that an offer?"
         "You shrug."
         a closed "Yeah."
-        show val -upset
+        show val -raised
         "They walk in silence for a long time."
         v "I'm inclined to accept, if you cover your ass well enough. Don't want to get into trouble."
         v "And my buddies?"
@@ -404,22 +404,43 @@ label day1:
             jump notes
 
 
-    label breakOut:
-        # breaking out of prison
+    ## Choosing to try them as criminals ##
 
-        "You round up the prisoners and lead them out of the Questura."
-        "someone" "Where do you think you're taking these prisoners?"
+    label system:
+        show angiolo at left
+        "You open your notebook and begin to gather all your notes into a cohesive and reasonable-sounding report."
+        "You work unpaid overtime late into the night, because of your easily-distractible ADHD brain and because the military doesn't care about your wellbeing, individuality, or personhood."
+        "Your boss claps you on the shoulder."
+        show quinn at right
+        q "Keep it up, Angiolo, you're doing great. I've never seen you come so close to doing an average amount of work. I knew you had it in you."
+        q "Now, I'm heading home for the night. Leave your report outside my office when you're done."
+        a "Yeah, okay, thanks..."
+        jump badEnd
+
+
+    ## Choosing to break them out ##
+
+    label breakOut:
+        "You go around to the holding cells of each of the suspects, release them, and begin to lead them out of the Questura."
+        "Carabiniere" "Where do you think you're taking these prisoners?"
         a "Uh..."
         menu:
-            "BAD option":
-                "fgd"
+            "To the bar. For a night of chill relaxation. Criminals needs that too, you know?":
+                "Carabiniere" "Right."
+                "Carabiniere" "You're as sinful and stupid as every criminal in this place, Angiolo. I always knew you were gonna end up as one of them one day."
+                pause 1.0
+                # play a handcuff sound
+                a "Hey, hey, I'm not as bad as all that."
                 jump badEnd
-            "option":
-                "fgd"
+            "Boss wanted 'em moved to more secure rooms.":
+                "Carabiniere" "So you're moving them all at once? Idiot. You want some help with that, or what?"
+                a "Nah, no, I'm good. They're alright. Not giving me too much of a hard time."
+            "(Hey my beloved and smart prisoners, help a guy out!)":
+                "ffd"
 
     "Escape"
 
-    "Val is looking really bad."
+    "As you settle into the place, you notice Val slump hard against a wall, closing their eyes and breathing deliberately.{p}They must be in some wicked pain."
     menu:
         "We should get them to a doctor.":
             jump bhospital
@@ -427,17 +448,51 @@ label day1:
             jump bandage
         "The best we can do right now is give them some booze.":
             jump booze
+        "They haven't said anything. Leave them be.":
+            "They must be handling it alright. If they wanted help, they'd speak up. And it's not like we have much to work with for wound treatment in this dump, anyway."
+            jump camp
 
     label bhospital:
-        "go to the hospital"
+        a "Hey, you're not looking too good. I think someone should take a look at that."
+        "Their eyes open and focus on you."
+        v "Someone."
+        a "You know, a professional. I can't believe you've just been walking around with that hole in your shoulder.{p}Is there a hospital around?"
+        f "A hospital?"
+        f "Tell me you're not that much of a dumbfuck."
+        a "What? There's not much we can do here, and they need medicine. Clearly."
+        f "Right. They won't ask questions, will they?"
+        l "Angiolo is correct, Felicien. They will simply give unenlightening answers to any questions."
+        a "Yeah. I'm smart enough for that."
+
+        jump badEnd
 
     label bandage:
-        ## WRITE
-        # tending to Val's bullet wound
-
-        "bandage val"
+        a "Hey, you're not looking too good. I might be able to help."
+        "Their eyes open and focus on you."
+        v "How?"
+        a "We learn some stuff about first aid in the carabinieri. I could at least clean it up and stuff."
+        "They look reluctant."
+        v "...Yeah, that'd probably be good."
+        a "Don't worry. I'm not that bad at this."
+        v "Ha ha."
+        jump camp
     
     label booze:
-        "find some alcohol"
+        "You thought you saw some earlier..."
+        "You open some cabinets and rummage through them. Bingo.{p}You turn back to Val."
+        a "Hey, you're not looking too good."
+        "You hold up the bottle."
+        a "Want some?{w} It's no laudanum, but..."
+        "Their eyes open and focus on the bottle in your hand."
+        $ Val_score += 1
+        v "Where'd you get that, in a place run by Mr. Stickler? Yes, {i}please{/i}."
+        "You hand it to them, and they take a mighty swig."
+        v "God, you're my favorite person right now, Angiolo."
+        a "Haha, hey, you're not too bad yourself. We gotta keep you up and running, right? The best we can, anyway."
+        "When you look up, you notice Luci staring at you. Why are his eyes always so scary and intense like that?"
+        "And just as you were thinking about saying something, he's turned away again. Yeesh. Okay, then."
+    
+    label camp:
+        "camp stuff"
 
     return
