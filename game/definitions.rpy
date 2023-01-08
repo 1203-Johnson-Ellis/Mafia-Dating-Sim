@@ -20,10 +20,18 @@ default dead = False
 
 default day = 1
 
-# I honestly don't know what this is for. It resets at the end of every day.
+# Who is the current night being spent with?
 
 default partner = 0
 # 1 = Felicien, 2 = Domani, 3 = Kaj, 4 = Val, 5 = Luci
+
+# How many nights have you spend with this character?
+
+default Felicien_nights = 0
+default Domani_nights = 0
+default Kaj_nights = 0
+default Val_nights = 0
+default Luci_nights = 0
 
 
 # Day 1 variables

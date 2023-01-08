@@ -19,17 +19,17 @@ label day2:
         label Felicien_suspicious:
             "Felicien hates you"
 
-            jump recovery
+            jump ferry
 
         label Domani_suspicious:
             "Domani hates you"
 
-            jump recovery
+            jump ferry
 
         label Kaj_suspicious:
             "Kaj hates you"
 
-            jump recovery
+            jump ferry
 
         label Val_suspicious:
             "You wake with cold steel at your throat."
@@ -85,83 +85,18 @@ label day2:
                 scene black
                 with dissolve
                 jump badEnd
-            jump recovery
+            jump ferry
 
         label Luci_suspicious:
             "Luci hates you"
 
-            jump recovery
+            jump ferry
 
+    label ferry:
 
-    label recovery:
-        # as in. recovering items
-        f "We're going to go get our lingerie back."
-        l "No."
-        f "I didn't ask. We're going to go steal it etc etc--"
-        k "Why steal it? We're already in trouble with the law."
-        d "We could buy some more?"
-        f "Certainly we could buy more. Since the two of you are so against stealing it, why don't you go and do that?"
-        l "We do not {i}need{/i} lingerie. We are being hunted by the carabinieri."
-
-        label recoveryMenu:
-            # Domani ends up coming along for both of the first two options
-            menu:
-                "Steal the lingerie back with Felicien and Val.":
-                    a "I think stealing would be more fun."
-                    jump lingerieThievery
-
-                "Pick out new lingerie with Luci and Kaj.":
-                    a "Yeah, good plan."
-                    jump lingerieDressUp
-
-                "Are these my only options?" if notLingerie == False:
-                    a "Luci's right. This is stupid."
-                    $ Luci_score += 1
-                    $ Felicien_score -= 1
-                    f "Well, aren't the two of you so bright."
-                    $ notLingerie = True
-                    jump recoveryMenu
-
-                "Break into the police station" if notLingerie == True:
-                    "sdf"
-                    # felicien and val go without you
-                    jump policeStation
-
-    label lingerieThievery:
-        "dialogue"
-        jump hunt
-
-    label lingerieDressUp:
-        # dress up game
-
-        "You go to the lingerie store."
-        
-
-        jump hunt
-
-    label policeStation:
-        "dialogue"
-        jump hunt
-
-    label hunt:
-        # you're going back to the hideout when you get hunted down by your boss
-
-        "Quinn is getting you"
-        # chase scene on the canals
-
-        # if he catches you
-            # jump badEnd
-        # else
-        # can choose to hide in the strip club where you meet Eligio
-        # or have a close call against a wall with someone's hand over your mouth. I'm thinking Felicien
-
-        # on the run
-        v "Sorry, man. This can't be what you thought you were signing up for."
-
-        v "So. You're born into the mafia."
-        "They tick off on their fingers."
-        v "You don't kill, you don't do the job your boss gives you, you can't help in a medical emergency, and --"
-        "They look him up and down."
-        v "-- I doubt you could hold your own in a fight. So what're you good for?"
+    # Ferry ride and spin the bottle? Whoever you have the lowest current score with is who you spin.
+    # Arrival in Reggio. Some time in the city, monument.
+    # Then meet back up and head to the clementine farm
+    # Encounter Luci humming alone in his room.
 
 return

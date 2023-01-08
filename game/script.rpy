@@ -1,4 +1,9 @@
-﻿label start:
+﻿# 1924, stuff is rough in the Kingdom of Italy with the Great War having just ended, increasing violence against anti-Fascists,
+# the march on Rome putting the Fascist party into power, now this attack on the mafia beginning.
+# Men of honor, Cosa Nostra
+# Education and literacy by class
+
+label start:
     stop music fadeout 1.0
 
     ## Game structure ##
@@ -72,6 +77,8 @@
         "You died"
         #show screen ctc
         #with fade(3.0)
+
+        # figure out how screens work
 
     return
 

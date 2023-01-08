@@ -1,3 +1,6 @@
+# This code should ask who you want to spend the night with, then give a description of the area based on what night it is,
+# then give a different conversation depending on who has been chosen to sleep beside as well as how many times they have been chosen before
+
 ## Menu options ##
 
 label nighttime:
@@ -9,249 +12,319 @@ label nighttime:
         "Who will you set up your bed beside?"
         "Felicien":
             $ Felicien_score += 2
-
-            if day == 1:
-                jump night1_Felicien
-            elif day == 2:
-                jump night2_Felicien
-            elif day == 3:
-                jump night3_Felicien
-            elif day == 4:
-                jump night4_Felicien
-            elif day == 5:
-                jump night5_Felicien
+            $ Felicien_nights += 1
+            $ partner = 1
         "Domani":
             $ Domani_score += 2
-
-            if day == 1:
-                jump night1_Domani
-            elif day == 2:
-                jump night2_Domani
-            elif day == 3:
-                jump night3_Domani
-            elif day == 4:
-                jump night4_Domani
-            elif day == 5:
-                jump night5_Domani
+            $ Domani_nights += 1
+            $ partner = 2
         "Kaj":
             $ Kaj_score += 2
-
-            if day == 1:
-                jump night1_Kaj
-            elif day == 2:
-                jump night2_Kaj
-            elif day == 3:
-                jump night3_Kaj
-            elif day == 4:
-                jump night4_Kaj
-            elif day == 5:
-                jump night5_Kaj
+            $ Kaj_nights += 1
+            $ partner = 3
         "Val":
             $ Val_score += 2
-
-            if day == 1:
-                jump night1_Val
-            elif day == 2:
-                jump night2_Val
-            elif day == 3:
-                jump night3_Val
-            elif day == 4:
-                jump night4_Val
-            elif day == 5:
-                jump night5_Val
+            $ Val_nights += 1
+            $ partner = 4
         "Luci":
             $ Luci_score += 2
-
-            if day == 1:
-                jump night1_Luci
-            elif day == 2:
-                jump night2_Luci
-            elif day == 3:
-                jump night3_Luci
-            elif day == 4:
-                jump night4_Luci
-            elif day == 5:
-                jump night5_Luci
+            $ Luci_nights += 1
+            $ partner = 5
+    if day == 1:
+        jump night1
+    elif day == 2:
+        jump night2
+    elif day == 3:
+        jump night3
+    elif day == 4:
+        jump night4
+    elif day == 5:
+        jump night5
 
 
 ## First night ##
 
 label night1:
-    # settling in for the night
+    # found an abandoned place for a temp hideout
 
     scene bg hideout
     with dissolve
 
-    jump nighttime
-    
-    label night1_Felicien:
-        "Felicien night 1"
+    "night 1"
 
-        jump endNight
-
-    label night1_Domani:
-        "Domani night 1"
-
-        jump endNight
-
-    label night1_Kaj:
-        "Kaj night 1"
-
-        jump endNight
-
-    label night1_Val:
-        "Val night 1"
-
-        jump endNight
-
-    label night1_Luci:
-        "Luci night 1"
-
-        jump endNight
+    jump choose_partner
 
 
 ## Second night ##
 
 label night2:
-    # sleeping on the rooftops and stargazing
+    # at the farm
 
     scene bg rooftops
     with dissolve
 
-    jump nighttime
-    
-    label night2_Felicien:
-        "Felicien night 2"
+    "night 2"
 
-        jump endNight
-
-    label night2_Domani:
-        "Domani night 2"
-
-        jump endNight
-
-    label night2_Kaj:
-        "Kaj night 2"
-
-        jump endNight
-
-    label night2_Val:
-        "Val night 2"
-
-        jump endNight
-
-    label night2_Luci:
-        "Luci night 2"
-
-        jump endNight
+    jump choose_partner
 
 
 ## Third night ##
 
 label night3:
-    # They got a hotel(?) room but you have to share a bed
+    # at the farm again? in the clementine orchard?
 
     scene bg hotel room
     with dissolve
 
-    jump nighttime
-    
-    label night3_Felicien:
-        "Felicien night 3"
+    "night 3"
 
-        jump endNight
-
-    label night3_Domani:
-        "Domani night 3"
-
-        jump endNight
-
-    label night3_Kaj:
-        "Kaj night 3"
-
-        jump endNight
-
-    label night3_Val:
-        "Val night 3"
-
-        jump endNight
-
-    label night3_Luci:
-        "Luci night 3"
-
-        jump endNight
+    jump choose_partner
 
 
 ## Fourth night ##
 
 label night4:
-    # idk
+    # in the city
 
     scene bg somewhere
     with dissolve
 
-    jump nighttime
-    
-    label night4_Felicien:
-        "Felicien night 4"
+    "night 4"
 
-        jump endNight
-
-    label night4_Domani:
-        "Domani night 4"
-
-        jump endNight
-
-    label night4_Kaj:
-        "Kaj night 4"
-
-        jump endNight
-
-    label night4_Val:
-        "Val night 4"
-
-        jump endNight
-
-    label night4_Luci:
-        "Luci night 4"
-
-        jump endNight
+    jump choose_partner
 
 
 ## Fifth night ##
 
 label night5:
-    # ?
+    # either in or out of jail??
 
     scene bg somewhere
     with dissolve
 
-    jump nighttime
+    "night 5"
+
+    jump choose_partner
+
+
+label choose_partner:
+    # Decide which partner the night is being spent with
+    if partner == 1:
+        call felicien
+    elif partner == 2:
+        call domani
+    elif partner == 3:
+        call kaj
+    elif partner == 4:
+        call val
+    elif partner == 5:
+        call luci
     
-    label night5_Felicien:
-        "Felicien night 5"
+    # Once it runs through the dialogue, it should end the current day
+    jump endNight
 
-        jump endNight
 
-    label night5_Domani:
-        "Domani night 5"
+## Character dialogue ##
 
-        jump endNight
+label felicien:
+    # Decide which night it is
+    if Felicien_nights == 1:
+        call felicienNight1
+    elif Felicien_nights == 2:
+        call felicienNight2
+    elif Felicien_nights == 3:
+        call felicienNight3
+    elif Felicien_nights == 4:
+        call felicienNight4
+    elif Felicien_nights == 5:
+        call felicienNight5
 
-    label night5_Kaj:
-        "Kaj night 5"
+    return
+    
+    label felicienNight1:
+        "felicien 1"
 
-        jump endNight
+        return
+    
+    label felicienNight2:
+        "felicien 2"
 
-    label night5_Val:
-        "Val night 5"
+        return
+    
+    label felicienNight3:
+        "felicien 3"
 
-        jump endNight
+        return
+    
+    label felicienNight4:
+        "felicien 4"
 
-    label night5_Luci:
-        "Luci night 5"
+        return
 
-        jump endNight
+    label felicienNight5:
+        "felicien 5"
+
+        return
+
+label domani:
+    # Decide which night it is
+    if Domani_nights == 1:
+        call domaniNight1
+    elif Domani_nights == 2:
+        call domaniNight2
+    elif Domani_nights == 3:
+        call domaniNight3
+    elif Domani_nights == 4:
+        call domaniNight4
+    elif Domani_nights == 5:
+        call domaniNight5
+    
+    return
+    
+    label domaniNight1:
+        "domani 1"
+
+        return
+    
+    label domaniNight2:
+        "domani 2"
+
+        return
+    
+    label domaniNight3:
+        "domani 3"
+
+        return
+    
+    label domaniNight4:
+        "domani 4"
+
+        return
+
+    label domaniNight5:
+        "domani 5"
+
+        return
+
+label kaj:
+    # Decide which night it is
+    if Kaj_nights == 1:
+        call kajNight1
+    elif Kaj_nights == 2:
+        call kajNight2
+    elif Kaj_nights == 3:
+        call kajNight3
+    elif Kaj_nights == 4:
+        call kajNight4
+    elif Kaj_nights == 5:
+        call kajNight5
+    
+    return
+    
+    label kajNight1:
+        "kaj 1"
+
+        return
+    
+    label kajNight2:
+        "kaj 2"
+
+        return
+    
+    label kajNight3:
+        "kaj 3"
+
+        return
+    
+    label kajNight4:
+        "kaj 4"
+
+        return
+
+    label kajNight5:
+        "kaj 5"
+
+        return
+
+label val:
+    # Decide which night it is
+    if Val_nights == 1:
+        call valNight1
+    elif Val_nights == 2:
+        call valNight2
+    elif Val_nights == 3:
+        call valNight3
+    elif Val_nights == 4:
+        call valNight4
+    elif Val_nights == 5:
+        call valNight5
+    
+    return
+    
+    label valNight1:
+        "val 1"
+
+        return
+    
+    label valNight2:
+        "val 2"
+
+        return
+    
+    label valNight3:
+        "val 3"
+
+        return
+    
+    label valNight4:
+        "val 4"
+
+        return
+
+    label valNight5:
+        "val 5"
+
+        return
+
+label luci:
+    # Decide which night it is
+    if Luci_nights == 1:
+        call luciNight1
+    elif Luci_nights == 2:
+        call luciNight2
+    elif Luci_nights == 3:
+        call luciNight3
+    elif Luci_nights == 4:
+        call luciNight4
+    elif Luci_nights == 5:
+        call luciNight5
+    
+    return
+    
+    label luciNight1:
+        "luci 1"
+
+        return
+    
+    label luciNight2:
+        "luci 2"
+
+        return
+    
+    label luciNight3:
+        "luci 3"
+
+        return
+    
+    label luciNight4:
+        "luci 4"
+
+        return
+
+    label luciNight5:
+        "luci 5"
+
+        return
 
 
 ## End nighttime sequence and move to the next day ##
