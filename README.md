@@ -6,7 +6,8 @@ A silly little Ren'py game about some OCs.
 All game files are in the `game` directory.
 
 All dialogue is in .rpy files whose names start with `script`. `script.rpy` lays out the overall structure and jumps between other files as scene transitions occur.
-All other .rpy files control technical aspects of setting up and running the game.
+
+All other .rpy files (whose names do NOT start with `script`) control technical aspects of setting up and running the game.
 Don't worry about .rpyc files; those do not need to be opened. They are purely to compile the code.
 
 Images are under the `images` directory and audio is under `audio`.
