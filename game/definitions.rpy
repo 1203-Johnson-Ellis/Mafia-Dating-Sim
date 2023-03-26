@@ -77,6 +77,14 @@ layeredimage angiolo:
 
     if blushing:
         "angiolo_blush"
+    
+
+# layeredimage felicien:
+#     always "felicien"
+
+
+# layeredimage domani:
+#     always "domani"
 
 
 layeredimage kaj:
@@ -114,6 +122,10 @@ layeredimage luci:
 
     group mouth auto:
         attribute unmoved default
+
+
+# layeredimage elhoeva:
+#     always "elhoeva"
 
 
 ## Trying to figure out darkening character portraits ##
@@ -190,12 +202,12 @@ image reel:
 ## Characters ##
 
 define a = Character(_("Angiolo"), image = "angiolo", color = "#b4b4b4")
-define f = Character(_("Felicien"), color = "#b4b4b4")
-define d = Character(_("Domani"), color = "#b4b4b4")
+define f = Character(_("Felicien"), image = "felicien", color = "#b4b4b4")
+define d = Character(_("Domani"), image = "domani", color = "#b4b4b4")
 define k = Character(_("Kaj"), image = "kaj", color = "#b4b4b4")
 define v = Character(_("Val"), image = "val", color = "#b4b4b4")
 define l = Character(_("Luci"), image = "luci", color = "#b4b4b4")
 
 define q = Character(_("Quinn"), color = "#b4b4b4")
 define lig = Character(_("Eligio"), color = "#b4b4b4")
-define e = Character(_("Elhoeva"), image = "elhoeva", color = "#b4b4b4")
+define el = Character(_("Elhoeva"), image = "elhoeva", color = "#b4b4b4")
