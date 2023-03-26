@@ -451,12 +451,28 @@ label day1:
             "Boss wanted 'em moved to more secure rooms.":
                 "Carabiniere" "So you're moving them all at once? Idiot. You want some help with that, or what?"
                 a "Nah, no, I'm good. They're alright. Not giving me too much of a hard time."
-            "(Hey, my beloved and smart prisoners, help a guy out!)":
-                "ffd"
 
-    # Vittore put Luci under Felicien as punishment for something.
-    # Felicien calls Vittore and gets an earful, head east to a farm I have contacts at in Reggio to guard some clementines.
-    # The prime minister sounds not to be on our side, and with YOU drawing attention, you need to go out where they won't be on such high alert and won't expect us, and where the Fascist party is not looked on kindly. I don't CARE about your wounded it is more Important that you LEAVE
+    # Vittore put Luci under Felicien as punishment for something
+    
+    f "Hello, boss."
+    "Big Boss Nails" "{i}Felicien. I'm surprised to hear your voice. I was under the impression you useless group of baccalà got yourselves imprisoned.{/i}"
+    f "We ran into a bit of trouble. Nothing we can't handle."
+    "Big Boss Nails" "{i}Why are you calling, then?{/i}"
+    f "We'd be able to handle it a bit better if we had somewhere to stay until the cops are off our asses."
+    "Big Boss Nails" "{i}Do one better: get them off{/i} my {i}ass. Fucking moron.{p}What secrets can we expect them to know now?{/i}"
+    f "I am {i}not{/i} stupid enough to let anything slip."
+    "Big Boss Nails" "{i}And your team?{/i}"
+    "Felicien turns and looks dirently at Domani."
+    f "If they did, I don't think they should be involved in cosa nostra."
+    "Big Boss Nails" "{i}No. But unfortunately if you want to get anything done in this world, you'll have to work with idiots. They're impossible to avoid.{p}God fuck it, Felicien. If you want to try to do something right, then get out of Palermo. Tonight.{/i}"
+    f "Excuse me?"
+    "Big Boss Nails" "{i}You heard me. You know the damn prime minister and his guys have been out here recently, and they're quickly making an enemy of us.{/i}"
+    "Big Boss Nails" "{i}Since you so badly want to draw attention to yourselves, lead the feds to Reggio. I have a contact you can stay with. A clementine farmer. Get her and yourselves killed, I don't care. My business is here, in the west.{/i}"
+    f "I have wounded, I can't cross Sicily tonight."
+    "Big Boss Nails" "{i}All the better. They'll be able to follow the blood trail you leave behind.{/i}"
+    f "Fucking great..."
+    "Big Boss Nails" "{i}Play stupid games, win stupid prizes. Don't call again.{/i} Bzzzt..."
+    "Felicien slams the phone back onto its holder and steps out of the booth."
 
     
     label hunt:
@@ -471,11 +487,11 @@ label day1:
         # or have a close call against a wall with someone's hand over your mouth. I'm thinking Felicien
 
 
-        v "So. You're born into the mafia."
-        "They tick off on their fingers."
-        v "You don't kill, you don't do the job your boss gives you, you can't help in a medical emergency, and --"
-        "They look him up and down."
-        v "-- I doubt you could hold your own in a fight. So what're you good for?"
+        # v "So. You're born into the mafia."
+        # "They tick off on their fingers."
+        # v "You don't kill, you don't do the job your boss gives you, you can't help in a medical emergency, and --"
+        # "They look him up and down."
+        # v "-- I doubt you could hold your own in a fight. So what're you good for?"
     
     label train:
         # Train from Palermo along the coast of Sicily to Messina takes ~3 hours, and at the end includes a ferry ride. Tend to Val on the way.
@@ -490,7 +506,7 @@ label day1:
                 jump booze
             "They haven't said anything. Leave them be.":
                 "They must be handling it alright. If they wanted help, they'd speak up. And it's not like we have much to work with for wound treatment in this dump, anyway."
-                jump camp
+                jump messina
 
         label bhospital:
             a "Hey, you're not looking too good. I think someone should take a look at that."
@@ -545,7 +561,7 @@ label day1:
             They nod once.
             With your other hand, you reach two fingers into the bullet hole, and they jolt and cry out.
             """
-            jump camp
+            jump messina
         
         label booze:
             "You thought you saw some earlier..."
@@ -563,7 +579,7 @@ label day1:
             "And just as you were thinking about saying something, he's turned away again. Yeesh. Okay, then."
     
 
-    label camp:
+    label messina:
         # Find a hideout and pass out
         "camp stuff"
 
