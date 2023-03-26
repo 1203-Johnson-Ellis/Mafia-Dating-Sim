@@ -71,15 +71,10 @@ label start:
 
         stop sound
         pause 1.0
-        screen black
-        with fade
         play sound "audio/start_crackle.wav"
         play music "audio/wretched.mp3"
-        "You died"
-        #show screen ctc
-        #with fade(3.0)
 
-        # figure out how screens work
+        call screen bad_end
 
     return
 

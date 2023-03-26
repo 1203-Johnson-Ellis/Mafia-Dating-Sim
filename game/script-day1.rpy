@@ -12,8 +12,15 @@ label day1:
 
     ## Dialogue begins ##
 
-    "You are working at your desk in a Carabinieri Comando Stazione di Palermo when the door opens."
-    "You look up."
+    """
+    Palermo: a beautiful coastal city in Sicily, where cycling tourists and playing children alike can go outside and enjoy the sun.
+
+    Unfortunately, the place is also overrun by illicit activities. People whisper it in the streets - {i}cosa nostra{/i}.
+    
+    And because you are an idiot, you are in the middle of it all, in a Carabinieri Comando Stazione.
+    
+    You are working at your desk, eyes glazing over endless piles of paperwork, when the door opens.{p}You look up.
+    """
     a "Hey, boss."
     q "Hello, Angiolo. I have a job I'd like you to handle."
     a @ flat "Right..."
@@ -35,16 +42,22 @@ label day1:
         menu:
             "Felicien - Known owner of the establishment; weapons found on his person; uncooperative and rude. Charges: Suspected money laundering, involvement in organized crime" if FelicienInterrogated1_flag == False and FelicienInterrogated2_flag == False:
                 jump choice1_Felicien
+
             "Domani - Refuses to remove his mask. Confessed at the scene of the crime to having fired his guns. Charges: Second degree murder, aggravated assault with a deadly weapon, suspected involvement in organized crime" if DomaniInterrogated1_flag == False and DomaniInterrogated2_flag == False:
                 jump choice1_Domani
+
             "Kaj - Wearing the uniform for the establishment, but was the caller who dialed 1-1-3; therefore likely uninvolved in any criminal activity. Charges: None" if KajInterrogated1_flag == False and KajInterrogated2_flag == False:
                 jump choice1_Kaj
+
             "Valheo - Found in conflict with a customer; weapons found on their person. Injured in the crossfire. Charges: Assault, battery, suspected involvement in organized crime" if breakOut_flag == False:
                 jump choice1_Val
+
             "Luciano - Employee at the establishment; found standing near the suspected source of the conflict. Has largely refused to speak. Charges: Suspected involvement in organized crime" if LuciInterrogated1_flag == False and LuciInterrogated2_flag == False:
                 jump choice1_Luci
+
             "Let's break these poor bastards out of here." if breakOut_flag:
                 jump breakOut
+
             "I actually think I should do my job for once and let these guys go through the system..." if breakOut_flag:
                 jump system
     
@@ -133,6 +146,9 @@ label day1:
         show grain
         show reel
         with dissolve
+
+        # bruh I didn't implement a way to increase your score with Domani
+        # it's going to be giving him his mask back or not at the beginning
 
         "You enter the interrogation room to a lone figure wearing a fancifully-decorated Venetian mask so that you can't see his face. He looks up with a start."
         if interrogateBegin_flag == False:
@@ -244,7 +260,7 @@ label day1:
             jump interrogate_Kaj
 
         label interrogate_Kaj2:
-            k @ startled "Huh? He's fine..?"
+            k @ afraid "Huh? He's fine..?"
             k "No, actually. He's pretentious and mean. Can I ask why?"
             a "My boss thinks he's a mob boss."
             k "...Oh."
@@ -523,8 +539,8 @@ label day1:
             "They close their eyes, looking a little ill."
             v "Okay."
             a "You scared?"
-
-            "Taking their well-muscled arm firmly with one hand.
+            """
+            Taking their well-muscled arm firmly with one hand.
             You ready?
             They nod once.
             With your other hand, you reach two fingers into the bullet hole, and they jolt and cry out.

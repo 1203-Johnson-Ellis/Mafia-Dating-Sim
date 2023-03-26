@@ -1,53 +1,32 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 7, in script call
+  File "game/script.rpy", line 17, in script call
     call day1
-  File "game/script-day1.rpy", line 26, in script
-    pause 1.0
-  File "renpy/common/000statements.rpy", line 453, in execute_pause
-    renpy.pause(delay)
-OSError: Couldn't find file 'audio/start_crackle.mp3'.
+  File "game/script.rpy", line 80, in script
+    with fade(3.0)
+TypeError: 'MultipleTransition' object is not callable
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 7, in script call
+  File "game/script.rpy", line 17, in script call
     call day1
-  File "game/script-day1.rpy", line 26, in script
-    pause 1.0
-  File "C:\Users\isjee\Downloads\renpy-8.0.1-sdk\renpy\ast.py", line 2232, in execute
-    self.call("execute")
-  File "C:\Users\isjee\Downloads\renpy-8.0.1-sdk\renpy\ast.py", line 2220, in call
-    return renpy.statements.call(method, parsed, *args, **kwargs)
-  File "C:\Users\isjee\Downloads\renpy-8.0.1-sdk\renpy\statements.py", line 281, in call
-    return method(parsed, *args, **kwargs)
-  File "renpy/common/000statements.rpy", line 453, in execute_pause
-    renpy.pause(delay)
-  File "C:\Users\isjee\Downloads\renpy-8.0.1-sdk\renpy\exports.py", line 1533, in pause
-    rv = renpy.ui.interact(mouse='pause', type='pause', roll_forward=roll_forward, pause=delay)
-  File "C:\Users\isjee\Downloads\renpy-8.0.1-sdk\renpy\ui.py", line 299, in interact
-    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
-  File "C:\Users\isjee\Downloads\renpy-8.0.1-sdk\renpy\display\core.py", line 3377, in interact
-    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, pause=pause, pause_start=pause_start, **kwargs) # type: ignore
-  File "C:\Users\isjee\Downloads\renpy-8.0.1-sdk\renpy\display\core.py", line 4097, in interact_core
-    renpy.audio.audio.periodic()
-  File "C:\Users\isjee\Downloads\renpy-8.0.1-sdk\renpy\audio\audio.py", line 1166, in periodic
-    raise_(exc[0], exc[1], exc[2])
-  File "/home/tom/ab/renpy-build/tmp/install.linux-x86_64/lib/python3.9/site-packages/future/utils/__init__.py", line 441, in raise_
-  File "C:\Users\isjee\Downloads\renpy-8.0.1-sdk\renpy\audio\audio.py", line 1144, in periodic_thread_main
-    periodic_pass()
-  File "C:\Users\isjee\Downloads\renpy-8.0.1-sdk\renpy\audio\audio.py", line 1086, in periodic_pass
-    c.periodic()
-  File "C:\Users\isjee\Downloads\renpy-8.0.1-sdk\renpy\audio\audio.py", line 517, in periodic
-    topf = load(filename)
-  File "C:\Users\isjee\Downloads\renpy-8.0.1-sdk\renpy\audio\audio.py", line 70, in load
-    rv = renpy.loader.load(fn)
-  File "C:\Users\isjee\Downloads\renpy-8.0.1-sdk\renpy\loader.py", line 820, in load
-    raise IOError("Couldn't find file '%s'." % name)
-OSError: Couldn't find file 'audio/start_crackle.mp3'.
+  File "game/script.rpy", line 80, in script
+    with fade(3.0)
+  File "/home/ellis/Downloads/renpy-8.0.3-sdk/renpy/ast.py", line 1658, in execute
+    renpy.exports.with_statement(trans, paired=paired)
+  File "/home/ellis/Downloads/renpy-8.0.3-sdk/renpy/exports.py", line 1657, in with_statement
+    return renpy.game.interface.do_with(trans, paired, clear=clear)
+  File "/home/ellis/Downloads/renpy-8.0.3-sdk/renpy/display/core.py", line 2798, in do_with
+    return self.interact(trans_pause=True,
+  File "/home/ellis/Downloads/renpy-8.0.3-sdk/renpy/display/core.py", line 3377, in interact
+    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, pause=pause, pause_start=pause_start, pause_modal=pause_modal, **kwargs) # type: ignore
+  File "/home/ellis/Downloads/renpy-8.0.3-sdk/renpy/display/core.py", line 3752, in interact_core
+    trans = self.ongoing_transition[None](
+TypeError: 'MultipleTransition' object is not callable
 
-Windows-10-10.0.19044 AMD64
-Ren'Py 8.0.1.22070801
+Linux-5.4.0-144-generic-x86_64-with-glibc2.31 x86_64
+Ren'Py 8.0.3.22090809
 Mafia Dating Sim 1.0
-Sun Sep 18 11:19:47 2022
+Sun Mar 19 17:25:15 2023

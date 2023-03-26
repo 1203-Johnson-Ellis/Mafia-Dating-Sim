@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/definitions.rpy", line 175: expected '=' not found.
-    define screen ctc(arg=None):
-                  ^
+File "game/definitions.rpy", line 191: 'show' is not a keyword argument or valid child for the vbox statement.
+    show image "youdied.jpg"
+        ^
 
-Ren'Py Version: Ren'Py 8.0.1.22070801
-Wed Jan  4 14:21:18 2023
+Ren'Py Version: Ren'Py 8.0.3.22090809
+Sun Mar 19 17:52:18 2023

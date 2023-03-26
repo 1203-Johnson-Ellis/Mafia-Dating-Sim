@@ -30,6 +30,9 @@ define config.version = "1.0"
 ## triple-quotes, and leave a blank line between paragraphs.
 
 define gui.about = _p("""
+Mafia Dating Sim. Date the hottest 1924 mafia members on the market.
+
+Special thanks to Tybalt, Squid, Whitney, and Hanna for brainstorming and characters.
 """)
 
 

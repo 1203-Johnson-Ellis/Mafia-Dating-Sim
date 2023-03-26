@@ -116,24 +116,6 @@ layeredimage luci:
         attribute unmoved default
 
 
-## Trying to figure out darkening character portraits ##
-
-image angiolo dark:
-    "angiolo"
-    matrixcolor BrightnessMatrix(-0.3)
-
-# define config.speaking_attribute = "speaking"
-
-# image angiolo speaking = At("angiolo", pulse)
-
-# define config.speaking_attribute = "speaking"
-
-# transform pulse:
-#     zoom 1.0
-#     easein 0.2 zoom 1.02
-#     easeout 0.2 zoom 1.0
-
-
 ## Film reel grain ##
 
 image grain:
@@ -172,19 +154,23 @@ image reel:
         repeat
 
 
-# screen film_overlay:
-#     show grain
-#     show reel
-#     play audio "<loop 3.0>audio/projector.mp3"
-
-
 ## Bad end screen ##
 
-#define screen ctc(arg=None):
-    #text _("YOU DIED"):
-        #size 56
-        #xalign 0.98
-        #yalign 0.98
+screen bad_end():
+    modal True
+
+    frame:
+        xalign 0.5
+        yalign 0.5
+
+    vbox:
+        xsize 1920
+        ysize 1080
+        add "youdied.jpg" xpos 615 ypos 100
+        textbutton "Exit":
+            xalign 0.67
+            yalign 0
+            action Return()
 
 
 ## Characters ##
