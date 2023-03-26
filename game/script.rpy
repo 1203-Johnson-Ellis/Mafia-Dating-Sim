@@ -1,4 +1,5 @@
-﻿# 1924, stuff is rough in the Kingdom of Italy with the Great War having just ended, increasing violence against anti-Fascists,
+﻿## Notes ##
+# 1924, stuff is rough in the Kingdom of Italy with the Great War having just ended, increasing violence against anti-Fascists,
 # the march on Rome putting the Fascist party into power, now this attack on the mafia beginning.
 # Men of honor, Cosa Nostra
 # Education and literacy by class
