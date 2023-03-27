@@ -1,3 +1,11 @@
+######################################
+### DAY 5 ############################
+
+# Contains all scenes and dialogue for day 5
+
+######################################
+
+
 label day5:
     # The body is found and the police are onto you.
     # Kaj meow meow scene

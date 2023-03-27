@@ -1,3 +1,11 @@
+######################################
+### DAY 3 ############################
+
+# Contains all scenes and dialogue for day 3
+
+######################################
+
+
 label day3:
     # Giacomo Matteotti's assassination showing the prime minister's increasing vice grip. This does not bode well for the mafia.
     # Luci cutting ties with Catholicism due to the prime minister's actions, Domani more conflict over it more Catholic devotion. Visit a cathedral with Domani.

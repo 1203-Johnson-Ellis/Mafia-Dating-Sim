@@ -32,6 +32,8 @@ define config.version = "1.0"
 define gui.about = _p("""
 Mafia Dating Sim. Date the hottest 1924 mafia members on the market.
 
+If you come across any exceptions or out of place text, please let me know.
+
 Special thanks to Tybalt, Squid, Whitney, and Hanna for brainstorming and characters.
 """)
 
@@ -153,7 +155,7 @@ define config.save_directory = "MafiaDatingSim-1657496048"
 ##
 ## The icon displayed on the taskbar or dock.
 
-define config.window_icon = "gui/window_icon.png"
+define config.window_icon = "images/mafia_thumb.png"
 
 
 ## Build configuration #########################################################

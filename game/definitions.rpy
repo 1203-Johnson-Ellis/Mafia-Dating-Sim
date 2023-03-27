@@ -1,3 +1,10 @@
+###################
+# This file defines all variables that are used across multiple files
+# This includes integers and booleans, as well as images, screens, and character identifiers
+# Should it include screens, considering `screens.rpy`? Probably not
+###################
+
+
 ## Variables ##
 
 # Score that is used to determine how much each romance option likes you
@@ -56,6 +63,7 @@ default notLingerie = False
 
 
 # For character portraits
+# (I don't think these actually work for some reason)
 
 default blushing = False
 default blood = True
@@ -78,6 +86,7 @@ layeredimage angiolo:
     if blushing:
         "angiolo_blush"
     
+# Not sure why these are commented out
 
 # layeredimage felicien:
 #     always "felicien"

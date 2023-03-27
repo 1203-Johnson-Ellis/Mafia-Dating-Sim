@@ -1,3 +1,11 @@
+######################################
+### DAY 4 ############################
+
+# Contains all scenes and dialogue for day 4
+
+######################################
+
+
 label day4:
     # Protecting the farmer on the way into the city proper. Warring with Elhœva and kill them or be killed by them or recruit them
     # That night, Felicien eats someone

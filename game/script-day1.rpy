@@ -1,5 +1,16 @@
+######################################
+### DAY 1 ############################
+
+# Contains all scenes and dialogue for day 1
+
+######################################
+
+
 label day1:
-    # Setting the scene
+
+    ########################################
+    # Setting the scene ####################
+    ########################################
 
     play audio "<loop 3.0>audio/projector.mp3"
     scene bg questura desk
@@ -29,15 +40,28 @@ label day1:
     a "Whatever you say."
     "He hands you a list of suspects."
 
+
+    # Begin background music
+
     play sound "audio/start_crackle.wav"
     pause 1.0
     play music "audio/rag.mp3" fadeout 1
 
+
+    # Display the option to interrogate someone
+    # (In a perfect world, the screen here will be notebook paper. For now it's renpy default)
+
     label notes:
+
+        # Reset the scene in case user is returning from an interrogation
+
         scene bg questura desk
         show grain
         show reel
         with fade
+
+
+        # Options
 
         menu:
             "Felicien - Known owner of the establishment; weapons found on his person; uncooperative and rude. Charges: Suspected money laundering, involvement in organized crime" if FelicienInterrogated1_flag == False and FelicienInterrogated2_flag == False:
@@ -55,14 +79,21 @@ label day1:
             "Luciano - Employee at the establishment; found standing near the suspected source of the conflict. Has largely refused to speak. Charges: Suspected involvement in organized crime" if LuciInterrogated1_flag == False and LuciInterrogated2_flag == False:
                 jump choice1_Luci
 
+            # Options which will only appear if Val has been interrogated:
+
             "Let's break these poor bastards out of here." if breakOut_flag:
                 jump breakOut
 
             "I actually think I should do my job for once and let these guys go through the system..." if breakOut_flag:
                 jump system
     
+    ########################################
+    ### INTERROGATIONS #####################
+    ########################################
 
-    ## One-on-one interrogations with each suspect ##
+    #
+    ## FELICIEN ##
+    #
 
     label choice1_Felicien:
         scene bg questura interrogation
@@ -79,9 +110,11 @@ label day1:
         a "Yeowch. Pretty bad day, I guess."
         f "No need to play coy with me."
         a "No, I meant it."
+
         if interrogateBegin_flag == False:
             "You sit down before him, resting your elbows on your knees."
             $ interrogateBegin_flag = True
+
         a "I got some questions for you, though, if you feel like answering."
         f "We'll see."
 
@@ -111,6 +144,7 @@ label day1:
             f "Subtle. Is that supposed to scare me?"
             a "Nah. It's a question. My boss wants to know."
             f "And if I say no... will you believe me?"
+
             if FelicienInterrogated2_flag == False:
                 menu:
                     "Yeah. I'll take you at your word.":
@@ -120,6 +154,7 @@ label day1:
                         a "I can make time, if you want me to."
                         f "I would like that very much."
                         a "I'll be sure to check in later, then."
+
                     "Not so much. Seems kind of suspicious, if you ask me.":
                         f "Sounds like you've already made up your mind, carabinier."
                         a "I'm just saying. Can't really ignore the facts."
@@ -139,6 +174,11 @@ label day1:
 
             jump notes
 
+
+    #
+    ## DOMANI ##
+    #
+
     label choice1_Domani:
         scene bg questura interrogation
         show angiolo at left
@@ -147,13 +187,15 @@ label day1:
         show reel
         with dissolve
 
-        # bruh I didn't implement a way to increase your score with Domani
+        # I didn't implement a way to increase your score with Domani :|
         # it's going to be giving him his mask back or not at the beginning
 
         "You enter the interrogation room to a lone figure wearing a fancifully-decorated Venetian mask so that you can't see his face. He looks up with a start."
+
         if interrogateBegin_flag == False:
             "You sit down before him, resting your elbows on your knees. He seems to cringe away from you."
             $ interrogateBegin_flag = True
+
         a "Woah, easy there."
         d "I'm sorry, I'm sorry, I did it! I killed them all!"
         "His voice is a tearful young man's. His mask is cool and unfeeling, but he seems to be sobbing behind it."
@@ -211,7 +253,13 @@ label day1:
             "He looks down."
             d "...Okay."
             a "Hey, cheer up. You confessed -- counts for something. See you around, maybe."
+
             jump notes
+
+
+    #
+    ## KAJ ##
+    #
 
     label choice1_Kaj:
         scene bg questura interrogation
@@ -225,9 +273,11 @@ label day1:
         "Kaj had been sitting with his head in his hands until you walked in, at which point he jerked up to look at you. He looks wretched."
         k -hold "Hello, Carabiniere..."
         a "Hey."
+
         if interrogateBegin_flag == False:
             "You sit down before him, resting your elbows on your knees."
             $ interrogateBegin_flag = True
+
         a "Mind if I ask you some questions? Nothing crazy."
         k "Alright."
 
@@ -265,20 +315,24 @@ label day1:
             a "My boss thinks he's a mob boss."
             k "...Oh."
             a "..."
+
             if KajInterrogated2_flag == False:
                 a "...Do you want a cigarette?"
                 k "Okay."
                 "You lean back in your chair and rummage in your pockets for the pack of cigarettes. You hand Kaj one and take one for yourself."
                 show kaj dying -normal
                 "Once his is lit, Kaj takes one drag and then bursts into a coughing fit."
+
                 menu:
                     "Laugh.":
                         a @ grin "You never smoked before?"
                         k normal angry -dying "No. But with how the day is going, I thought..."
+
                     "I'm not going to be mean.":
                         $ Kaj_score += 1
                         a "Easy, deep breaths."
                         k hold afraid "*cough cough*... Thanks."
+                        
                 "His voice rasps. Poor guy."
                 "You take a few puffs of your own and check your notes."
 
@@ -289,7 +343,13 @@ label day1:
             a "Is there anything else of importance you want me to know?"
             k @ speaking "...No, that's all."
             a "Alright. Thanks for chatting."
+
             jump notes
+
+
+    #
+    ## VAL ##
+    #
 
     label choice1_Val:
         scene bg questura interrogation
@@ -310,6 +370,7 @@ label day1:
         v -raised "I'll say. Can I have a smoke?"
         "You shrug, pull out your cigarette pack, and frown to yourself."
         a @ upturned -closed "I'm all out..."
+
         menu:
             "Give them your cigarette?"
             "Yes":
@@ -320,9 +381,11 @@ label day1:
                 "They take it."
                 v @ smirk "Thanks. We can go get you more. My treat."
                 a @ smile "Hey, nice idea."
+
             "No":
                 a "We can go to the store and get another pack."
                 v "Sure."
+
         a "You ready?"
         v "Don't have much to prepare. Let's go."
         "You open the door to the interrogation room and lead them out of the Carabinieri Comando Stazione, and into the streets of Palermo."
@@ -357,6 +420,11 @@ label day1:
         $ breakOut_flag = True
         jump notes
 
+
+    #
+    ## LUCI ##
+    #
+
     label choice1_Luci:
         scene bg questura interrogation
         show angiolo at left
@@ -366,13 +434,16 @@ label day1:
         with dissolve
 
         "Luciano is standing in the interrogation room with his arms folded."
+
         if interrogateBegin_flag == False:
             "You sit down before him, resting your elbows on your knees."
             $ interrogateBegin_flag = True
-        a "Hello."
+
+        a "Hey."
         l "..."
         a "I'm Angiolo. I'm supposed to come in and interrogate you."
         l "..."
+        a "Not much of a talker? Well, alright. We'll see what we can do."
 
         label interrogate_Luci:
             show luci neutral normal
@@ -402,10 +473,12 @@ label day1:
 
         label interrogate_Luci2:
             l downturned angry frown "It seemed like a good fit."
+
             if LuciInterrogated2_flag == False:
                 menu:
                     "Really? Wouldn't have thought so, looking at you.":
                         "..."
+
                     "Huh. Yeah, you are very pretty. Makes sense.":
                         show luci -downturned -angry -frown
                         $ Luci_score += 1
@@ -417,29 +490,42 @@ label day1:
         label interrogate_Luci3:
             a "Alright. Be seeing you."
             l "..."
+
             jump notes
 
 
-    ## Choosing to try them as criminals ##
+    ########################################
+    ## Choosing to try them as criminals ###
+    # (Bad ending)
+    ########################################
 
     label system:
+
         show angiolo at left
-        "You open your notebook and begin to gather all your notes into a cohesive and reasonable-sounding report."
-        "You work unpaid overtime late into the night, because of your easily-distractible ADHD brain and because the military doesn't care about your wellbeing, individuality, or personhood."
-        "Your boss claps you on the shoulder."
+        """
+        You open your notebook and begin to gather all your notes into a cohesive and reasonable-sounding report.
+
+        You work unpaid overtime late into the night, because of your easily-distractible ADHD brain and because the military doesn't care about your wellbeing, individuality, or personhood.
+
+        Your boss claps you on the shoulder.
+        """
         show quinn at right
         q "Keep it up, Angiolo, you're doing great. I've never seen you come so close to doing an average amount of work. I knew you had it in you."
         q "Now, I'm heading home for the night. Leave your report outside my office when you're done."
         a "Yeah, okay, thanks..."
+
         jump badEnd
 
 
-    ## Choosing to break them out ##
+    ########################################
+    ## Choosing to break them out ##########
+    ########################################
 
     label breakOut:
         "You go around to the holding cells of each of the suspects, release them, and begin to lead them out of the comando stazione."
         "Carabiniere" "Where do you think you're taking these prisoners?"
         a "Uh..."
+
         menu:
             "To the bar. For a night of chill relaxation. Criminals needs that too, you know?":
                 "Carabiniere" "Right."
@@ -448,6 +534,7 @@ label day1:
                 # play a handcuff sound
                 a "Hey, hey, I'm not as bad as all that."
                 jump badEnd
+
             "Boss wanted 'em moved to more secure rooms.":
                 "Carabiniere" "So you're moving them all at once? Idiot. You want some help with that, or what?"
                 a "Nah, no, I'm good. They're alright. Not giving me too much of a hard time."
@@ -474,6 +561,10 @@ label day1:
     "Big Boss Nails" "{i}Play stupid games, win stupid prizes. Don't call again.{/i} Bzzzt..."
     "Felicien slams the phone back onto its holder and steps out of the booth."
 
+
+    ########################################
+    ## CHASE SCENE #########################
+    ########################################
     
     label hunt:
         # Get chased around by Quinn
@@ -493,20 +584,35 @@ label day1:
         # "They look him up and down."
         # v "-- I doubt you could hold your own in a fight. So what're you good for?"
     
+
+    ########################################
+    ## TRAIN RIDE AND WOUND TENDING ########
+    ########################################
+
     label train:
+
         # Train from Palermo along the coast of Sicily to Messina takes ~3 hours, and at the end includes a ferry ride. Tend to Val on the way.
+
         # v "Sorry, man. This can't be what you thought you were signing up for."
+
         "As you settle into the place, you notice Val slump hard against a wall, closing their eyes and breathing deliberately.{p}They must be in some wicked pain."
+
         menu:
             "We should get them to a doctor.":
                 jump bhospital
+
             "The military gave me some medical training...":
                 jump bandage
+
             "The best we can do right now is give them some booze.":
                 jump booze
+
             "They haven't said anything. Leave them be.":
                 "They must be handling it alright. If they wanted help, they'd speak up. And it's not like we have much to work with for wound treatment in this dump, anyway."
                 jump messina
+
+
+        ## BAD END ##
 
         label bhospital:
             a "Hey, you're not looking too good. I think someone should take a look at that."
@@ -521,6 +627,7 @@ label day1:
             a "Yeah. I'm smart enough for that."
 
             jump badEnd
+
 
         label bandage:
             a "Hey, you're not looking too good. I might be able to help."
@@ -563,6 +670,7 @@ label day1:
             """
             jump messina
         
+
         label booze:
             "You thought you saw some earlier..."
             "You open some cabinets and rummage through them. Bingo.{p}You turn back to Val."
@@ -570,7 +678,9 @@ label day1:
             "You hold up the bottle."
             a "Want some?{w} It's no laudanum, but..."
             "Their eyes open and focus on the bottle in your hand."
+
             $ Val_score += 1
+
             v "Where'd you get that, in a place run by Mr. Stickler? Yes, {i}please{/i}."
             "You hand it to them, and they take a mighty swig."
             v "God, you're my favorite person right now, Angiolo."
