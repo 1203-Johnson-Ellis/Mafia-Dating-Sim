@@ -1,8 +1,11 @@
-###################
+############################################
+## DEFINITIONS #############################
+
 # This file defines all variables that are used across multiple files
 # This includes integers and booleans, as well as images, screens, and character identifiers
 # Should it include screens, considering `screens.rpy`? Probably not
-###################
+
+############################################
 
 
 ## Variables ##

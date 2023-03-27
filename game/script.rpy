@@ -1,15 +1,22 @@
-﻿###################
-## Notes ##
+﻿############################################
+## Notes ###################################
+
 # 1924, stuff is rough in the Kingdom of Italy with the Great War having just ended, increasing violence against anti-Fascists,
 # the march on Rome putting the Fascist party into power, now this attack on the mafia beginning.
 # Men of honor, Cosa Nostra
 # Education and literacy by class
-###################
+
+############################################
 
 
-### GAME BEGINS ###
+
+############################################
+### GAME BEGINS ############################
+
 # This file outlines the plot structure day-by-day
 # It contains no dialogue itself, only jumps between the files that do contain dialogue
+
+############################################
 
 label start:
     stop music fadeout 1.0

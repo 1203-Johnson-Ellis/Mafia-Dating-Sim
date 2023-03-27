@@ -1,5 +1,5 @@
-######################################
-### NIGHT ############################
+############################################
+### NIGHT ##################################
 
 # Contains all nighttime scenes
 
@@ -8,12 +8,14 @@
     # 1. Who has been chosen to sleep beside 
     # 2. How many times they have been chosen before
 
-######################################
+############################################
 
 
-### PARTNER DETERMINATION ###
+#######################################
+### PARTNER DETERMINATION #############
+#######################################
 
-# No dialogue yet.
+# No dialogue in this section
 # These labels work together to determine who the partner for the night will be
 
 label nighttime:
@@ -79,16 +81,21 @@ label choose_partner:
     
     # Once the partner dialogue has finished, it will return to this label
     # So we end the current day
+
     jump endNight
 
 
 
-### SCENES AND DIALOGUE ###
+#######################################
+### SCENES AND DIALOGUE ###############
+#######################################
 
 # The individual night and character scenes are below
 
 
 ## NIGHTTIME DESCRIPTIONS ##
+# Describes the scenery for each night
+# This depends on what day it is
 
 ## First night ##
 
@@ -156,8 +163,12 @@ label night5:
 
 
 ## CHARACTER DIALOGUE ##
+# Dialogue with the character of the user's choice
+# This depends on how many nights the user has spent with this character previously
 
+#
 ## Felicien ##
+#
 
 label felicien:
 
@@ -208,7 +219,10 @@ label felicien:
 
         return
 
+
+#
 ## Domani ##
+#
 
 label domani:
 
@@ -256,6 +270,11 @@ label domani:
 
         return
 
+
+#
+## Kaj ##
+#
+
 label kaj:
 
     # Check how many times this character has been slept with, and call a different scene depending
@@ -302,6 +321,11 @@ label kaj:
 
         return
 
+
+#
+## Val ##
+#
+
 label val:
 
     # Check how many times this character has been slept with, and call a different scene depending
@@ -347,6 +371,11 @@ label val:
         "val 5"
 
         return
+
+
+#
+## Luci ##
+#
 
 label luci:
 
@@ -396,7 +425,9 @@ label luci:
 
 
 
-### FINISH ###
+#######################################
+### FINISH ############################
+#######################################
 
 # End nighttime sequence and move to the next day
 
