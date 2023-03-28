@@ -34,7 +34,7 @@ Mafia Dating Sim. Date the hottest 1924 mafia members on the market.
 
 If you come across any exceptions or out of place text, please let me know.
 
-Special thanks to Tybalt, Squid, Whitney, and Hanna for brainstorming and characters.
+Special thanks to Tybalt, Squid, Whitney, and Hanna for brainstorming, characters, and some portrait art.
 """)
 
 
@@ -67,7 +67,7 @@ define config.has_voice = True
 ## the player is at the main menu. This file will continue playing into the
 ## game, until it is stopped or another file is played.
 
-define config.main_menu_music = "audio/festive.mp3"
+define config.main_menu_music = "audio/vocal_creepy.mp3"
 
 
 ## Transitions #################################################################

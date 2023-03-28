@@ -43,9 +43,9 @@ label day1:
 
     # Begin background music
 
-    play sound "audio/start_crackle.wav"
+    play sound "audio/crackle_start.wav"
     pause 1.0
-    play music "audio/rag.mp3" fadeout 1
+    play music "audio/inst_rag.mp3" fadeout 1
 
 
     # Display the option to interrogate someone
@@ -64,19 +64,19 @@ label day1:
         # Options
 
         menu:
-            "Felicien - Known owner of the establishment; weapons found on his person; uncooperative and rude. Charges: Suspected money laundering, involvement in organized crime" if FelicienInterrogated1_flag == False and FelicienInterrogated2_flag == False:
+            "Felicien - Known owner of the establishment; weapons found on his person; uncooperative.\nCharges: Suspected money laundering, involvement in organized crime" if FelicienInterrogated1_flag == False and FelicienInterrogated2_flag == False:
                 jump choice1_Felicien
 
-            "Domani - Refuses to remove his mask. Confessed at the scene of the crime to having fired his guns. Charges: Second degree murder, aggravated assault with a deadly weapon, suspected involvement in organized crime" if DomaniInterrogated1_flag == False and DomaniInterrogated2_flag == False:
+            "Domani - Confessed at the scene of the crime to having fired his guns. Suspected criminal higher-up\nCharges: Second degree murder, aggravated assault with a deadly weapon, suspected involvement in organized crime" if DomaniInterrogated1_flag == False and DomaniInterrogated2_flag == False:
                 jump choice1_Domani
 
-            "Kaj - Wearing the uniform for the establishment, but was the caller who dialed 1-1-3; therefore likely uninvolved in any criminal activity. Charges: None" if KajInterrogated1_flag == False and KajInterrogated2_flag == False:
+            "Kaj - Wearing the uniform for the establishment, but was the caller who dialed 1-1-3; suspected victim forced through coercion.\nCharges: None" if KajInterrogated1_flag == False and KajInterrogated2_flag == False:
                 jump choice1_Kaj
 
-            "Valheo - Found in conflict with a customer; weapons found on their person. Injured in the crossfire. Charges: Assault, battery, suspected involvement in organized crime" if breakOut_flag == False:
+            "Valheo - Found in conflict with a customer; weapons found on their person. Injured in the crossfire.\nCharges: Assault, battery, suspected involvement in organized crime" if breakOut_flag == False:
                 jump choice1_Val
 
-            "Luciano - Employee at the establishment; found standing near the suspected source of the conflict. Has largely refused to speak. Charges: Suspected involvement in organized crime" if LuciInterrogated1_flag == False and LuciInterrogated2_flag == False:
+            "Luciano - Employee at the establishment; found standing near the suspected source of the conflict. Has largely refused to speak.\nCharges: Suspected involvement in organized crime" if LuciInterrogated1_flag == False and LuciInterrogated2_flag == False:
                 jump choice1_Luci
 
             # Options which will only appear if Val has been interrogated:
@@ -156,7 +156,7 @@ label day1:
                         a "I'll be sure to check in later, then."
 
                     "Not so much. Seems kind of suspicious, if you ask me.":
-                        f "Sounds like you've already made up your mind, carabinier."
+                        f "Sounds like you've already made up your mind, carabiniere."
                         a "I'm just saying. Can't really ignore the facts."
                         f "You said it yourself. It's been a bad day. I'd advise against making it any worse."
                         a "Woof. There's another one for the case file, I guess."
@@ -187,10 +187,7 @@ label day1:
         show reel
         with dissolve
 
-        # I didn't implement a way to increase your score with Domani :|
-        # it's going to be giving him his mask back or not at the beginning
-
-        "You enter the interrogation room to a lone figure wearing a fancifully-decorated Venetian mask so that you can't see his face. He looks up with a start."
+        "You enter the interrogation room to a lone figure with his head in his hands so that you can't see his face. He startles when you enter, but doesn't raise his head."
 
         if interrogateBegin_flag == False:
             "You sit down before him, resting your elbows on your knees. He seems to cringe away from you."
@@ -198,20 +195,40 @@ label day1:
 
         a "Woah, easy there."
         d "I'm sorry, I'm sorry, I did it! I killed them all!"
-        "His voice is a tearful young man's. His mask is cool and unfeeling, but he seems to be sobbing behind it."
+        "His voice is a tearful young man's."
         a "Yeah, so I've heard. Let's just settle down now."
-        d "You caught me, you have who you want, so do anything you like to me! Please... Val, I'm sorry..."
-        "Valheo?"
-        a "Dude, you didn't kill them. We have them in custody right now. And I don't really have the authority to 'do' anything to you."
+        d "You caught me, you have who you want, so do anything you like to me! Please... Val, I'm so sorry..."
+        a "Look, it's time to chill a bit. I don't really have the authority to 'do' anything to you."
+
+        if domaniInterrogated == False:
+            "Something catches your eye.{p}On the table nearby lies a fancifully-decorated Venetian-style mask. It looks like one of its ribbons is torn partway off, and it's been partially crushed."
+
+            menu:
+                "Looks like something one of the guys took from him. Is that why he's covering his face like a skittish animal?"
+                "Give him the mask back.":
+                    a "Hey. This yours?"
+                    "You pick up the mask."
+                    "He whimpers."
+                    d "My... mask?"
+                    a "Yup.{p}You can have it back, if you want."
+                    d "Yes, please..."
+                    "You hand the somewhat-worse-for-wear mask to him and watch him slowly put it on. Even through these movements, he's careful not to give you a glimpse of his face."
+                    "He finishes tying the strings,{w} sighs,{w} and looks up."
+                    $ Domani_score += 1
+                "He doesn't need that. Looks like some kind of criminal thing.":
+                    "You sit back and ignore the mask."
+            
+            $ domaniInterrogated = True
+
         a "I just gotta ask you some questions real quick, 'kay?"
-        "Domani sniffles miserably and looks up at you, awaiting his doom."
+        "Domani sniffles miserably, awaiting his doom."
         
         label interrogate_Domani:
             menu:
                 a "Let's see..."
                 "Can you give me a rundown of what happened?":
                     jump interrogate_Domani1
-                "What's up with the mask?":
+                "What's up with the mask? Kinda scary.":
                     jump interrogate_Domani2
                 "I think we can wrap this up.":
                     jump interrogate_Domani3
@@ -236,13 +253,22 @@ label day1:
 
         label interrogate_Domani2:
             d "Oh, um..."
-            a "Just curious, because it's kinda freaking everyone out. Seems like the kind of thing some criminal higher-up would wear. But you seem alright."
+            a "Just curious. Seems like the kind of thing some criminal higher-up would wear. But you seem alright."
             d "No, it's not that..."
             "He sounds embarassed."
             a "Well, that's good. If you were that kind of scary guy, I wouldn't stand a chance."
-            d "You still wouldn't, probably."
-            a "Ah."
-            a "...Glad we got that cleared up."
+            d "W...what do you mean? In combat?{w} But you're polizia, aren't you?"
+            a "Carabinieri."
+            d "That's even worse!"
+            d "Even here in military custody, I can't be stopped from killing people..."
+            a "Hey, don't worry. I'm not the only one here. And they took your guns, right?"
+            d "Yes...{p}But..."
+            a "Are you ripped, too?"
+            d "Not... exactly?"
+            a "Sounds like you're good, then. Unless you have some secret power you're hiding from us. Which I'd like to see."
+            d "Oh."
+            "He crosses himself."
+            d "God save us..."
 
             $ DomaniInterrogated2_flag = True
             jump interrogate_Domani
@@ -252,7 +278,7 @@ label day1:
             a "Oh, probably in a week. Maybe two. Things are kinda slow-going around here."
             "He looks down."
             d "...Okay."
-            a "Hey, cheer up. You confessed -- counts for something. See you around, maybe."
+            a "Hey, cheer up. You confessed -- counts for something.{p}See you around, maybe."
 
             jump notes
 
@@ -523,42 +549,42 @@ label day1:
 
     label breakOut:
         "You go around to the holding cells of each of the suspects, release them, and begin to lead them out of the comando stazione."
-        "Carabiniere" "Where do you think you're taking these prisoners?"
+        cara "Where do you think you're taking these prisoners?"
         a "Uh..."
 
         menu:
             "To the bar. For a night of chill relaxation. Criminals needs that too, you know?":
-                "Carabiniere" "Right."
-                "Carabiniere" "You're as sinful and stupid as every criminal in this place, Angiolo. I always knew you were gonna end up as one of them one day."
+                cara "Right."
+                cara "You're as sinful and stupid as every criminal in this place, Angiolo. I always knew you were gonna end up as one of them one day."
                 pause 1.0
                 # play a handcuff sound
                 a "Hey, hey, I'm not as bad as all that."
                 jump badEnd
 
             "Boss wanted 'em moved to more secure rooms.":
-                "Carabiniere" "So you're moving them all at once? Idiot. You want some help with that, or what?"
+                cara "So you're moving them all at once? Idiot. You want some help with that, or what?"
                 a "Nah, no, I'm good. They're alright. Not giving me too much of a hard time."
 
     # Vittore put Luci under Felicien as punishment for something
     
     f "Hello, boss."
-    "Big Boss Nails" "{i}Felicien. I'm surprised to hear your voice. I was under the impression you useless group of baccalà got yourselves imprisoned.{/i}"
+    boss "{i}Felicien. I'm surprised to hear your voice. I was under the impression you useless group of baccalà got yourselves imprisoned.{/i}"
     f "We ran into a bit of trouble. Nothing we can't handle."
-    "Big Boss Nails" "{i}Why are you calling, then?{/i}"
+    boss "{i}Why are you calling, then?{/i}"
     f "We'd be able to handle it a bit better if we had somewhere to stay until the cops are off our asses."
-    "Big Boss Nails" "{i}Do one better: get them off{/i} my {i}ass. Fucking moron.{p}What secrets can we expect them to know now?{/i}"
+    boss "{i}Do one better: get them off{/i} my {i}ass. Fucking moron.{p}What secrets can we expect them to know now?{/i}"
     f "I am {i}not{/i} stupid enough to let anything slip."
-    "Big Boss Nails" "{i}And your team?{/i}"
+    boss "{i}And your team?{/i}"
     "Felicien turns and looks dirently at Domani."
     f "If they did, I don't think they should be involved in cosa nostra."
-    "Big Boss Nails" "{i}No. But unfortunately if you want to get anything done in this world, you'll have to work with idiots. They're impossible to avoid.{p}God fuck it, Felicien. If you want to try to do something right, then get out of Palermo. Tonight.{/i}"
+    boss "{i}No. But unfortunately if you want to get anything done in this world, you'll have to work with idiots. They're impossible to avoid.{p}God fuck it, Felicien. If you want to try to do something right, then get out of Palermo. Tonight.{/i}"
     f "Excuse me?"
-    "Big Boss Nails" "{i}You heard me. You know the damn prime minister and his guys have been out here recently, and they're quickly making an enemy of us.{/i}"
-    "Big Boss Nails" "{i}Since you so badly want to draw attention to yourselves, lead the feds to Reggio. I have a contact you can stay with. A clementine farmer. Get her and yourselves killed, I don't care. My business is here, in the west.{/i}"
+    boss "{i}You heard me. You know the damn prime minister and his guys have been out here recently, and they're quickly making an enemy of us.{/i}"
+    boss "{i}Since you so badly want to draw attention to yourselves, lead the feds to Reggio. I have a contact you can stay with. A clementine farmer. Get her and yourselves killed, I don't care. My business is here, in the west.{/i}"
     f "I have wounded, I can't cross Sicily tonight."
-    "Big Boss Nails" "{i}All the better. They'll be able to follow the blood trail you leave behind.{/i}"
+    boss "{i}All the better. They'll be able to follow the blood trail you leave behind.{/i}"
     f "Fucking great..."
-    "Big Boss Nails" "{i}Play stupid games, win stupid prizes. Don't call again.{/i} Bzzzt..."
+    boss "{i}Play stupid games, win stupid prizes. Don't call again.{/i} Bzzzt..."
     "Felicien slams the phone back onto its holder and steps out of the booth."
 
 

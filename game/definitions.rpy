@@ -1,14 +1,17 @@
 ############################################
 ## DEFINITIONS #############################
 
-# This file defines all variables that are used across multiple files
+# This file defines all variables that have a scope greater than a single label
 # This includes integers and booleans, as well as images, screens, and character identifiers
 # Should it include screens, considering `screens.rpy`? Probably not
 
 ############################################
 
 
-## Variables ##
+### VARIABLES ###
+
+
+## GLOBAL ##
 
 # Score that is used to determine how much each romance option likes you
 
@@ -22,18 +25,22 @@ default Quinn_score = 0
 default Eligio_score = 0
 default Elhoeva_score = 0
 
+
 # Have you died?
 
 default dead = False
+
 
 # What day is it?
 
 default day = 1
 
+
 # Who is the current night being spent with?
 
 default partner = 0
 # 1 = Felicien, 2 = Domani, 3 = Kaj, 4 = Val, 5 = Luci
+
 
 # How many nights have you spend with this character?
 
@@ -44,9 +51,16 @@ default Val_nights = 0
 default Luci_nights = 0
 
 
+
+## NON-GLOBAL ##
+
 # Day 1 variables
 
+# Determines whether Angiolo has interrogated anyone yet. Used to trigger some flavor text
 default interrogateBegin_flag = False
+
+
+# Determine which questions the user has asked each character. Used to show/hide interrogation options and prevent point grinding
 
 default FelicienInterrogated1_flag = False
 default FelicienInterrogated2_flag = False
@@ -56,6 +70,11 @@ default KajInterrogated1_flag = False
 default KajInterrogated2_flag = False
 default LuciInterrogated1_flag = False
 default LuciInterrogated2_flag = False
+
+default domaniInterrogated = False
+
+
+# Determines whether Val has been spoken to, allowing the story to progress
 
 default breakOut_flag = False
 
@@ -199,13 +218,19 @@ screen bad_end():
 
 ## Characters ##
 
-define a = Character(_("Angiolo"), image = "angiolo", color = "#b4b4b4")
-define f = Character(_("Felicien"), image = "felicien", color = "#b4b4b4")
-define d = Character(_("Domani"), image = "domani", color = "#b4b4b4")
-define k = Character(_("Kaj"), image = "kaj", color = "#b4b4b4")
-define v = Character(_("Val"), image = "val", color = "#b4b4b4")
-define l = Character(_("Luci"), image = "luci", color = "#b4b4b4")
+# Main characters
+define a = Character(_("Angiolo"), image = "angiolo", color = "#cc0000")
+define f = Character(_("Felicien"), image = "felicien", color = "#cc0000")
+define d = Character(_("Domani"), image = "domani", color = "#cc0000")
+define k = Character(_("Kaj"), image = "kaj", color = "#cc0000")
+define v = Character(_("Valheo"), image = "val", color = "#cc0000")
+define l = Character(_("Luciano"), image = "luci", color = "#cc0000")
 
+# Bonus romance options
 define q = Character(_("Quinn"), color = "#b4b4b4")
 define lig = Character(_("Eligio"), color = "#b4b4b4")
 define el = Character(_("Elhoeva"), image = "elhoeva", color = "#b4b4b4")
+
+# Nice to haves
+define boss = Character(_("Big Boss Nails"), color = "#b4b4b4")
+define cara = Character(_("Carabiniere"), color = "#b4b4b4")
