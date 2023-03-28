@@ -109,7 +109,10 @@ label day1:
         f "Yeah. Fuck you."
         a "Yeowch. Pretty bad day, I guess."
         f "No need to play coy with me."
-        a "No, I meant it."
+        a "No, I meant it. Sorry about all this. Must suck."
+        f "Sucks like your mouth on my-"
+        a "Hey, if you're so desperate, hit me up anytime."
+        "He scowls, but seems to be reevaluating you. He tosses the cuffs to the ground.{w} Oh, well. Things are cheap, anyway."
 
         if interrogateBegin_flag == False:
             "You sit down before him, resting your elbows on your knees."
@@ -132,17 +135,37 @@ label day1:
             f "Yeah, my fucking club got shot up by one of my useless employees."
             a "Hum? Any idea why?"
             f "No, I was in the back room doing much more important things. You can't trust Domani with anything, though, he screws up everything he touches somehow."
-            a "Pretty big screw-up."
+            a "Pretty big screw-up this time."
             f "Mmhmm. Who knows what's going on in that thick skull of his?"
-            a "Eh, maybe I'll find out."
-            f "Do that. My business is suffering because of him."
+
+            if domaniInterrogated == True:
+                a "I do. Well, maybe. His interrogation wasn't {i}too{/i} enlightening?"
+                f "Fuck, I can't imagine. Trying to get anything out of him is like pulling teeth. But bloodier."
+                a "Yeah, he's interesting. He does have a violent streak, huh?"
+                f "Hm. So do I."
+                a "Yikes.{p}Hey, speaking of which..."
+
+            else:
+                a "Eh, maybe I'll find out."
+                f "Do that. My business is suffering because of him."
+                a "Yeah, well, speaking of business. What kind of place are you running, anyway?"
+                f "A host club."
+                a "Aha. You get a lot of regulars there?"
+                f "This was actually our opening night."
+                a "Oh. Landing in town with a bang, then. So..."
+            
+            a "You didn't know the client, did you? The guy who got shot."
+            f "I didn't see who got shot, idiot. I wasn't there."
+            a "No ideas floating around up there?"
+            f "No."
+            a "Alright, then."
 
             $ FelicienInterrogated1_flag = True
             jump interrogate_Felicien
 
         label interrogate_Felicien2:
             f "Subtle. Is that supposed to scare me?"
-            a "Nah. It's a question. My boss wants to know."
+            a "Nah, it's a question. My boss wants to know."
             f "And if I say no... will you believe me?"
 
             if FelicienInterrogated2_flag == False:
@@ -234,7 +257,6 @@ label day1:
                     jump interrogate_Domani3
 
         label interrogate_Domani1:
-            "You worry he might start bawling again."
             d "I... I..."
             a "Easy..."
             d "...I hated that stupid job!"
@@ -242,7 +264,7 @@ label day1:
             a "You mind if I ask what things?"
             d "I hardly dare say...! Flirtation, handholding..."
             "He takes a flustered moment."
-            d "...And then when it inevitably went wrong, he didn't do a thing about it. So I had to. It's okay if you don't understand. I'm horrible. No one else would..."
+            d "...And then when it inevitably went wrong, he didn't do a thing about it. So {i}I{/i} had to. It's okay if you don't understand. I'm horrible. No one else would..."
             a "...And that's when you shot the place up."
             "He nods, defeated."
             d "Some terrible bloodlust came over me..."
@@ -412,8 +434,8 @@ label day1:
                 a "We can go to the store and get another pack."
                 v "Sure."
 
-        a "You ready?"
-        v "Don't have much to prepare. Let's go."
+        v "You ready?"
+        a "Yeah, let's get out of here."
         "You open the door to the interrogation room and lead them out of the Carabinieri Comando Stazione, and into the streets of Palermo."
 
         show bg venice street
@@ -584,7 +606,7 @@ label day1:
     f "I have wounded, I can't cross Sicily tonight."
     boss "{i}All the better. They'll be able to follow the blood trail you leave behind.{/i}"
     f "Fucking great..."
-    boss "{i}Play stupid games, win stupid prizes. Don't call again.{/i} Bzzzt..."
+    boss "{i}Play stupid games, win stupid prizes. Don't call again.{/i}{w} Bzzzt..."
     "Felicien slams the phone back onto its holder and steps out of the booth."
 
 
@@ -645,11 +667,11 @@ label day1:
             "Their eyes open and focus on you."
             v "Someone."
             a "You know, a professional. I can't believe you've just been walking around with that hole in your shoulder.{p}Is there a hospital around?"
-            f "A hospital?"
-            f "Tell me you're not that much of a dumbfuck."
+            f "A hospital?{p}Tell me you're not that much of a dumbfuck."
             a "What? There's not much we can do here, and they need medicine. Clearly."
             f "Right. They won't ask questions, will they?"
-            l "Angiolo is correct, Felicien. They will simply give unenlightening answers to any questions."
+            l "Angiolo is correct, Felicien."
+            l "They will simply give unenlightening answers to any questions."
             a "Yeah. I'm smart enough for that."
 
             jump badEnd
@@ -677,8 +699,15 @@ label day1:
             v "Guh, no..."
             "They use their good arm to pull it up, exposing a strong chest and surprisingly slender waist. From here, though, how they should move to remove the shirt further is unclear, and you watch them struggle for a bit."
             a "Here, let me."
-            "You come forward and take the hem of the shirt from them. You guide their head out first. From there you have to be careful of the fabric around the wound, unsticking it where it has been glued down by blood and carefully pulling it out of the hole. They grit their teeth as it comes free.
-            Then you remove the shirt from their arms the rest of the way and toss it aside. Now you can see the bullet wound clearly. At least some of it came out the other side, and the impact looks to have pulverized the surrounding flesh painfully."
+            """
+            You come forward and take the hem of the shirt from them. You guide their head out first.
+
+            From there you have to be careful of the fabric around the wound, unsticking it where it has been glued down by blood and carefully pulling it out of the hole.{p}They grit their teeth as it comes free.
+
+            Then you remove the shirt from their arms the rest of the way and toss it aside.
+
+            Now you can see the bullet wound clearly. At least some of it came out the other side, and the impact looks to have pulverized the surrounding flesh painfully.
+            """
             a "Tsss, ouch. This stuff is brutal on you dikarycota."
             "You reach out a finger to prod the muscle along the outer damage, and they stiffen."
             v "Can you just get this over with?"
@@ -688,12 +717,13 @@ label day1:
             "They close their eyes, looking a little ill."
             v "Okay."
             a "You scared?"
-            """
-            Taking their well-muscled arm firmly with one hand.
-            You ready?
-            They nod once.
-            With your other hand, you reach two fingers into the bullet hole, and they jolt and cry out.
-            """
+            "They shake their head nauseously."
+            "You take their well-muscled arm firmly with one hand."
+            a "Ready?"
+            "They nod once."
+            "With your other hand, you reach two fingers into the bullet hole. First they tense to rigidity, then they jolt and hiss."
+            # continue
+
             jump messina
         
 
@@ -713,6 +743,7 @@ label day1:
             a "Haha, hey, you're not too bad yourself. We gotta keep you up and running, right? The best we can, anyway."
             "When you look up, you notice Luci staring at you. Why are his eyes always so scary and intense like that?"
             "And just as you were thinking about saying something, he's turned away again. Yeesh. Okay, then."
+            # continue?
     
 
     label messina:

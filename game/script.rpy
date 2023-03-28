@@ -102,9 +102,9 @@ label start:
 
     # Good end partnership selection
     label finale:
-        play sound "audio/start_crackle.wav"
+        play sound "audio/crackle_start.wav"
         pause 1.0
-        play music "audio/romantic.mp3"
+        play music "audio/inst_romantic.mp3"
 
         # Variables
 
@@ -175,10 +175,8 @@ label start:
                             $ winner = "nobody"
                             $ chosen_flag = True
                             jump marriage
-                        else:
-                            "Congratulations."
-                            return
             else:
+                "Congratulations."
                 return
 
 
