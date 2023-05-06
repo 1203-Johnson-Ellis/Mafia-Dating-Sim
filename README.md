@@ -17,10 +17,12 @@ Ren'py makes coding dialogue extremely simple. The basics will look like the fol
 "Character ID" "dialogue"
 ```
 
-Where the `Character ID` is optional and can be either one of our pre-existing ones or a string of your choosing, and the `dialogue` is whatever you will have the character say. All existing character IDs can be found at the bottom of `definitions.rpy`. An example snippet of dialogue follows:
+Where the `Character ID` is optional and can be either one of our pre-existing ones or a string of your choosing, and the `dialogue` is whatever you will have the character say. All existing character IDs can be found at the bottom of `definitions.rpy`.
+
+An example snippet of dialogue follows:
 
 ```
-"You go around to the holding cells of each of the suspects, release them, and begin to lead them out of the comando stazione."
+"You begin to lead the suspects out of the comando stazione."
 "Carabiniere" "Where do you think you're taking these prisoners?"
 a "To the bar. For a night of chill relaxation. Criminals needs that too, you know?"
 ```
@@ -44,7 +46,7 @@ Shoot me a message for any troubleshooting or debugging issues.
 ## RUNNING THE GAME
 For the time being, if you want to run it, you have two options. The first one is to ask me to figure out how to get it packaged in a nice, usable format to send over. The second is to clone this repo to your machine and install Ren'py, which will act as a launcher.
 
-### If you want to try the second option:
+### Second option:
 The easiest way to clone this repo onto a Windows machine will be to navigate up to the green `<> Code` button on the GitHub page and hit `Download ZIP`. Extract the files.
 
 Go [here](https://www.renpy.org/latest.html) to install Ren'py (this will also give you a couple of coding tutorial games which, when you launch it, you will see listed as `Tutorial` and `The Question`).
