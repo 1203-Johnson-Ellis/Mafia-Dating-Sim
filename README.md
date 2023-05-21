@@ -17,10 +17,12 @@ Ren'py makes coding dialogue extremely simple. In its most simple form, writing 
 "Character ID" "dialogue"
 ```
 
-Where the `Character ID` is optional and can be either one of our pre-existing ones or a string of your choosing, and the `dialogue` is whatever you will have the character say. All existing character IDs can be found at the bottom of `definitions.rpy`. An example snippet of dialogue follows:
+Where the `Character ID` is optional and can be either one of our pre-existing ones or a string of your choosing, and the `dialogue` is whatever you will have the character say. All existing character IDs can be found at the bottom of `definitions.rpy`.
+
+An example snippet of dialogue follows:
 
 ```
-"You go around to the holding cells of each of the suspects, release them, and begin to lead them out of the comando stazione."
+"You begin to lead the suspects out of the comando stazione."
 "Carabiniere" "Where do you think you're taking these prisoners?"
 a "To the bar. For a night of chill relaxation. Criminals needs that too, you know?"
 ```
