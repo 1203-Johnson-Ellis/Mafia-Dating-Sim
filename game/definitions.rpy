@@ -91,6 +91,9 @@ default blushing = False
 default blood = True
 
 
+
+### IMAGES ###
+
 ## Link character portrait images together ##
 
 layeredimage angiolo:
@@ -108,14 +111,13 @@ layeredimage angiolo:
     if blushing:
         "angiolo_blush"
     
-# Not sure why these are commented out
 
-# layeredimage felicien:
-#     always "felicien"
+layeredimage felicien:
+    always "felicien"
 
 
-# layeredimage domani:
-#     always "domani"
+layeredimage domani:
+    always "domani"
 
 
 layeredimage kaj:
@@ -155,14 +157,14 @@ layeredimage luci:
         attribute unmoved default
 
 
-# layeredimage elhoeva:
-#     always "elhoeva"
+layeredimage elhoeva:
+    always "elhoeva"
 
 
 ## Film reel grain ##
 
 image grain:
-    "bg grain"
+    "images/backgrounds/bg grain.png"
     matrixcolor OpacityMatrix(0.25)
     xalign 1.0
     yalign 1.0
@@ -197,7 +199,10 @@ image reel:
         repeat
 
 
-## Bad end screen ##
+
+### SCREENS ###
+
+# Bad end
 
 screen bad_end():
     modal True
@@ -216,7 +221,7 @@ screen bad_end():
             action Return()
 
 
-## Characters ##
+### CHARACTERS ###
 
 # Main characters
 define a = Character(_("Angiolo"), image = "angiolo", color = "#cc0000")

@@ -93,8 +93,8 @@ label start:
 
         stop sound
         pause 1.0
-        play sound "audio/start_crackle.wav"
-        play music "audio/wretched.mp3"
+        play sound "audio/crackle start.wav"
+        play music "audio/bgm/inst wretched.mp3"
 
         call screen bad_end
 
@@ -102,9 +102,9 @@ label start:
 
     # Good end partnership selection
     label finale:
-        play sound "audio/crackle_start.wav"
+        play sound "audio/crackle start.wav"
         pause 1.0
-        play music "audio/inst_romantic.mp3"
+        play music "audio/bgm/inst romantic.mp3"
 
         # Variables
 

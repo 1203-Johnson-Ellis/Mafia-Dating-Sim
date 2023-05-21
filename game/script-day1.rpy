@@ -43,9 +43,9 @@ label day1:
 
     # Begin background music
 
-    play sound "audio/crackle_start.wav"
+    play sound "audio/crackle start.wav"
     pause 1.0
-    play music "audio/inst_rag.mp3" fadeout 1
+    play music "audio/bgm/inst rag.mp3" fadeout 1
 
 
     # Display the option to interrogate someone

@@ -75,7 +75,7 @@ label day2:
             "You wake with cold steel at your throat."
             v "Easy, now."
 
-            scene bg hideout
+            scene bg reggio train
             show val at right
             show angiolo at left
             with dissolve

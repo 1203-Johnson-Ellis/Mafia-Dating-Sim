@@ -19,9 +19,9 @@
 # These labels work together to determine who the partner for the night will be
 
 label nighttime:
-    play sound "audio/start_crackle.wav"
+    play sound "audio/crackle start.wav"
     pause 1.0
-    play music "audio/night.mp3"
+    play music "audio/bgm/inst night.mp3"
 
     # This label gets the user's input
 
@@ -102,7 +102,7 @@ label choose_partner:
 label night1:
     # found an abandoned place for a temp hideout
 
-    scene bg hideout
+    scene bg reggio train
     with dissolve
 
     "night 1"
@@ -141,7 +141,7 @@ label night3:
 label night4:
     # in the city
 
-    scene bg somewhere
+    #scene bg somewhere
     with dissolve
 
     "night 4"
@@ -154,7 +154,7 @@ label night4:
 label night5:
     # either in or out of jail??
 
-    scene bg somewhere
+    #scene bg somewhere
     with dissolve
 
     "night 5"
