@@ -7,6 +7,8 @@
 # then give a different conversation depending on:
     # 1. Who has been chosen to sleep beside 
     # 2. How many times they have been chosen before
+# I think that works. Unless the scenes end up being too closely tied to plot progression/location
+# In which case 2. should be what the day counter is
 
 ############################################
 

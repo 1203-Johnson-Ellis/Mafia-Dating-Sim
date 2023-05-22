@@ -2,6 +2,11 @@
 ### DAY 1 ############################
 
 # Contains all scenes and dialogue for day 1
+# + Interrogations, character introductions, breaking out of prison
+# + Calling the big boss
+# + Quinn chase scene
+# + Catching the train to Messina
+# + Patch up Val's bullet wound
 
 ######################################
 
@@ -64,29 +69,30 @@ label day1:
         # Options
 
         menu:
-            "Felicien - Known owner of the establishment; weapons found on his person; uncooperative.\nCharges: Suspected money laundering, involvement in organized crime" if FelicienInterrogated1_flag == False and FelicienInterrogated2_flag == False:
-                jump choice1_Felicien
+            "Felicien - Known owner of the establishment; weapons found on his person; uncooperative.\nCharges: Suspected money laundering, involvement in organized crime" if FelicienInterrogated1 == False and FelicienInterrogated2 == False:
+                jump questionFelicien
 
-            "Domani - Confessed at the scene of the crime to having fired his guns. Suspected criminal higher-up\nCharges: Second degree murder, aggravated assault with a deadly weapon, suspected involvement in organized crime" if DomaniInterrogated1_flag == False and DomaniInterrogated2_flag == False:
-                jump choice1_Domani
+            "Domani - Confessed at the scene of the crime to having fired his guns. Suspected criminal higher-up\nCharges: Second degree murder, aggravated assault with a deadly weapon, suspected involvement in organized crime" if DomaniInterrogated1 == False and DomaniInterrogated2 == False:
+                jump questionDomani
 
-            "Kaj - Wearing the uniform for the establishment, but was the caller who dialed 1-1-3; suspected victim forced through coercion.\nCharges: None" if KajInterrogated1_flag == False and KajInterrogated2_flag == False:
-                jump choice1_Kaj
+            "Kaj - Wearing the uniform for the establishment, but was the caller who dialed 1-1-3; suspected victim forced through coercion.\nCharges: None" if KajInterrogated1 == False and KajInterrogated2 == False:
+                jump questionKaj
 
-            "Valheo - Found in conflict with a customer; weapons found on their person. Injured in the crossfire.\nCharges: Assault, battery, suspected involvement in organized crime" if breakOut_flag == False:
-                jump choice1_Val
+            "Valheo - Found in conflict with a customer; weapons found on their person. Injured in the crossfire.\nCharges: Assault, battery, suspected involvement in organized crime" if canBreakout == False:
+                jump questionVal
 
-            "Luciano - Employee at the establishment; found standing near the suspected source of the conflict. Has largely refused to speak.\nCharges: Suspected involvement in organized crime" if LuciInterrogated1_flag == False and LuciInterrogated2_flag == False:
-                jump choice1_Luci
+            "Luciano - Employee at the establishment; found standing near the suspected source of the conflict. Has largely refused to speak.\nCharges: Suspected involvement in organized crime" if LuciInterrogated1 == False and LuciInterrogated2 == False:
+                jump questionLuci
 
             # Options which will only appear if Val has been interrogated:
 
-            "Let's break these poor bastards out of here." if breakOut_flag:
+            "Let's break these poor bastards out of here." if canBreakout:
                 jump breakOut
 
-            "I actually think I should do my job for once and let these guys go through the system..." if breakOut_flag:
+            "I actually think I should do my job for once and let these guys go through the system..." if canBreakout:
                 jump system
     
+
     ########################################
     ### INTERROGATIONS #####################
     ########################################
@@ -95,7 +101,7 @@ label day1:
     ## FELICIEN ##
     #
 
-    label choice1_Felicien:
+    label questionFelicien:
         scene bg questura interrogation
         show angiolo at left
         show felicien at right
@@ -114,9 +120,9 @@ label day1:
         a "Hey, if you're so desperate, hit me up anytime."
         "He scowls, but seems to be reevaluating you. He tosses the cuffs to the ground.{w} Oh, well. Things are cheap, anyway."
 
-        if interrogateBegin_flag == False:
+        if interrogateBegin == False:
             "You sit down before him, resting your elbows on your knees."
-            $ interrogateBegin_flag = True
+            $ interrogateBegin = True
 
         a "I got some questions for you, though, if you feel like answering."
         f "We'll see."
@@ -160,7 +166,7 @@ label day1:
             f "No."
             a "Alright, then."
 
-            $ FelicienInterrogated1_flag = True
+            $ FelicienInterrogated1 = True
             jump interrogate_Felicien
 
         label interrogate_Felicien2:
@@ -168,7 +174,7 @@ label day1:
             a "Nah, it's a question. My boss wants to know."
             f "And if I say no... will you believe me?"
 
-            if FelicienInterrogated2_flag == False:
+            if FelicienInterrogated2 == False:
                 menu:
                     "Yeah. I'll take you at your word.":
                         $ Felicien_score += 1
@@ -185,7 +191,7 @@ label day1:
                         a "Woof. There's another one for the case file, I guess."
                         f "..."
 
-            $ FelicienInterrogated2_flag = True
+            $ FelicienInterrogated2 = True
             jump interrogate_Felicien
 
         label interrogate_Felicien3:
@@ -202,7 +208,7 @@ label day1:
     ## DOMANI ##
     #
 
-    label choice1_Domani:
+    label questionDomani:
         scene bg questura interrogation
         show angiolo at left
         show domani at right
@@ -212,9 +218,9 @@ label day1:
 
         "You enter the interrogation room to a lone figure with his head in his hands so that you can't see his face. He startles when you enter, but doesn't raise his head."
 
-        if interrogateBegin_flag == False:
+        if interrogateBegin == False:
             "You sit down before him, resting your elbows on your knees. He seems to cringe away from you."
-            $ interrogateBegin_flag = True
+            $ interrogateBegin = True
 
         a "Woah, easy there."
         d "I'm sorry, I'm sorry, I did it! I killed them all!"
@@ -270,7 +276,7 @@ label day1:
             d "Some terrible bloodlust came over me..."
             a "That's okay, we hear that all the time. We'll get it all sorted."
 
-            $ DomaniInterrogated1_flag = True
+            $ DomaniInterrogated1 = True
             jump interrogate_Domani
 
         label interrogate_Domani2:
@@ -292,7 +298,7 @@ label day1:
             "He crosses himself."
             d "God save us..."
 
-            $ DomaniInterrogated2_flag = True
+            $ DomaniInterrogated2 = True
             jump interrogate_Domani
 
         label interrogate_Domani3:
@@ -309,7 +315,7 @@ label day1:
     ## KAJ ##
     #
 
-    label choice1_Kaj:
+    label questionKaj:
         scene bg questura interrogation
         show angiolo at left
         show kaj afraid at right
@@ -322,9 +328,9 @@ label day1:
         k -hold "Hello, Carabiniere..."
         a "Hey."
 
-        if interrogateBegin_flag == False:
+        if interrogateBegin == False:
             "You sit down before him, resting your elbows on your knees."
-            $ interrogateBegin_flag = True
+            $ interrogateBegin = True
 
         a "Mind if I ask you some questions? Nothing crazy."
         k "Alright."
@@ -354,7 +360,7 @@ label day1:
             k "...They're weird, but it was that guy that was the danger."
             a @ closed "Mmkay."
 
-            $ KajInterrogated1_flag = True
+            $ KajInterrogated1 = True
             jump interrogate_Kaj
 
         label interrogate_Kaj2:
@@ -364,7 +370,7 @@ label day1:
             k "...Oh."
             a "..."
 
-            if KajInterrogated2_flag == False:
+            if KajInterrogated2 == False:
                 a "...Do you want a cigarette?"
                 k "Okay."
                 "You lean back in your chair and rummage in your pockets for the pack of cigarettes. You hand Kaj one and take one for yourself."
@@ -384,7 +390,7 @@ label day1:
                 "His voice rasps. Poor guy."
                 "You take a few puffs of your own and check your notes."
 
-                $ KajInterrogated2_flag = True
+                $ KajInterrogated2 = True
             jump interrogate_Kaj
             
         label interrogate_Kaj3:
@@ -399,7 +405,7 @@ label day1:
     ## VAL ##
     #
 
-    label choice1_Val:
+    label questionVal:
         scene bg questura interrogation
         show angiolo at left
         show val blank at right
@@ -465,7 +471,7 @@ label day1:
         a "We'll have to head back and pretend I'm working until my coworkers are out, then I can help you guys."
         "You go to the convenience store where Val buys you a new pack of cigarettes, then return to the comando stazione."
 
-        $ breakOut_flag = True
+        $ canBreakout = True
         jump notes
 
 
@@ -473,7 +479,7 @@ label day1:
     ## LUCI ##
     #
 
-    label choice1_Luci:
+    label questionLuci:
         scene bg questura interrogation
         show angiolo at left
         show luci at right
@@ -483,9 +489,9 @@ label day1:
 
         "Luciano is standing in the interrogation room with his arms folded."
 
-        if interrogateBegin_flag == False:
+        if interrogateBegin == False:
             "You sit down before him, resting your elbows on your knees."
-            $ interrogateBegin_flag = True
+            $ interrogateBegin = True
 
         a "Hey."
         l "..."
@@ -516,13 +522,13 @@ label day1:
             l "Valheo and Domani."
             "You nod and write in your notes."
 
-            $ LuciInterrogated1_flag = True
+            $ LuciInterrogated1 = True
             jump interrogate_Luci
 
         label interrogate_Luci2:
             l downturned angry frown "It seemed like a good fit."
 
-            if LuciInterrogated2_flag == False:
+            if LuciInterrogated2 == False:
                 menu:
                     "Really? Wouldn't have thought so, looking at you.":
                         "..."
@@ -532,7 +538,7 @@ label day1:
                         $ Luci_score += 1
                         l "..."
 
-                $ LuciInterrogated2_flag = True
+                $ LuciInterrogated2 = True
             jump interrogate_Luci
 
         label interrogate_Luci3:
@@ -724,7 +730,8 @@ label day1:
             "With your other hand, you reach two fingers into the bullet hole. First they tense to rigidity, then they jolt and hiss."
             # continue
 
-            jump messina
+            return
+            # that better return where I want it to
         
 
         label booze:
@@ -744,10 +751,5 @@ label day1:
             "When you look up, you notice Luci staring at you. Why are his eyes always so scary and intense like that?"
             "And just as you were thinking about saying something, he's turned away again. Yeesh. Okay, then."
             # continue?
-    
-
-    label messina:
-        # Find a hideout and pass out
-        "camp stuff"
 
     return

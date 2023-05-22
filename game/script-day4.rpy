@@ -2,6 +2,9 @@
 ### DAY 4 ############################
 
 # Contains all scenes and dialogue for day 4
+# + Protect farmer on the way to town
+# + Elhoeva clash, either kill or spare
+# + Stay in the city for the night
 
 ######################################
 

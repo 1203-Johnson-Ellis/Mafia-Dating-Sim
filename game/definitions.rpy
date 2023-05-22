@@ -54,38 +54,46 @@ default Luci_nights = 0
 
 ## NON-GLOBAL ##
 
-# Day 1 variables
+## Day 1 variables ##
 
 # Determines whether Angiolo has interrogated anyone yet. Used to trigger some flavor text
-default interrogateBegin_flag = False
+
+default interrogateBegin = False
 
 
 # Determine which questions the user has asked each character. Used to show/hide interrogation options and prevent point grinding
 
-default FelicienInterrogated1_flag = False
-default FelicienInterrogated2_flag = False
-default DomaniInterrogated1_flag = False
-default DomaniInterrogated2_flag = False
-default KajInterrogated1_flag = False
-default KajInterrogated2_flag = False
-default LuciInterrogated1_flag = False
-default LuciInterrogated2_flag = False
+default FelicienInterrogated1 = False
+default FelicienInterrogated2 = False
+default DomaniInterrogated1 = False
+default DomaniInterrogated2 = False
+default KajInterrogated1 = False
+default KajInterrogated2 = False
+default LuciInterrogated1 = False
+default LuciInterrogated2 = False
 
 default domaniInterrogated = False
 
 
 # Determines whether Val has been spoken to, allowing the story to progress
 
-default breakOut_flag = False
+default canBreakout = False
 
 
-# Day 2 variables
+## Day 2 variables ##
 
-default notLingerie = False
+
+## Day 3 variables ##
+
+
+## Day 4 variables ##
+
+
+## Day 5 variables ##
 
 
 # For character portraits
-# (I don't think these actually work for some reason)
+# (I think these don't work for some reason)
 
 default blushing = False
 default blood = True

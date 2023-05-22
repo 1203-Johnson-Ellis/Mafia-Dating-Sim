@@ -2,6 +2,7 @@
 ### DAY 5 ############################
 
 # Contains all scenes and dialogue for day 5
+# + Finale (dependent on route)
 
 ######################################
 

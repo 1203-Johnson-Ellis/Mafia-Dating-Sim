@@ -2,6 +2,9 @@
 ### DAY 2 ############################
 
 # Contains all scenes and dialogue for day 2
+# + Arriving in Messina
+# + Catching the ferry to Reggio, karaoke, Fata Morgana
+# + Pass by war monument, meet farmer
 
 ######################################
 

@@ -2,6 +2,10 @@
 ### DAY 3 ############################
 
 # Contains all scenes and dialogue for day 3
+# + Assassination news
+# + Go to the church OR go to the seaside OR stay home ??
+# + If in the city: Elhoeva introduction, initial confrontation
+# + Else ??
 
 ######################################
 
