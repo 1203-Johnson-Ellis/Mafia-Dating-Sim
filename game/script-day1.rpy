@@ -126,7 +126,7 @@ label day1:
             f "We'll see."
             jump interrogateFelicien
         
-        else if partner == 2:
+        if partner == 2:
             # Domani
             show domani at right
 
@@ -164,7 +164,7 @@ label day1:
             "Domani sniffles miserably, awaiting his doom."
             jump interrogateDomani
 
-        else if partner == 3:
+        if partner == 3:
             # Kaj
             show kaj afraid at right
             show kaj hold
@@ -181,7 +181,7 @@ label day1:
             k "Alright."
             jump interrogateKaj
 
-        else if partner == 4:
+        if partner == 4:
             # Val
             show val blank at right
 
@@ -217,7 +217,7 @@ label day1:
             "You open the door to the interrogation room and lead them out of the Carabinieri Comando Stazione, and into the streets of Palermo."
             jump interrogateVal
 
-        else if partner == 5:
+        if partner == 5:
             # Luci
             show luci at right
 
@@ -562,7 +562,7 @@ label day1:
 
 
     ########################################
-    ## Choosing to break them out ##########
+    ## CHASE SCENE #########################
     ########################################
 
     label breakOut:
@@ -583,34 +583,6 @@ label day1:
                 cara "So you're moving them all at once? Idiot. You want some help with that, or what?"
                 a "Nah, no, I'm good. They're alright. Not giving me too much of a hard time."
 
-    # Vittore put Luci under Felicien as punishment for something
-    
-    f "Hello, boss."
-    boss "{i}Felicien. I'm surprised to hear your voice. I was under the impression you useless group of baccalà got yourselves imprisoned.{/i}"
-    f "We ran into a bit of trouble. Nothing we can't handle."
-    boss "{i}Why are you calling, then?{/i}"
-    f "We'd be able to handle it a bit better if we had somewhere to stay until the cops are off our asses."
-    boss "{i}Do one better: get them off{/i} my {i}ass. Fucking moron.{p}What secrets can we expect them to know now?{/i}"
-    f "I am {i}not{/i} stupid enough to let anything slip."
-    boss "{i}And your team?{/i}"
-    "Felicien turns and looks dirently at Domani."
-    f "If they did, I don't think they should be involved in cosa nostra."
-    boss "{i}No. But unfortunately if you want to get anything done in this world, you'll have to work with idiots. They're impossible to avoid.{p}God fuck it, Felicien. If you want to try to do something right, then get out of Palermo. Tonight.{/i}"
-    f "Excuse me?"
-    boss "{i}You heard me. You know the damn prime minister and his guys have been out here recently, and they're quickly making an enemy of us.{/i}"
-    boss "{i}Since you so badly want to draw attention to yourselves, lead the feds to Reggio. I have a contact you can stay with. A clementine farmer. Get her and yourselves killed, I don't care. My business is here, in the west.{/i}"
-    f "I have wounded, I can't cross Sicily tonight."
-    boss "{i}All the better. They'll be able to follow the blood trail you leave behind.{/i}"
-    f "Fucking great..."
-    boss "{i}Play stupid games, win stupid prizes. Don't call again.{/i}{w} Bzzzt..."
-    "Felicien slams the phone back onto its holder and steps out of the booth."
-
-
-    ########################################
-    ## CHASE SCENE #########################
-    ########################################
-    
-    label hunt:
         # Get chased around by Quinn
 
         "Quinn is getting you"
@@ -621,12 +593,7 @@ label day1:
         # can choose to hide in the strip club where you meet Eligio
         # or have a close call against a wall with someone's hand over your mouth. I'm thinking Felicien
 
-
-        # v "So. You're born into the mafia."
-        # "They tick off on their fingers."
-        # v "You don't kill, you don't do the job your boss gives you, you can't help in a medical emergency, and --"
-        # "They look him up and down."
-        # v "-- I doubt you could hold your own in a fight. So what're you good for?"
+        # v "Sorry, man. This can't be what you thought you were signing up for."
     
 
     ########################################
@@ -634,10 +601,36 @@ label day1:
     ########################################
 
     label train:
+        # Vittore put Luci under Felicien as punishment for something
+        # idk if I actually want this conversation on-screen
+        f "Hello, boss."
+        boss "{i}Felicien. I'm surprised to hear your voice. I was under the impression you useless group of baccalà got yourselves imprisoned.{/i}"
+        f "We ran into a bit of trouble. Nothing we can't handle."
+        boss "{i}Why are you calling, then?{/i}"
+        f "We'd be able to handle it a bit better if we had somewhere to stay until the cops are off our asses."
+        boss "{i}Do one better: get them off{/i} my {i}ass. Fucking moron.{p}What secrets can we expect them to know now?{/i}"
+        f "I am {i}not{/i} stupid enough to let anything slip."
+        boss "{i}And your team?{/i}"
+        "Felicien turns and looks dirently at Domani."
+        f "If they did, I don't think they should be involved in cosa nostra."
+        boss "{i}No. But unfortunately if you want to get anything done in this world, you'll have to work with idiots. They're impossible to avoid.{p}God fuck it, Felicien. If you want to try to do something right, then get out of Palermo. Tonight.{/i}"
+        f "Excuse me?"
+        boss "{i}You heard me. You know the damn prime minister and his guys have been out here recently, and they're quickly making an enemy of us.{/i}"
+        boss "{i}Since you so badly want to draw attention to yourselves, lead the feds to Reggio. I have a contact you can stay with. A clementine farmer. Get her and yourselves killed, I don't care. My business is here, in the west.{/i}"
+        f "I have wounded, I can't cross Sicily tonight."
+        boss "{i}All the better. They'll be able to follow the blood trail you leave behind.{/i}"
+        f "Fucking great..."
+        boss "{i}Play stupid games, win stupid prizes. Don't call again.{/i}{w} Bzzzt..."
+        "Felicien slams the phone back onto its holder and steps out of the booth."
+
+        # v "So. You're born into the mafia."
+        # "They tick off on their fingers."
+        # v "You don't kill, you don't do the job your boss gives you, you can't help in a medical emergency, and --"
+        # "They look him up and down."
+        # v "-- I doubt you could hold your own in a fight. So what're you good for?"
 
         # Train from Palermo along the coast of Sicily to Messina takes ~3 hours, and at the end includes a ferry ride. Tend to Val on the way.
-
-        # v "Sorry, man. This can't be what you thought you were signing up for."
+        # I need a train interior bg image
 
         "As you settle into the place, you notice Val slump hard against a wall, closing their eyes and breathing deliberately.{p}They must be in some wicked pain."
 

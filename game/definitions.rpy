@@ -169,6 +169,11 @@ layeredimage elhoeva:
     always "elhoeva"
 
 
+## Background images ##
+
+#image venice = "images/backgrounds/bg venice.png"
+
+
 ## Film reel grain ##
 
 image grain:
