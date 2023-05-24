@@ -26,17 +26,17 @@ default Eligio_score = 0
 default Elhoeva_score = 0
 
 
-# Have you died?
+# Check for whether the player has died
 
 default dead = False
 
 
-# What day is it?
+# Check for what day it is
 
 default day = 1
 
 
-# Who is the current night being spent with?
+# Check for which partner has been selected (used for various purposes)
 
 default partner = 0
 # 1 = Felicien, 2 = Domani, 3 = Kaj, 4 = Val, 5 = Luci

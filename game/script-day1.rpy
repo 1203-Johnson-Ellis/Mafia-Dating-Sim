@@ -65,24 +65,23 @@ label day1:
         show reel
         with fade
 
-
         # Options
 
         menu:
-            "Felicien - Known owner of the establishment; weapons found on his person; uncooperative.\nCharges: Suspected money laundering, involvement in organized crime" if FelicienInterrogated1 == False and FelicienInterrogated2 == False:
-                jump questionFelicien
+            "Felicien - Known owner of the establishment; weapons found on his person; uncooperative.\nCharges: Suspected money laundering, involvement in organized crime" if (FelicienInterrogated1 == False and FelicienInterrogated2 == False):
+                $ partner = 1
 
-            "Domani - Confessed at the scene of the crime to having fired his guns. Suspected criminal higher-up\nCharges: Second degree murder, aggravated assault with a deadly weapon, suspected involvement in organized crime" if DomaniInterrogated1 == False and DomaniInterrogated2 == False:
-                jump questionDomani
+            "Domani - Confessed at the scene of the crime to having fired his guns. Suspected criminal higher-up\nCharges: Second degree murder, aggravated assault with a deadly weapon, suspected involvement in organized crime" if (DomaniInterrogated1 == False and DomaniInterrogated2 == False):
+                $ partner = 2
 
-            "Kaj - Wearing the uniform for the establishment, but was the caller who dialed 1-1-3; suspected victim forced through coercion.\nCharges: None" if KajInterrogated1 == False and KajInterrogated2 == False:
-                jump questionKaj
+            "Kaj - Wearing the uniform for the establishment, but was the caller who dialed 1-1-3; suspected victim forced through coercion.\nCharges: None" if (KajInterrogated1 == False and KajInterrogated2 == False):
+                $ partner = 3
 
             "Valheo - Found in conflict with a customer; weapons found on their person. Injured in the crossfire.\nCharges: Assault, battery, suspected involvement in organized crime" if canBreakout == False:
-                jump questionVal
+                $ partner = 4
 
-            "Luciano - Employee at the establishment; found standing near the suspected source of the conflict. Has largely refused to speak.\nCharges: Suspected involvement in organized crime" if LuciInterrogated1 == False and LuciInterrogated2 == False:
-                jump questionLuci
+            "Luciano - Employee at the establishment; found standing near the suspected source of the conflict. Has largely refused to speak.\nCharges: Suspected involvement in organized crime" if (LuciInterrogated1 == False and LuciInterrogated2 == False):
+                $ partner = 5
 
             # Options which will only appear if Val has been interrogated:
 
@@ -91,359 +90,370 @@ label day1:
 
             "I actually think I should do my job for once and let these guys go through the system..." if canBreakout:
                 jump system
+        
+        jump questioning
     
 
     ########################################
     ### INTERROGATIONS #####################
     ########################################
 
-    #
-    ## FELICIEN ##
-    #
-
-    label questionFelicien:
+    label questioning:
         scene bg questura interrogation
         show angiolo at left
-        show felicien at right
         show grain
         show reel
         with dissolve
 
-        "Felicien already has one hand free of his cuffs and is working at the other when you enter. He looks up with a sly smile."
-        a "Hey. Looking cozy there."
-        "Felicien tosses his head."
-        f "Yeah. Fuck you."
-        a "Yeowch. Pretty bad day, I guess."
-        f "No need to play coy with me."
-        a "No, I meant it. Sorry about all this. Must suck."
-        f "Sucks like your mouth on my-"
-        a "Hey, if you're so desperate, hit me up anytime."
-        "He scowls, but seems to be reevaluating you. He tosses the cuffs to the ground.{w} Oh, well. Things are cheap, anyway."
+        if partner == 1:
+            # Felicien
+            show felicien at right
 
-        if interrogateBegin == False:
-            "You sit down before him, resting your elbows on your knees."
-            $ interrogateBegin = True
+            "Felicien already has one hand free of his cuffs and is working at the other when you enter. He looks up with a sly smile."
+            a "Hey. Looking cozy there."
+            "Felicien tosses his head."
+            f "Yeah. Fuck you."
+            a "Yeowch. Pretty bad day, I guess."
+            f "No need to play coy with me."
+            a "No, I meant it. Sorry about all this. Must suck."
+            f "Sucks like your mouth on my-"
+            a "Hey, if you're so desperate, hit me up anytime."
+            "He scowls, but seems to be reevaluating you. He tosses the cuffs to the ground.{w} Oh, well. Things are cheap, anyway."
+            if interrogateBegin == False:
+                "You sit down before him, resting your elbows on your knees."
+                $ interrogateBegin = True
+            a "I got some questions for you, though, if you feel like answering."
+            f "We'll see."
+            jump interrogateFelicien
+        
+        else if partner == 2:
+            # Domani
+            show domani at right
 
-        a "I got some questions for you, though, if you feel like answering."
-        f "We'll see."
+            "You enter the interrogation room to a lone figure with his head in his hands so that you can't see his face. He startles when you enter, but doesn't raise his head."
+            if interrogateBegin == False:
+                "You sit down before him, resting your elbows on your knees. He seems to cringe away from you."
+                $ interrogateBegin = True
+            a "Woah, easy there."
+            d "I'm sorry, I'm sorry, I did it! I killed them all!"
+            "His voice is a tearful young man's."
+            a "Yeah, so I've heard. Let's just settle down now."
+            d "You caught me, you have who you want, so do anything you like to me! Please... Val, I'm so sorry..."
+            a "Look, it's time to chill a bit. I don't really have the authority to 'do' anything to you."
 
-        label interrogate_Felicien:
-            menu:
-                a "Let's see..."
-                "Can you give me a rundown of what happened?":
-                    jump interrogate_Felicien1
-                "So. You a mob boss?":
-                    jump interrogate_Felicien2
-                "I think we can wrap this up.":
-                    jump interrogate_Felicien3
-
-        label interrogate_Felicien1:
-            f "Yeah, my fucking club got shot up by one of my useless employees."
-            a "Hum? Any idea why?"
-            f "No, I was in the back room doing much more important things. You can't trust Domani with anything, though, he screws up everything he touches somehow."
-            a "Pretty big screw-up this time."
-            f "Mmhmm. Who knows what's going on in that thick skull of his?"
-
-            if domaniInterrogated == True:
-                a "I do. Well, maybe. His interrogation wasn't {i}too{/i} enlightening?"
-                f "Fuck, I can't imagine. Trying to get anything out of him is like pulling teeth. But bloodier."
-                a "Yeah, he's interesting. He does have a violent streak, huh?"
-                f "Hm. So do I."
-                a "Yikes.{p}Hey, speaking of which..."
-
-            else:
-                a "Eh, maybe I'll find out."
-                f "Do that. My business is suffering because of him."
-                a "Yeah, well, speaking of business. What kind of place are you running, anyway?"
-                f "A host club."
-                a "Aha. You get a lot of regulars there?"
-                f "This was actually our opening night."
-                a "Oh. Landing in town with a bang, then. So..."
-            
-            a "You didn't know the client, did you? The guy who got shot."
-            f "I didn't see who got shot, idiot. I wasn't there."
-            a "No ideas floating around up there?"
-            f "No."
-            a "Alright, then."
-
-            $ FelicienInterrogated1 = True
-            jump interrogate_Felicien
-
-        label interrogate_Felicien2:
-            f "Subtle. Is that supposed to scare me?"
-            a "Nah, it's a question. My boss wants to know."
-            f "And if I say no... will you believe me?"
-
-            if FelicienInterrogated2 == False:
+            if domaniInterrogated == False:
+                "Something catches your eye.{p}On the table nearby lies a fancifully-decorated Venetian-style mask. It looks like one of its ribbons is torn partway off, and it's been partially crushed."
                 menu:
-                    "Yeah. I'll take you at your word.":
-                        $ Felicien_score += 1
-                        f "So obedient. Very smart."
-                        f "I think I like you. Will you be coming back here?"
-                        a "I can make time, if you want me to."
-                        f "I would like that very much."
-                        a "I'll be sure to check in later, then."
+                    "Looks like something one of the guys took from him. Is that why he's covering his face like a skittish animal?"
+                    "Give him the mask back.":
+                        a "Hey. This yours?"
+                        "You pick up the mask."
+                        "He whimpers."
+                        d "My... mask?"
+                        a "Yup.{p}You can have it back, if you want."
+                        d "Yes, please..."
+                        "You hand the somewhat-worse-for-wear mask to him and watch him slowly put it on. Even through these movements, he's careful not to give you a glimpse of his face."
+                        "He finishes tying the strings,{w} sighs,{w} and looks up."
+                        $ Domani_score += 1
+                    "He doesn't need that. Looks like some kind of criminal thing.":
+                        "You sit back and ignore the mask."
+                
+                $ domaniInterrogated = True
 
-                    "Not so much. Seems kind of suspicious, if you ask me.":
-                        f "Sounds like you've already made up your mind, carabiniere."
-                        a "I'm just saying. Can't really ignore the facts."
-                        f "You said it yourself. It's been a bad day. I'd advise against making it any worse."
-                        a "Woof. There's another one for the case file, I guess."
-                        f "..."
+            a "I just gotta ask you some questions real quick, 'kay?"
+            "Domani sniffles miserably, awaiting his doom."
+            jump interrogateDomani
 
-            $ FelicienInterrogated2 = True
-            jump interrogate_Felicien
+        else if partner == 3:
+            # Kaj
+            show kaj afraid at right
+            show kaj hold
 
-        label interrogate_Felicien3:
-            a "Got anything else for me?"
-            f "No."
-            a "Well, if anything comes to you..."
-            f "I'll give you a call."
-            a "Sure thing. Hope your day gets better."
+            "Kaj had been sitting with his head in his hands until you walked in, at which point he jerked up to look at you. He looks wretched."
+            k -hold "Hello, Carabiniere..."
+            a "Hey."
 
-            jump notes
+            if interrogateBegin == False:
+                "You sit down before him, resting your elbows on your knees."
+                $ interrogateBegin = True
+
+            a "Mind if I ask you some questions? Nothing crazy."
+            k "Alright."
+            jump interrogateKaj
+
+        else if partner == 4:
+            # Val
+            show val blank at right
+
+            "Val is sitting stiffly, looking weary, but their eyes focus on you when you enter."
+            a "Long day?"
+            v "You could say that."
+            "You cross your legs and take the cigarette from between your lips."
+            a "You want anything? We can go on a date or something. I don't much like doing interrogations."
+            v raised "Is that so? I'd be happy to go out with you somewhere. Beats this. No one's so much as given me laudanum for the bullet in my arm."
+            "You shake your head."
+            a closed @ shut downturned "Fuckin' animals."
+            v -raised "I'll say. Can I have a smoke?"
+            "You shrug, pull out your cigarette pack, and frown to yourself."
+            a @ upturned -closed "I'm all out..."
+
+            menu:
+                "Give them your cigarette?"
+                "Yes":
+                    $ Val_score += 1
+                    a "Here."
+                    "You hand your cigarette to Val."
+                    a @ grin "You deserve one for getting shot and walking it off like this, crazy bastard!"
+                    "They take it."
+                    v @ smirk "Thanks. We can go get you more. My treat."
+                    a @ smile "Hey, nice idea."
+
+                "No":
+                    a "We can go to the store and get another pack."
+                    v "Sure."
+
+            v "You ready?"
+            a "Yeah, let's get out of here."
+            "You open the door to the interrogation room and lead them out of the Carabinieri Comando Stazione, and into the streets of Palermo."
+            jump interrogateVal
+
+        else if partner == 5:
+            # Luci
+            show luci at right
+
+            "Luciano is standing in the interrogation room with his arms folded."
+
+            if interrogateBegin == False:
+                "You sit down before him, resting your elbows on your knees."
+                $ interrogateBegin = True
+
+            a "Hey."
+            l "..."
+            a "I'm Angiolo. I'm supposed to come in and interrogate you."
+            l "..."
+            a "Not much of a talker? Well, alright. We'll see what we can do."
+            jump interrogateLuci
+
+
+    #
+    ## FELICIEN ##
+    #
+
+    label interrogateFelicien:
+        menu:
+            a "Let's see..."
+            "Can you give me a rundown of what happened?":
+                jump interrogateFelicien1
+            "So. You a mob boss?":
+                jump interrogateFelicien2
+            "I think we can wrap this up.":
+                jump interrogateFelicien3
+
+    label interrogateFelicien1:
+        f "Yeah, my fucking club got shot up by one of my useless employees."
+        a "Hum? Any idea why?"
+        f "No, I was in the back room doing much more important things. You can't trust Domani with anything, though, he screws up everything he touches somehow."
+        a "Pretty big screw-up this time."
+        f "Mmhmm. Who knows what's going on in that thick skull of his?"
+
+        if domaniInterrogated == True:
+            a "I do. Well, maybe. His interrogation wasn't {i}too{/i} enlightening?"
+            f "Fuck, I can't imagine. Trying to get anything out of him is like pulling teeth. But bloodier."
+            a "Yeah, he's interesting. He does have a violent streak, huh?"
+            f "Hm. So do I."
+            a "Yikes.{p}Hey, speaking of which..."
+
+        else:
+            a "Eh, maybe I'll find out."
+            f "Do that. My business is suffering because of him."
+            a "Yeah, well, speaking of business. What kind of place are you running, anyway?"
+            f "A host club."
+            a "Aha. You get a lot of regulars there?"
+            f "This was actually our opening night."
+            a "Oh. Landing in town with a bang, then. So..."
+        
+        a "You didn't know the client, did you? The guy who got shot."
+        f "I didn't see who got shot, idiot. I wasn't there."
+        a "No ideas floating around up there?"
+        f "No."
+        a "Alright, then."
+
+        $ FelicienInterrogated1 = True
+        jump interrogateFelicien
+
+    label interrogateFelicien2:
+        f "Subtle. Is that supposed to scare me?"
+        a "Nah, it's a question. My boss wants to know."
+        f "And if I say no... will you believe me?"
+
+        if FelicienInterrogated2 == False:
+            menu:
+                "Yeah. I'll take you at your word.":
+                    $ Felicien_score += 1
+                    f "So obedient. Very smart."
+                    f "I think I like you. Will you be coming back here?"
+                    a "I can make time, if you want me to."
+                    f "I would like that very much."
+                    a "I'll be sure to check in later, then."
+
+                "Not so much. Seems kind of suspicious, if you ask me.":
+                    f "Sounds like you've already made up your mind, carabiniere."
+                    a "I'm just saying. Can't really ignore the facts."
+                    f "You said it yourself. It's been a bad day. I'd advise against making it any worse."
+                    a "Woof. There's another one for the case file, I guess."
+                    f "..."
+
+        $ FelicienInterrogated2 = True
+        jump interrogateFelicien
+
+    label interrogateFelicien3:
+        a "Got anything else for me?"
+        f "No."
+        a "Well, if anything comes to you..."
+        f "I'll give you a call."
+        a "Sure thing. Hope your day gets better."
+
+        jump notes
 
 
     #
     ## DOMANI ##
     #
 
-    label questionDomani:
-        scene bg questura interrogation
-        show angiolo at left
-        show domani at right
-        show grain
-        show reel
-        with dissolve
+    label interrogateDomani:
+        menu:
+            a "Let's see..."
+            "Can you give me a rundown of what happened?":
+                jump interrogateDomani1
+            "What's up with the mask? Kinda scary.":
+                jump interrogateDomani2
+            "I think we can wrap this up.":
+                jump interrogateDomani3
 
-        "You enter the interrogation room to a lone figure with his head in his hands so that you can't see his face. He startles when you enter, but doesn't raise his head."
+    label interrogateDomani1:
+        d "I... I..."
+        a "Easy..."
+        d "...I hated that stupid job!"
+        d "Felicien wanted us to do all these sinful things! I've never been so ashamed in my life."
+        a "You mind if I ask what things?"
+        d "I hardly dare say...! Flirtation, handholding..."
+        "He takes a flustered moment."
+        d "...And then when it inevitably went wrong, he didn't do a thing about it. So {i}I{/i} had to. It's okay if you don't understand. I'm horrible. No one else would..."
+        a "...And that's when you shot the place up."
+        "He nods, defeated."
+        d "Some terrible bloodlust came over me..."
+        a "That's okay, we hear that all the time. We'll get it all sorted."
 
-        if interrogateBegin == False:
-            "You sit down before him, resting your elbows on your knees. He seems to cringe away from you."
-            $ interrogateBegin = True
+        $ DomaniInterrogated1 = True
+        jump interrogateDomani
 
-        a "Woah, easy there."
-        d "I'm sorry, I'm sorry, I did it! I killed them all!"
-        "His voice is a tearful young man's."
-        a "Yeah, so I've heard. Let's just settle down now."
-        d "You caught me, you have who you want, so do anything you like to me! Please... Val, I'm so sorry..."
-        a "Look, it's time to chill a bit. I don't really have the authority to 'do' anything to you."
+    label interrogateDomani2:
+        d "Oh, um..."
+        a "Just curious. Seems like the kind of thing some criminal higher-up would wear. But you seem alright."
+        d "No, it's not that..."
+        "He sounds embarassed."
+        a "Well, that's good. If you were that kind of scary guy, I wouldn't stand a chance."
+        d "W...what do you mean? In combat?{w} But you're polizia, aren't you?"
+        a "Carabinieri."
+        d "That's even worse!"
+        d "Even here in military custody, I can't be stopped from killing people..."
+        a "Hey, don't worry. I'm not the only one here. And they took your guns, right?"
+        d "Yes...{p}But..."
+        a "Are you ripped, too?"
+        d "Not... exactly?"
+        a "Sounds like you're good, then. Unless you have some secret power you're hiding from us. Which I'd like to see."
+        d "Oh."
+        "He crosses himself."
+        d "God save us..."
 
-        if domaniInterrogated == False:
-            "Something catches your eye.{p}On the table nearby lies a fancifully-decorated Venetian-style mask. It looks like one of its ribbons is torn partway off, and it's been partially crushed."
+        $ DomaniInterrogated2 = True
+        jump interrogateDomani
 
-            menu:
-                "Looks like something one of the guys took from him. Is that why he's covering his face like a skittish animal?"
-                "Give him the mask back.":
-                    a "Hey. This yours?"
-                    "You pick up the mask."
-                    "He whimpers."
-                    d "My... mask?"
-                    a "Yup.{p}You can have it back, if you want."
-                    d "Yes, please..."
-                    "You hand the somewhat-worse-for-wear mask to him and watch him slowly put it on. Even through these movements, he's careful not to give you a glimpse of his face."
-                    "He finishes tying the strings,{w} sighs,{w} and looks up."
-                    $ Domani_score += 1
-                "He doesn't need that. Looks like some kind of criminal thing.":
-                    "You sit back and ignore the mask."
-            
-            $ domaniInterrogated = True
+    label interrogateDomani3:
+        d "When will I be going to my execution?"
+        a "Oh, probably in a week. Maybe two. Things are kinda slow-going around here."
+        "He looks down."
+        d "...Okay."
+        a "Hey, cheer up. You confessed -- counts for something.{p}See you around, maybe."
 
-        a "I just gotta ask you some questions real quick, 'kay?"
-        "Domani sniffles miserably, awaiting his doom."
-        
-        label interrogate_Domani:
-            menu:
-                a "Let's see..."
-                "Can you give me a rundown of what happened?":
-                    jump interrogate_Domani1
-                "What's up with the mask? Kinda scary.":
-                    jump interrogate_Domani2
-                "I think we can wrap this up.":
-                    jump interrogate_Domani3
-
-        label interrogate_Domani1:
-            d "I... I..."
-            a "Easy..."
-            d "...I hated that stupid job!"
-            d "Felicien wanted us to do all these sinful things! I've never been so ashamed in my life."
-            a "You mind if I ask what things?"
-            d "I hardly dare say...! Flirtation, handholding..."
-            "He takes a flustered moment."
-            d "...And then when it inevitably went wrong, he didn't do a thing about it. So {i}I{/i} had to. It's okay if you don't understand. I'm horrible. No one else would..."
-            a "...And that's when you shot the place up."
-            "He nods, defeated."
-            d "Some terrible bloodlust came over me..."
-            a "That's okay, we hear that all the time. We'll get it all sorted."
-
-            $ DomaniInterrogated1 = True
-            jump interrogate_Domani
-
-        label interrogate_Domani2:
-            d "Oh, um..."
-            a "Just curious. Seems like the kind of thing some criminal higher-up would wear. But you seem alright."
-            d "No, it's not that..."
-            "He sounds embarassed."
-            a "Well, that's good. If you were that kind of scary guy, I wouldn't stand a chance."
-            d "W...what do you mean? In combat?{w} But you're polizia, aren't you?"
-            a "Carabinieri."
-            d "That's even worse!"
-            d "Even here in military custody, I can't be stopped from killing people..."
-            a "Hey, don't worry. I'm not the only one here. And they took your guns, right?"
-            d "Yes...{p}But..."
-            a "Are you ripped, too?"
-            d "Not... exactly?"
-            a "Sounds like you're good, then. Unless you have some secret power you're hiding from us. Which I'd like to see."
-            d "Oh."
-            "He crosses himself."
-            d "God save us..."
-
-            $ DomaniInterrogated2 = True
-            jump interrogate_Domani
-
-        label interrogate_Domani3:
-            d "When will I be going to my execution?"
-            a "Oh, probably in a week. Maybe two. Things are kinda slow-going around here."
-            "He looks down."
-            d "...Okay."
-            a "Hey, cheer up. You confessed -- counts for something.{p}See you around, maybe."
-
-            jump notes
+        jump notes
 
 
     #
     ## KAJ ##
     #
 
-    label questionKaj:
-        scene bg questura interrogation
-        show angiolo at left
-        show kaj afraid at right
-        show kaj hold
-        show grain
-        show reel
-        with dissolve
+    label interrogateKaj:
+        show kaj normal neutral
+        menu:
+            a "Let's see..."
+            "Can you give me a rundown of what happened?":
+                jump interrogateKaj1
+            "What do you think of your boss? Felicien, right?":
+                jump interrogateKaj2
+            "I think we can wrap this up.":
+                jump interrogateKaj3
 
-        "Kaj had been sitting with his head in his hands until you walked in, at which point he jerked up to look at you. He looks wretched."
-        k -hold "Hello, Carabiniere..."
-        a "Hey."
+    label interrogateKaj1:
+        k speaking "I didn't see most of it..."
+        k "A customer was getting aggressive. Really aggressive. So I ran to get help?"
+        a "Huh."
+        a "What were they doing that was aggressive?"
+        k -speaking "He was demanding, yelling in Val's face and using violently sexual language. It looked like he could have killed someone, so...I got you all."
+        a "Oh. Sounds crazy."
+        k "Yeah, especially considering that when I got back he was a corpse."
+        a "Damn."
+        a "Are your coworkers normally this rambunctious?"
+        k unimpressed "Rambunctious?"
+        k "...They're weird, but it was that guy that was the danger."
+        a @ closed "Mmkay."
 
-        if interrogateBegin == False:
-            "You sit down before him, resting your elbows on your knees."
-            $ interrogateBegin = True
+        $ KajInterrogated1 = True
+        jump interrogateKaj
 
-        a "Mind if I ask you some questions? Nothing crazy."
-        k "Alright."
+    label interrogateKaj2:
+        k @ afraid "Huh? He's fine..?"
+        k "No, actually. He's pretentious and mean. Can I ask why?"
+        a "My boss thinks he's a mob boss."
+        k "...Oh."
+        a "..."
 
-        label interrogate_Kaj:
-            show kaj normal neutral
+        if KajInterrogated2 == False:
+            a "...Do you want a cigarette?"
+            k "Okay."
+            "You lean back in your chair and rummage in your pockets for the pack of cigarettes. You hand Kaj one and take one for yourself."
+            show kaj dying -normal
+            "Once his is lit, Kaj takes one drag and then bursts into a coughing fit."
+
             menu:
-                a "Let's see..."
-                "Can you give me a rundown of what happened?":
-                    jump interrogate_Kaj1
-                "What do you think of your boss? Felicien, right?":
-                    jump interrogate_Kaj2
-                "I think we can wrap this up.":
-                    jump interrogate_Kaj3
+                "Laugh.":
+                    a @ grin "You never smoked before?"
+                    k normal angry -dying "No. But with how the day is going, I thought..."
 
-        label interrogate_Kaj1:
-            k speaking "I didn't see most of it..."
-            k "A customer was getting aggressive. Really aggressive. So I ran to get help?"
-            a "Huh."
-            a "What were they doing that was aggressive?"
-            k -speaking "He was demanding, yelling in Val's face and using violently sexual language. It looked like he could have killed someone, so...I got you all."
-            a "Oh. Sounds crazy."
-            k "Yeah, especially considering that when I got back he was a corpse."
-            a "Damn."
-            a "Are your coworkers normally this rambunctious?"
-            k unimpressed "Rambunctious?"
-            k "...They're weird, but it was that guy that was the danger."
-            a @ closed "Mmkay."
+                "I'm not going to be mean.":
+                    $ Kaj_score += 1
+                    a "Easy, deep breaths."
+                    k hold afraid "*cough cough*... Thanks."
+                    
+            "His voice rasps. Poor guy."
+            "You take a few puffs of your own and check your notes."
 
-            $ KajInterrogated1 = True
-            jump interrogate_Kaj
+            $ KajInterrogated2 = True
+        jump interrogateKaj
+        
+    label interrogateKaj3:
+        a "Is there anything else of importance you want me to know?"
+        k @ speaking "...No, that's all."
+        a "Alright. Thanks for chatting."
 
-        label interrogate_Kaj2:
-            k @ afraid "Huh? He's fine..?"
-            k "No, actually. He's pretentious and mean. Can I ask why?"
-            a "My boss thinks he's a mob boss."
-            k "...Oh."
-            a "..."
-
-            if KajInterrogated2 == False:
-                a "...Do you want a cigarette?"
-                k "Okay."
-                "You lean back in your chair and rummage in your pockets for the pack of cigarettes. You hand Kaj one and take one for yourself."
-                show kaj dying -normal
-                "Once his is lit, Kaj takes one drag and then bursts into a coughing fit."
-
-                menu:
-                    "Laugh.":
-                        a @ grin "You never smoked before?"
-                        k normal angry -dying "No. But with how the day is going, I thought..."
-
-                    "I'm not going to be mean.":
-                        $ Kaj_score += 1
-                        a "Easy, deep breaths."
-                        k hold afraid "*cough cough*... Thanks."
-                        
-                "His voice rasps. Poor guy."
-                "You take a few puffs of your own and check your notes."
-
-                $ KajInterrogated2 = True
-            jump interrogate_Kaj
-            
-        label interrogate_Kaj3:
-            a "Is there anything else of importance you want me to know?"
-            k @ speaking "...No, that's all."
-            a "Alright. Thanks for chatting."
-
-            jump notes
+        jump notes
 
 
     #
     ## VAL ##
     #
 
-    label questionVal:
-        scene bg questura interrogation
-        show angiolo at left
-        show val blank at right
-        show grain
-        show reel
-        with dissolve
-
-        "Val is sitting stiffly, looking weary, but their eyes focus on you when you enter."
-        a "Long day?"
-        v "You could say that."
-        "You cross your legs and take the cigarette from between your lips."
-        a "You want anything? We can go on a date or something. I don't much like doing interrogations."
-        v raised "Is that so? I'd be happy to go out with you somewhere. Beats this. No one's so much as given me laudanum for the bullet in my arm."
-        "You shake your head."
-        a closed @ shut downturned "Fuckin' animals."
-        v -raised "I'll say. Can I have a smoke?"
-        "You shrug, pull out your cigarette pack, and frown to yourself."
-        a @ upturned -closed "I'm all out..."
-
-        menu:
-            "Give them your cigarette?"
-            "Yes":
-                $ Val_score += 1
-                a "Here."
-                "You hand your cigarette to Val."
-                a @ grin "You deserve one for getting shot and walking it off like this, crazy bastard!"
-                "They take it."
-                v @ smirk "Thanks. We can go get you more. My treat."
-                a @ smile "Hey, nice idea."
-
-            "No":
-                a "We can go to the store and get another pack."
-                v "Sure."
-
-        v "You ready?"
-        a "Yeah, let's get out of here."
-        "You open the door to the interrogation room and lead them out of the Carabinieri Comando Stazione, and into the streets of Palermo."
-
+    label interrogateVal:
         show bg venice street
         show grain
         show reel
@@ -479,73 +489,53 @@ label day1:
     ## LUCI ##
     #
 
-    label questionLuci:
-        scene bg questura interrogation
-        show angiolo at left
-        show luci at right
-        show grain
-        show reel
-        with dissolve
+    label interrogateLuci:
+        show luci neutral normal
+        menu:
+            a "Let's see..."
+            "Can you give me a rundown of what happened?":
+                jump interrogateLuci1
+            "Why did you start working at that place?":
+                jump interrogateLuci2
+            "I think we can wrap this up.":
+                jump interrogateLuci3
 
-        "Luciano is standing in the interrogation room with his arms folded."
+    label interrogateLuci1:
+        l "...We were working. And a man came in and demanded that we...did what he saw in porn."
+        "You raise your eyebrows."
+        a "Then your shop doesn't do that?"
+        l downturned "No."
+        a "Okay. So, what happened?"
+        l @ frown "...The man was getting aggressive. My coworker pulled out a knife."
+        l -downturned "...My other coworker pulled out their gun and started shooting."
+        a "Huh. Can I ask which coworkers?"
+        l "Valheo and Domani."
+        "You nod and write in your notes."
 
-        if interrogateBegin == False:
-            "You sit down before him, resting your elbows on your knees."
-            $ interrogateBegin = True
+        $ LuciInterrogated1 = True
+        jump interrogateLuci
 
-        a "Hey."
-        l "..."
-        a "I'm Angiolo. I'm supposed to come in and interrogate you."
-        l "..."
-        a "Not much of a talker? Well, alright. We'll see what we can do."
+    label interrogateLuci2:
+        l downturned angry frown "It seemed like a good fit."
 
-        label interrogate_Luci:
-            show luci neutral normal
+        if LuciInterrogated2 == False:
             menu:
-                a "Let's see..."
-                "Can you give me a rundown of what happened?":
-                    jump interrogate_Luci1
-                "Why did you start working at that place?":
-                    jump interrogate_Luci2
-                "I think we can wrap this up.":
-                    jump interrogate_Luci3
+                "Really? Wouldn't have thought so, looking at you.":
+                    "..."
 
-        label interrogate_Luci1:
-            l "...We were working. And a man came in and demanded that we...did what he saw in porn."
-            "You raise your eyebrows."
-            a "Then your shop doesn't do that?"
-            l downturned "No."
-            a "Okay. So, what happened?"
-            l @ frown "...The man was getting aggressive. My coworker pulled out a knife."
-            l -downturned "...My other coworker pulled out their gun and started shooting."
-            a "Huh. Can I ask which coworkers?"
-            l "Valheo and Domani."
-            "You nod and write in your notes."
+                "Huh. Yeah, you are very pretty. Makes sense.":
+                    show luci -downturned -angry -frown
+                    $ Luci_score += 1
+                    l "..."
 
-            $ LuciInterrogated1 = True
-            jump interrogate_Luci
+            $ LuciInterrogated2 = True
+        jump interrogateLuci
 
-        label interrogate_Luci2:
-            l downturned angry frown "It seemed like a good fit."
+    label interrogateLuci3:
+        a "Alright. Be seeing you."
+        l "..."
 
-            if LuciInterrogated2 == False:
-                menu:
-                    "Really? Wouldn't have thought so, looking at you.":
-                        "..."
-
-                    "Huh. Yeah, you are very pretty. Makes sense.":
-                        show luci -downturned -angry -frown
-                        $ Luci_score += 1
-                        l "..."
-
-                $ LuciInterrogated2 = True
-            jump interrogate_Luci
-
-        label interrogate_Luci3:
-            a "Alright. Be seeing you."
-            l "..."
-
-            jump notes
+        jump notes
 
 
     ########################################
@@ -663,8 +653,8 @@ label day1:
 
             "They haven't said anything. Leave them be.":
                 "They must be handling it alright. If they wanted help, they'd speak up. And it's not like we have much to work with for wound treatment in this dump, anyway."
-                jump messina
-
+                return
+                # this better return where I want it to
 
         ## BAD END ##
 
