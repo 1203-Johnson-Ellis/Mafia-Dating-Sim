@@ -1,6 +1,10 @@
 # Mafia Dating Sim
 Shot through the heart. Bang. Visual novel about about a carabiniere getting up-close and personal to investigate suspected members of cosa nostra in fantasy Sicily, 1924, during the rise of fascism and anti-mafia government protocals.
 
+<picture>
+  <img alt="Header image of Venisian canals" src="https://github.com/1203-Johnson-Ellis/Mafia-Dating-Sim/blob/main/game/images/backgrounds/bg%20venice%20canals.png">
+ </picture>
+
 ## GAME HELP
 All game files are contained in the `game` directory. (The README.md is the file that is used to display these instructions, and the .gitignore file is used to prevent certain unnecessary files from being committed and pushed just to keep the repository a little cleaner.)
 
