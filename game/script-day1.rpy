@@ -170,8 +170,7 @@ label day1:
 
         elif partner == 3:
             # Kaj
-            show kaj afraid at right
-            show kaj hold
+            show kaj afraid hold at right
             show grain
             show reel
             with dissolve
@@ -595,24 +594,28 @@ label day1:
         show domani
         with dissolve
         d "Snf...{w} snf...{w} huh?{w} W-what is this?!{p}Oh, God! Thank God!"
+
         scene bg questura interrogation
         show grain
         show reel
         show felicien
         with dissolve
-        f "Oh, puppy, you're back. (Damn. I was hoping for someone sexier.)"
+        f "Oh, puppy, you're back.{w}{size=-20} (Damn. I was hoping for someone sexier.){/size}"
+
         scene bg questura interrogation
         show grain
         show reel
         show kaj
         with dissolve
         k "Carabiniere... you... you can't do this. This is illegal..."
+
         scene bg questura interrogation
         show grain
         show reel
         show luci
         with dissolve
         l "...{p}...?"
+
         "You go around to the holding cells of each of the suspects, insert the key, hush them, and quietly release them.{w} Easy."
         scene bg questura interrogation
         show grain
@@ -635,14 +638,22 @@ label day1:
         show quinn
         "It only takes him a moment to look over your little procession and put together what's going on."
         q "Sigh... Couldn't you at least have run this by me first?"
-        a "Ahhhhahaha. Sorry, Boss."
-        f "MOVE IT, ASSHOLES!"
+        a "Ahhhhahaha. Whoops."
+        f "MOVE IT, ASSHOLES!" with vpunch
+        "Before you can do anything to fix this, Felicien has bolted for the door. His entourage obediently follows suit, and only Kaj glances back at you. But..."
+        d "AAAAAAAAHHHHH!!!!!{p}{size=+20}AAAAAAAAAAAAAAAAAAAAAAAHHHHHH{/size}"
+        "You watch him run headlong into the wall of the neighboring building and rebound. Poor guy seems too frightened to think."
+        menu:
+            "Go after them. You know the Carabinieri, you know how to help them escape.":
+                # Good end: continue with the story, chase scene, hop on train
+                # Bad end: die. this is utter betrayal
+                "this is a line of dialogue"
+                
+            "Stay behind and try to reason with your boss, buy them time.":
+                # Good end: Quinn lets you go, have to go and find them. but with Doubt in your heart (Quinn wooing opportunity)
+                # Bad end: convinced to stay with the Carabinieri (Quinn ending)
+                "yeah"
 
-        # Get chased around by Quinn
-
-        # if he catches you
-            # jump badEnd
-        # else
         # can choose to hide in the strip club where you meet Eligio
         # or have a close call against a wall with someone's hand over your mouth. I'm thinking Felicien
 
