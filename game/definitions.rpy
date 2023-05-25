@@ -120,12 +120,12 @@ layeredimage angiolo:
         "angiolo_blush"
     
 
-layeredimage felicien:
-    always "felicien"
+#layeredimage felicien:
+#    always "felicien"
 
 
-layeredimage domani:
-    always "domani"
+#layeredimage domani:
+#    always "domani"
 
 
 layeredimage kaj:
@@ -165,8 +165,8 @@ layeredimage luci:
         attribute unmoved default
 
 
-layeredimage elhoeva:
-    always "elhoeva"
+#layeredimage elhoeva:
+#    always "elhoeva"
 
 
 ## Background images ##

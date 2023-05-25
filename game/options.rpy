@@ -23,18 +23,18 @@ define gui.show_name = True
 
 ## The version of the game.
 
-define config.version = "1.0"
+define config.version = "1.5"
 
 
 ## Text that is placed on the game's about screen. Place the text between the
 ## triple-quotes, and leave a blank line between paragraphs.
 
 define gui.about = _p("""
-Mafia Dating Sim. Date the hottest 1924 mafia members on the market.
+Mafia Dating Sim. Date the hottest mafia members on the market.
 
 If you come across any exceptions or out of place text, please let me know.
 
-Special thanks to Tybalt, Squid, Whitney, and Hanna for brainstorming, characters, and some portrait art.
+Special thanks to Tybalt, Squid, Whitney, and Hanna for brainstorming, characters, and portrait art.
 """)
 
 
@@ -53,7 +53,7 @@ define build.name = "MafiaDatingSim"
 
 define config.has_sound = True
 define config.has_music = True
-define config.has_voice = True
+define config.has_voice = False
 
 
 ## To allow the user to play a test sound on the sound or voice channel,
