@@ -1,4 +1,15 @@
 ﻿############################################
+## HEADER COMMENTS #########################
+
+# Author: 1203-Johnson-Ellis
+# Project: Mafia-Dating-Sim
+
+# A visual novel about dating mafia members in fantasy Sicily
+
+# I hope code readability is okay
+# In general, I have attempted to sort out dialogue from the code that makes up the scene flow
+
+############################################
 ## Notes ###################################
 
 # 1924, stuff is rough in the Kingdom of Italy with the Great War having just ended, increasing violence against anti-Fascists,
