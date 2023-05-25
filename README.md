@@ -32,7 +32,7 @@ The first line will be narration, the second line will be said by a character ca
 If you want just a little more detail, the [Quickstart guide](https://www.renpy.org/doc/html/quickstart.html#a-simple-game) is a great place to get started writing scenes (it provides simple examples of images, scene transitions, and use of labels and variables). For even more information, see the full [Ren'py documentation](https://www.renpy.org/doc/html/).
 
 ## EDITING AND ACCESS
-If you have a GitHub account, I will add it to the repository. (GitHub isn't scary, I promise).
+If you have a GitHub account, I will add it to the repository. (GitHub isn't scary, I promise.)
 
 You can edit directly through GitHub by opening the page for any file and hitting `Edit this file`.
 
@@ -55,7 +55,7 @@ For the time being, if you want to run it, you have two options. The first one i
 ### If you want to try the second option:
 The easiest way to download these files onto a Windows machine will be to navigate up to the green `<> Code` button on the main GitHub page and hit `Download ZIP`. Extract the files.
 
-Go [here](https://www.renpy.org/latest.html) to install Ren'py (this will also give you a couple of coding tutorial games which, on launch, you will see listed in the sidebar as `Tutorial` and `The Question`).
+Go [here](https://www.renpy.org/latest.html) to install Ren'py (this will also give you a couple of coding tutorial games which, on launch, you will see listed in the sidebar as "Tutorial" and "The Question").
 
 Launch Ren'py and navigate down through `Preferences` -> `General` -> `Projects Directory:`. Click on the current projects directory, then navigate to the folder where the Mafia files are saved and select it. This will update your projects directory to the new folder.
 

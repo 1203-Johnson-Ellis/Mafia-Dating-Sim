@@ -433,6 +433,7 @@ label day1:
                 a "...Do you want a cigarette?"
                 k "Okay."
                 "You lean back in your chair and rummage in your pockets for the pack of cigarettes. You hand Kaj one and take one for yourself."
+                # this has a problem
                 show kaj dying -normal
                 "Once his is lit, Kaj takes one drag and then bursts into a coughing fit."
 
@@ -635,27 +636,90 @@ label day1:
         a "Huh-?"
         q "Angiolo?"
         a "Ggk!"
+
         show quinn
         "It only takes him a moment to look over your little procession and put together what's going on."
         q "Sigh... Couldn't you at least have run this by me first?"
         a "Ahhhhahaha. Whoops."
         f "MOVE IT, ASSHOLES!" with vpunch
-        "Before you can do anything to fix this, Felicien has bolted for the door. His entourage obediently follows suit, and only Kaj glances back at you. But..."
+        "Before you can do anything to fix this, Felicien has bolted for the door. His entourage obediently follows suit, and only Kaj glances back at you. But also..."
         d "AAAAAAAAHHHHH!!!!!{p}{size=+20}AAAAAAAAAAAAAAAAAAAAAAAHHHHHH{/size}"
-        "You watch him run headlong into the wall of the neighboring building and rebound. Poor guy seems too frightened to think."
-        menu:
-            "Go after them. You know the Carabinieri, you know how to help them escape.":
-                # Good end: continue with the story, chase scene, hop on train
-                # Bad end: die. this is utter betrayal
-                "this is a line of dialogue"
-                
-            "Stay behind and try to reason with your boss, buy them time.":
-                # Good end: Quinn lets you go, have to go and find them. but with Doubt in your heart (Quinn wooing opportunity)
-                # Bad end: convinced to stay with the Carabinieri (Quinn ending)
-                "yeah"
+        "You watch him run out of the door and headlong into the wall of the neighboring building and rebound. Poor guy seems too frightened to think."
 
-        # can choose to hide in the strip club where you meet Eligio
-        # or have a close call against a wall with someone's hand over your mouth. I'm thinking Felicien
+        menu:
+            q "Ah, jeez."
+            "Go after them. You know the Carabinieri, you know how to help them escape.":
+                jump chase
+
+            "Stay behind and try to reason with your boss, buy them time.":
+                jump stayBehind
+
+
+        label chase:
+            "You break away from your boss and tear out of that place, grabbing Domani and pushing him along ahead of you to get him running."
+            a "Go, go, go!"
+
+            # can choose to hide in the strip club where you meet Eligio. I think this might be a whole new path
+
+            # must have a score of 1 with Felicien for him to care enough to save you
+            if Felicien_score >= 1:
+                # have a close call against a wall with Felicien's hand over your mouth
+                jump .success
+
+            else:
+                # he pushes you into the street to keep Quinn occupied. FIGHT FIGHT
+                # win with a Domani score
+                if Domani_score >= 1:
+                    jump .success
+                else:
+                    jump .failure
+            
+            label .failure:
+                # Bad end: die. this is utter betrayal
+                $ dead = True
+                return
+            
+            label .success:
+                # Good end: continue with the story, chase scene, hop on train
+                jump train
+
+
+        label stayBehind:
+            a "Ay Boss, I'm running it by you now."
+            "You try to position yourself in his way as casually as possible. Which is {i}terrifying{/i}, because he could break you like a twig."
+            "He smiles pleasantly."
+            q "Well, this is mighty inconvenient!"
+
+            menu:
+                a "Uh, I'll make it quick. So look here..."
+                "They're not who we're after.":
+                    q "Give us the full report, soldier."
+
+                    # Val score must be at least 1 to pull off this lie
+                    if Val_score >= 1:
+                        jump .success
+
+                    else:
+                        jump .failure
+
+                "They're not so bad.":
+                    q "No?"
+                    a "Yeah. We had a nice chat. I think they could have a change of heart if we just give 'em a chance."
+                    jump .failure
+
+                "Their story's kinda sad, really.":
+                    q "Aww. You're a kindhearted guy, Angiolo. And it's hard being kindhearted in this line of work. You really hear the worst of it, don't you?"
+                    a "Yeah..."
+                    jump .success
+            
+            label .failure:
+                # Bad end: convinced to stay with the Carabinieri (Quinn ending)
+                $ dead = True
+                return
+            
+            label .success:
+                # Good end: Quinn lets you go, have to go and find them. but with Doubt in your heart (Quinn wooing opportunity)
+                jump train
 
         # v "Sorry, man. This can't be what you thought you were signing up for."
     
@@ -665,6 +729,8 @@ label day1:
     ########################################
 
     label train:
+        # regroup
+
         # Vittore put Luci under Felicien as punishment for something
         # idk if I actually want this conversation on-screen
         f "Hello, boss."
@@ -711,12 +777,11 @@ label day1:
             "They haven't said anything. Leave them be.":
                 "They must be handling it alright. If they wanted help, they'd speak up. And it's not like we have much to work with for wound treatment in this dump, anyway."
                 return
-                # this better return where I want it to
 
         ## BAD END ##
 
         label .bhospital:
-            a "Hey, you're not looking too good. I think someone should take a look at that."
+            a "Hey, you're not looking too good. Someone should take a look at that."
             "Their eyes open and focus on you."
             v "Someone."
             a "You know, a professional. I can't believe you've just been walking around with that hole in your shoulder.{p}Is there a hospital around?"
@@ -780,7 +845,6 @@ label day1:
             # continue
 
             return
-            # that better return where I want it to
         
 
         label .booze:
@@ -797,8 +861,12 @@ label day1:
             "You hand it to them, and they take a mighty swig."
             v "God, you're my favorite person right now, Angiolo."
             a "Haha, hey, you're not too bad yourself. We gotta keep you up and running, right? The best we can, anyway."
-            "When you look up, you notice Luci staring at you. Why are his eyes always so scary and intense like that?"
-            "And just as you were thinking about saying something, he's turned away again. Yeesh. Okay, then."
-            # continue?
+            """
+            When you look up, you notice Luci staring at you. Why are his eyes always so scary and intense like that?
+
+            And just as you were thinking about saying something, he's turned away again. Yeesh. Okay, then.
+
+            Well, it's time for lights out and go to sleep. The rumbling and gentle swaying of the train car knocks you right out...
+            """
 
     return

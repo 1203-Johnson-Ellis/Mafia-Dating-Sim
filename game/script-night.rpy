@@ -129,20 +129,20 @@ label nighttime:
 
         # Checking to see who the user has the lowest score with
         # (If there are any ties, it will default to whoever appears first on this list)
-        # (If no lowest score can be determined, it will default to Felicien)
 
         if Felicien_score == min(Felicien_score, Domani_score, Kaj_score, Val_score, Luci_score):
-            jump felicienNight1
+            jump felicien.night1
         elif Domani_score == min(Felicien_score, Domani_score, Kaj_score, Val_score, Luci_score):
-            jump domaniNight1
+            jump domani.night1
         elif Kaj_score == min(Felicien_score, Domani_score, Kaj_score, Val_score, Luci_score):
-            jump kajNight1
+            jump kaj.night1
         elif Val_score == min(Felicien_score, Domani_score, Kaj_score, Val_score, Luci_score):
-            jump valNight1
+            jump val.night1
         elif Luci_score == min(Felicien_score, Domani_score, Kaj_score, Val_score, Luci_score):
-            jump luciNight1
+            jump luci.night1
         else:
-            jump felicienNight1
+            # If no lowest score can be determined, it will default to Felicien
+            jump felicien.night1
 
         # These `suspicion` scenes require the user to answer a number of questions in ways the character (chosen above) likes
         # Each time the user does so successfully, their score with that character increases
@@ -204,33 +204,33 @@ label nighttime:
         # This mass of elifs is a nightmare
 
         if Felicien_nights == 1:
-            jump felicienNight2
+            jump .night2
         elif Felicien_nights == 2:
-            jump felicienNight3
+            jump .night3
         elif Felicien_nights == 3:
-            jump felicienNight4
+            jump .night4
         else:
             # This should never happen, but it's coded in for debugging and edge cases
             "wtf you doing boy? (this is an error message)"
 
         # Once this night's dialogue is finished, return to `choose_partner` label
         
-        label felicienNight1:
+        label .night1:
             "felicien is threatening you"
 
             return
         
-        label felicienNight2:
+        label .night2:
             "felicien 2"
 
             return
         
-        label felicienNight3:
+        label .night3:
             "felicien 3"
 
             return
         
-        label felicienNight4:
+        label .night4:
             "felicien 4"
 
             return
@@ -245,32 +245,32 @@ label nighttime:
         # Check how many times this character has been slept with, and call a different scene depending
 
         if Domani_nights == 1:
-            jump domaniNight2
+            jump .night2
         elif Domani_nights == 2:
-            jump domaniNight3
+            jump .night3
         elif Domani_nights == 3:
-            jump domaniNight4
+            jump .night4
         else:
             "wtf you doing boy? (this is an error message)"
         
         # Once this night's dialogue is finished, return to `choose_partner` label
         
-        label domaniNight1:
+        label .night1:
             "domani is threatening you"
 
             return
         
-        label domaniNight2:
+        label .night2:
             "domani 2"
 
             return
         
-        label domaniNight3:
+        label .night3:
             "domani 3"
 
             return
         
-        label domaniNight4:
+        label .night4:
             "domani 4"
 
             return
@@ -285,32 +285,32 @@ label nighttime:
         # Check how many times this character has been slept with, and call a different scene depending
 
         if Kaj_nights == 1:
-            jump kajNight2
+            jump .night2
         elif Kaj_nights == 2:
-            jump kajNight3
+            jump .night3
         elif Kaj_nights == 3:
-            jump kajNight4
+            jump .night4
         else:
             "wtf you doing boy? (this is an error message)"
         
         # Once this night's dialogue is finished, return to `choose_partner` label
         
-        label kajNight1:
+        label .night1:
             "kaj is threatening you"
 
             return
         
-        label kajNight2:
+        label .night2:
             "kaj 2"
 
             return
         
-        label kajNight3:
+        label .night3:
             "kaj 3"
 
             return
         
-        label kajNight4:
+        label .night4:
             "kaj 4"
 
             return
@@ -325,17 +325,17 @@ label nighttime:
         # Check how many times this character has been slept with, and call a different scene depending
 
         if Val_nights == 1:
-            jump valNight2
+            jump .night2
         elif Val_nights == 2:
-            jump valNight3
+            jump .night3
         elif Val_nights == 3:
-            jump valNight4
+            jump .night4
         else:
             "wtf you doing boy? (this is an error message)"
         
         # Once this night's dialogue is finished, return to `choose_partner` label
         
-        label valNight1:
+        label .night1:
             "You wake with cold steel at your throat."
             v "Easy, now."
 
@@ -398,17 +398,17 @@ label nighttime:
 
             return
         
-        label valNight2:
+        label .night2:
             "val 2"
 
             return
         
-        label valNight3:
+        label .night3:
             "val 3"
 
             return
         
-        label valNight4:
+        label .night4:
             "val 4"
 
             return
@@ -423,32 +423,32 @@ label nighttime:
         # Check how many times this character has been slept with, and call a different scene depending
 
         if Luci_nights == 1:
-            jump luciNight2
+            jump .night2
         elif Luci_nights == 2:
-            jump luciNight3
+            jump .night3
         elif Luci_nights == 3:
-            jump luciNight4
+            jump .night4
         else:
             "wtf you doing boy? (this is an error message)"
         
         # Once this night's dialogue is finished, return to `choose_partner` label
         
-        label luciNight1:
+        label .night1:
             "luci is threatening you"
 
             return
         
-        label luciNight2:
+        label .night2:
             "luci 2"
 
             return
         
-        label luciNight3:
+        label .night3:
             "luci 3"
 
             return
         
-        label luciNight4:
+        label .night4:
             "luci 4"
 
             return
