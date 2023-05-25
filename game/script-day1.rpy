@@ -126,7 +126,7 @@ label day1:
             f "We'll see."
             jump interrogateFelicien
         
-        if partner == 2:
+        elif partner == 2:
             # Domani
             show domani at right
 
@@ -164,7 +164,7 @@ label day1:
             "Domani sniffles miserably, awaiting his doom."
             jump interrogateDomani
 
-        if partner == 3:
+        elif partner == 3:
             # Kaj
             show kaj afraid at right
             show kaj hold
@@ -181,7 +181,7 @@ label day1:
             k "Alright."
             jump interrogateKaj
 
-        if partner == 4:
+        elif partner == 4:
             # Val
             show val blank at right
 
@@ -217,7 +217,7 @@ label day1:
             "You open the door to the interrogation room and lead them out of the Carabinieri Comando Stazione, and into the streets of Palermo."
             jump interrogateVal
 
-        if partner == 5:
+        elif partner == 5:
             # Luci
             show luci at right
 

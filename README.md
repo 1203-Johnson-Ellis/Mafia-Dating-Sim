@@ -60,3 +60,5 @@ Go [here](https://www.renpy.org/latest.html) to install Ren'py (this will also g
 Launch Ren'py and navigate down through `Preferences` -> `General` -> `Projects Directory:`. Click on the current projects directory, then navigate to the folder where the Mafia files are saved and select it. This will update your projects directory to the new folder.
 
 Hit `Return`, and finally `Refresh`. You should now see `Mafia-Dating-Sim` listed on the sidebar. You can run the game by hitting `Launch Project`.
+
+(Don't be shocked if anything is broken. But do let me know so I can check it out. I hate bug testing and am very likely to have not done it.)

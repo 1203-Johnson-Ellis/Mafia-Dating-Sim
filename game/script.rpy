@@ -35,7 +35,7 @@ label start:
         return
 
     # All night labels are contained in `script-night.rpy`
-    call night1
+    call nighttime
     if dead == True:
         return
 
@@ -45,7 +45,7 @@ label start:
     if dead == True:
         return
 
-    call night2
+    call nighttime
     if dead == True:
         return
 
@@ -55,7 +55,7 @@ label start:
     if dead == True:
         return
 
-    call night3
+    call nighttime
     if dead == True:
         return
 
@@ -65,7 +65,7 @@ label start:
     if dead == True:
         return
 
-    call night4
+    call nighttime
     if dead == True:
         return
 
@@ -75,13 +75,7 @@ label start:
     if dead == True:
         return
 
-    call night5
-    if dead == True:
-        return
-
-    ## Then goes to the finale whose label is below
-    # (Endings should eventually be moved to their own file)
-    if day == 6:
+    if dead == False:
         jump finale
 
 
