@@ -298,6 +298,7 @@ label day1:
             a "Nah, it's a question. My boss wants to know."
             f "And if I say no... will you believe me?"
 
+            # These if statements are here in an effort to keep score farming from happening
             if FelicienInterrogated2 == False:
                 menu:
                     "Yeah. I'll take you at your word.":
@@ -658,29 +659,56 @@ label day1:
         label chase:
             "You break away from your boss and tear out of that place, grabbing Domani and pushing him along ahead of you to get him running."
             a "Go, go, go!"
+            #running around
 
             # can choose to hide in the strip club where you meet Eligio. I think this might be a whole new path
 
             # must have a score of 1 with Felicien for him to care enough to save you
             if Felicien_score >= 1:
-                # have a close call against a wall with Felicien's hand over your mouth
+                """
+                A hand flashes out of the dark and closes tight around your wrist, and you're yanked sideways so hard you lose balance.
+
+                Luckily, he catches you before you tumble pussy-over-teakettle into the dirt. For those slender arms, he sure is strong-- oof!
+                """
+                f "Clumsy ass."
+                "His voice is a hiss, irritated as always. He has you shoved hard against the wall, and my God, he towers over you in those heels."
+                a "Hey, I--"
+                """
+                His hand clamps over your mouth so hard, you think he knocked some of your teeth in a little. Staring out at the street, he mouths the words, 'shut up'.
+                
+                He has you caught like a fish, so you can only move your eyes to watch as best you can. Felicien pulled you on the other side of some crates, so the view is terrible, but you can just see through some of the slats... Maybe?
+                
+                Someone seems to be running past, at least.{w} There's no way you actually pulled ahead enough that he didn't see that little maneuver, right?
+
+                Felicien stands over you, stock-still, staring with those hard eyes for what feels like an eternity after the guy you {i}think{/i} was your boss ran past.
+                """
+                # inserting a pause here would be nice
+                "...He releases you and shakes out his slender-fingered hand with an air of disgust."
+                f "Ew. You breathe so God damned much."
+                a "Sorry?"
+                f "Yeah, you should be."
                 jump .success
 
             else:
                 # he pushes you into the street to keep Quinn occupied. FIGHT FIGHT
-                # win with a Domani score
-                if Domani_score >= 1:
-                    jump .success
-                else:
-                    jump .failure
+                "You don't see who, but someone must have collided into you, because you're suddenly launched off your feet -- you try to catch yourself, but your shocked wrists buckle under you and your head smacks the stone ground."
+                menu:
+                    "Kill him.":
+                        "yeah"
+                        jump .success
+                    "Man, as much as I hate my job, he {i}is{/i} a nice guy... Probably has a wife and kids...":
+                        "no"
+                        jump .failure
             
             label .failure:
                 # Bad end: die. this is utter betrayal
+                "Bro you die"
                 $ dead = True
                 return
             
             label .success:
                 # Good end: continue with the story, chase scene, hop on train
+                "You get away yippee!"
                 jump train
 
 
@@ -694,6 +722,7 @@ label day1:
                 a "Uh, I'll make it quick. So look here..."
                 "They're not who we're after.":
                     q "Give us the full report, soldier."
+                    a "Nothing but lies. Lies, lies, lies, lies, lies lieslieslLIESLIESLEISL"
 
                     # Val score must be at least 1 to pull off this lie
                     if Val_score >= 1:
@@ -714,14 +743,18 @@ label day1:
             
             label .failure:
                 # Bad end: convinced to stay with the Carabinieri (Quinn ending)
+                q "Sorry, Angiolo."
                 $ dead = True
                 return
             
             label .success:
                 # Good end: Quinn lets you go, have to go and find them. but with Doubt in your heart (Quinn wooing opportunity)
+                q "..."
+                q "You know, I think you made a good call, soldier."
+                a "Yeah?!"
+                q "Don't make those calls again without talking to me."
+                a "Yeah.{w} Yessir."
                 jump train
-
-        # v "Sorry, man. This can't be what you thought you were signing up for."
     
 
     ########################################
@@ -730,6 +763,8 @@ label day1:
 
     label train:
         # regroup
+
+        # v "Sorry, man. This can't be what you thought you were signing up for."
 
         # Vittore put Luci under Felicien as punishment for something
         # idk if I actually want this conversation on-screen
