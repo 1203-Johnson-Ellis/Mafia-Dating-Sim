@@ -394,7 +394,7 @@ label nighttime:
 
                 scene black
                 with dissolve
-                $ dead = True
+                jump badEnd
 
             return
         

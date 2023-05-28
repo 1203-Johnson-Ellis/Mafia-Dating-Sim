@@ -571,9 +571,7 @@ label day1:
         q "Now, I'm heading home for the night. Leave your report outside my office when you're done."
         a "Yeah, okay, thanks..."
 
-        $ dead = True
-
-        return
+        jump badEnd
 
 
     ########################################
@@ -691,7 +689,36 @@ label day1:
 
             else:
                 # he pushes you into the street to keep Quinn occupied. FIGHT FIGHT
-                "You don't see who, but someone must have collided into you, because you're suddenly launched off your feet -- you try to catch yourself, but your shocked wrists buckle under you and your head smacks the stone ground."
+                """
+                You don't see who, but someone must have collided into you, because you're launched off your feet -- you try to catch yourself, but your shocked wrists buckle under you and your face smacks the stone ground. {i}Yowch.{/i}
+                
+                But behind you, your boss isn't stopping; no, he's coming up fast. Those thundering, booted footsteps. He's too close. You have to get up.
+
+                You have to get up.
+
+                {w}You scramble to your feet, clumsy in your daze. The adrenaline in your veins is leaving you shaky. 
+                """
+                q "Down, soldier!"
+                """
+                He doesn't even sound winded.
+
+                Of course you couldn't outrun him. For all your military training, you now work a {i}desk job{/i} while he's on the field. Save the times he's conveniently breathing down your neck.
+                
+                You turn to face your boss as steadily as you can, determined not to let him past.{p}Oh, God. He's intending on just barrelling past you. Or {i}through{/i} you?
+                """
+                menu:
+                    "HE'S HUGE AND RUNNING AT ME, WHAT THE HELL DO I DO??":
+                        a "{size=+20}BOSS!!{/size}"
+                        """
+                        He's... not stopping. He's going to run full-force into you. And you're going to implode like a little grape. He's-
+                        
+                        ...Running right past you.{p}Oh, thank the almighty Lord.
+
+                        {w}Wait, how the hell are you going to save your escapees now?
+                        """
+                        jump badEnd
+                    "DRAW SWORD??!":
+                        "You whip your sword out of its sheath?!?!"
                 menu:
                     "Kill him.":
                         "yeah"
@@ -703,8 +730,7 @@ label day1:
             label .failure:
                 # Bad end: die. this is utter betrayal
                 "Bro you die"
-                $ dead = True
-                return
+                jump badEnd
             
             label .success:
                 # Good end: continue with the story, chase scene, hop on train
@@ -744,8 +770,7 @@ label day1:
             label .failure:
                 # Bad end: convinced to stay with the Carabinieri (Quinn ending)
                 q "Sorry, Angiolo."
-                $ dead = True
-                return
+                jump badEnd
             
             label .success:
                 # Good end: Quinn lets you go, have to go and find them. but with Doubt in your heart (Quinn wooing opportunity)
@@ -827,9 +852,7 @@ label day1:
             l "They will simply give unenlightening answers to any questions."
             a "Yeah. I'm smart enough for that."
 
-            $ dead = True
-
-            return
+            jump badEnd
 
 
         label .bandage:
