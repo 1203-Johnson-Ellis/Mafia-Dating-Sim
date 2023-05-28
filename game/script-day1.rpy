@@ -657,6 +657,7 @@ label day1:
         label chase:
             "You break away from your boss and tear out of that place, grabbing Domani and pushing him along ahead of you to get him running."
             a "Go, go, go!"
+            "imagine there's more action here"
             #running around
 
             # can choose to hide in the strip club where you meet Eligio. I think this might be a whole new path
@@ -685,6 +686,7 @@ label day1:
                 f "Ew. You breathe so God damned much."
                 a "Sorry?"
                 f "Yeah, you should be."
+
                 jump .success
 
             else:
@@ -706,6 +708,7 @@ label day1:
                 
                 You turn to face your boss as steadily as you can, determined not to let him past.{p}Oh, God. He's intending on just barrelling past you. Or {i}through{/i} you?
                 """
+
                 menu:
                     "HE'S HUGE AND RUNNING AT ME, WHAT THE HELL DO I DO??":
                         a "{size=+20}BOSS!!{/size}"
@@ -717,8 +720,32 @@ label day1:
                         {w}Wait, how the hell are you going to save your escapees now?
                         """
                         jump badEnd
+
                     "DRAW SWORD??!":
                         "You whip your sword out of its sheath?!?!"
+                        # continues below
+                    
+                "He slows down and comes to a stop before you."
+                q "...What are you doing, soldier?"
+                a "Uh, what I was taught, sir. To draw my weapon on instinct."
+                q "On your commanding officer."
+                q "That's an unfortunate choice, Angiolo. By law, I can't take this kind of breach of orders lightly."
+                "Now he's drawing his own blade. Yikes yikes yikes, this was {i}not{/i} where you would have liked this to go."
+                q "Sigh.{p}I'd better take care of this quickly so I can find our suspects."
+                "He's advancing on you. You raise your blade."
+                a "Uhhhhhhhhhhhhhhhhhh, boss? The charge for this kind of thing isn't, like, firing squad, right?"
+                """
+                He moves suddenly, and his blade comes down hard on yours. Jesus! Just that blow struck your fingers numb. Or maybe that's a side effect of the creeping feeling that you're completely screwed. It's all you can do not to drop the thing.
+
+                Okay, so the charge is definitely death. Well, what were you supposed to do? If you hadn't been tripped in the street by some jerk...
+
+                He moves again, and you just manage to deflect the blow to your shoulder. ADHD brain be damned, you have to focus!
+
+                The next one comes fast. He's trying to disarm you. You again sweep your blade to the side to drive his away, but he's not only stronger than you but also generally {i}better{/i} than you. You never thought you'd {i}actually{/i} have to fight for your life like this, okay!
+
+                You need to find your opening. You can only hold him off for so long before your twig arms break off.
+                """
+
                 menu:
                     "Kill him.":
                         "yeah"
@@ -733,13 +760,13 @@ label day1:
                 jump badEnd
             
             label .success:
-                # Good end: continue with the story, chase scene, hop on train
+                # Good end: run away to find and reunite with your comrades
                 "You get away yippee!"
                 jump train
 
 
         label stayBehind:
-            a "Ay Boss, I'm running it by you now."
+            a "Ay boss, I'm running it by you now."
             "You try to position yourself in his way as casually as possible. Which is {i}terrifying{/i}, because he could break you like a twig."
             "He smiles pleasantly."
             q "Well, this is mighty inconvenient!"
@@ -755,6 +782,7 @@ label day1:
                         jump .success
 
                     else:
+                        q "Who do you think you're fooling, little man?"
                         jump .failure
 
                 "They're not so bad.":
@@ -769,11 +797,13 @@ label day1:
             
             label .failure:
                 # Bad end: convinced to stay with the Carabinieri (Quinn ending)
+
                 q "Sorry, Angiolo."
                 jump badEnd
             
             label .success:
                 # Good end: Quinn lets you go, have to go and find them. but with Doubt in your heart (Quinn wooing opportunity)
+
                 q "..."
                 q "You know, I think you made a good call, soldier."
                 a "Yeah?!"
