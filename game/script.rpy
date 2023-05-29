@@ -41,50 +41,50 @@ label start:
 
     ## Day 1 ##
     # Goes to `script-day1.rpy`
-    call day1
+    call day1 from _call_day1
     if dead == True:
         return
         
     jump demo
 
     # All night labels are contained in `script-night.rpy`
-    call nighttime
+    call nighttime from _call_nighttime
     if dead == True:
         return
 
     ## Day 2 ##
     # Goes to `script-day2.rpy`
-    call day2
+    call day2 from _call_day2
     if dead == True:
         return
 
-    call nighttime
+    call nighttime from _call_nighttime_1
     if dead == True:
         return
 
     ## Day 3 ##
     # Goes to `script-day3.rpy`
-    call day3
+    call day3 from _call_day3
     if dead == True:
         return
 
-    call nighttime
+    call nighttime from _call_nighttime_2
     if dead == True:
         return
 
     ## Day 4 ##
     # Goes to `script-day4.rpy`
-    call day4
+    call day4 from _call_day4
     if dead == True:
         return
 
-    call nighttime
+    call nighttime from _call_nighttime_3
     if dead == True:
         return
 
     ## Day 5 ##
     # Goes to `script-day5.rpy`
-    call day5
+    call day5 from _call_day5
     if dead == True:
         return
 

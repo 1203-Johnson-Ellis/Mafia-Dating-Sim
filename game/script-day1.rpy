@@ -18,12 +18,13 @@ label day1:
     ########################################
 
     play audio "<loop 3.0>audio/projector.mp3"
+
     scene bg questura desk
-    show quinn at right
     show angiolo at left
+    with dissolve
+
     show grain
     show reel
-    with dissolve
 
 
     ## Dialogue begins ##
@@ -38,6 +39,7 @@ label day1:
     You are working at your desk, eyes glazing over endless piles of paperwork, when the door opens.{p}You look up.
     """
     a "Hey, boss."
+    show quinn at right behind grain, reel with dissolve
     q "Hello, Angiolo. I have a job I'd like you to handle."
     a @ flat "Right..."
     q "We have a handful of eyewitnesses from a shooting today. It was at their establishment, and some of them may be culprits."
@@ -60,10 +62,9 @@ label day1:
 
         # Reset the scene in case user is returning from an interrogation
 
-        scene bg questura desk
+        scene bg questura desk with fade
         show grain
         show reel
-        with fade
 
         # Options
 
@@ -91,7 +92,7 @@ label day1:
             "I actually think I should do my job for once and let these guys go through the system..." if canBreakout:
                 jump system
         
-        call questioning
+        jump questioning
     
 
     ########################################
@@ -101,14 +102,13 @@ label day1:
     label questioning:
         scene bg questura interrogation
         show angiolo at left
+        show grain
+        show reel
         with dissolve
 
         if partner == 1:
             # Felicien
-            show felicien at right
-            show grain
-            show reel
-            with dissolve
+            show felicien at right behind grain, reel with dissolve
 
             "Felicien already has one hand free of his cuffs and is working at the other when you enter. He looks up with a sly smile."
             a "Hey. Looking cozy there."
@@ -129,10 +129,7 @@ label day1:
         
         elif partner == 2:
             # Domani
-            show domani at right
-            show grain
-            show reel
-            with dissolve
+            show domani at right behind grain, reel with dissolve
 
             "You enter the interrogation room to a lone figure with his head in his hands so that you can't see his face. He startles when you enter, but doesn't raise his head."
             if interrogateBegin == False:
@@ -170,10 +167,7 @@ label day1:
 
         elif partner == 3:
             # Kaj
-            show kaj afraid hold at right
-            show grain
-            show reel
-            with dissolve
+            show kaj afraid hold at right behind grain, reel with dissolve
 
             "Kaj had been sitting with his head in his hands until you walked in, at which point he jerked up to look at you. He looks wretched."
             k -hold "Hello, Carabiniere..."
@@ -189,19 +183,17 @@ label day1:
 
         elif partner == 4:
             # Val
-            show val blank at right
-            show grain
-            show reel
-            with dissolve
+            show val blank at right behind grain, reel with dissolve
 
-            a "I'm here for an interrogation. Either that, or I'll take money. Whatever."
+            a shut closed "I'm here for an interrogation. Either that, or I'll take money. Whatever."
             a "Listen, I don't like doing interrogations. I'd rather be out on the town right now, really."
             v "I think I'm hallucinating.{w} I got shot today, you know."
+            show angiolo -shut
             "You look up at them. They're sitting stiffly, looking weary and staring vaguely out the window. Looks like there was an autombile crash out there?"
             "When they realize you're looking at them, though, their eyes focus on you."
             a "Oh."
             "You take the cigarette from between your lips."
-            a "You want anything? We can go on a date or something."
+            a -closed "You want anything? We can go on a date or something."
             v @ smile "Beats this. No one's so much as given me laudanum for the bullet in my arm."
             a @ closed shut downturned "Fuckin' animals."
             v "I'll say. Can I have a smoke?"
@@ -230,10 +222,7 @@ label day1:
 
         elif partner == 5:
             # Luci
-            show luci at right
-            show grain
-            show reel
-            with dissolve
+            show luci at right behind grain, reel with dissolve
 
             "Luciano is standing in the interrogation room with his arms folded."
 
@@ -257,9 +246,9 @@ label day1:
         menu:
             a "Let's see..."
             "Can you give me a rundown of what happened?":
-                call .question1
+                jump .question1
             "So. You a mob boss?":
-                call .question2
+                jump .question2
             "I think we can wrap this up.":
                 jump .finish
 
@@ -339,9 +328,9 @@ label day1:
         menu:
             a "Let's see..."
             "Can you give me a rundown of what happened?":
-                call .question1
+                jump .question1
             "What's up with the mask? Kinda scary.":
-                call .question2
+                jump .question2
             "I think we can wrap this up.":
                 jump .finish
 
@@ -389,7 +378,7 @@ label day1:
             a "Oh, probably in a week. Maybe two. Things are kinda slow-going around here."
             "He looks down."
             d "...Okay."
-            a "Hey, cheer up. You confessed -- counts for something.{p}See you around, maybe."
+            a "Hey, cheer up. You confessed — counts for something.{p}See you around, maybe."
 
             jump notes
 
@@ -436,8 +425,7 @@ label day1:
                 a "...Do you want a cigarette?"
                 k "Okay."
                 "You lean back in your chair and rummage in your pockets for the pack of cigarettes. You hand Kaj one and take one for yourself."
-                # this has a problem
-                show kaj dying -normal
+                show kaj dying none
                 "Once his is lit, Kaj takes one drag and then bursts into a coughing fit."
 
                 menu:
@@ -469,10 +457,7 @@ label day1:
     #
 
     label interrogateVal:
-        show bg venice street
-        show grain
-        show reel
-        with dissolve
+        show bg venice street behind grain, reel with dissolve
 
         "As you walk down the street, you see a vendor at their stall. When they are distracted, a passerby casually grabs one of their items."
         a "Huh. P.S. should do something about that."
@@ -509,9 +494,9 @@ label day1:
         menu:
             a "Let's see..."
             "Can you give me a rundown of what happened?":
-                call .question1
+                jump .question1
             "Why did you start working at that place?":
-                call .question2
+                jump .question2
             "I think we can wrap this up.":
                 jump .finish
 
@@ -559,7 +544,6 @@ label day1:
     ########################################
 
     label system:
-
         show angiolo at left
         """
         You open your notebook and begin to gather all your notes into a cohesive and reasonable-sounding report.
@@ -571,7 +555,7 @@ label day1:
         show quinn at right
         q "Keep it up, Angiolo, you're doing great. I've never seen you come so close to doing an average amount of work. I knew you had it in you."
         q "Now, I'm heading home for the night. Leave your report outside my office when you're done."
-        a "Yeah, okay, thanks..."
+        a flat "Yeah, okay, thanks..."
 
         jump badEnd
 
@@ -590,66 +574,76 @@ label day1:
 
         And convenient. Who will notice or care if you just... get up from your desk... leave your office...{p}The keys jingle pleasantly in your hand.
         """
-        scene bg questura interrogation
-        show grain
-        show reel
-        show domani
-        with dissolve
+        show bg questura interrogation behind grain, reel
+        show domani behind grain, reel
+        with fade
         d "Snf...{w} snf...{w} huh?{w} W-what is this?!{p}Oh, God! Thank God!"
 
-        scene bg questura interrogation
-        show grain
-        show reel
-        show felicien
-        with dissolve
-        f "Oh, puppy, you're back.{w}{size=-20} (Damn. I was hoping for someone sexier.){/size}"
+        hide domani
+        show felicien behind grain, reel
+        with fade
+        f "Oh, puppy, you're back.{w}{size=-20} Damn. I was hoping for someone sexier.{/size}"
 
-        scene bg questura interrogation
-        show grain
-        show reel
-        show kaj
-        with dissolve
+        hide felicien
+        show kaj afraid behind grain, reel
+        with fade
         k "Carabiniere... you... you can't do this. This is illegal..."
 
-        scene bg questura interrogation
-        show grain
-        show reel
-        show luci
-        with dissolve
+        hide kaj
+        show luci behind grain, reel
+        with fade
         l "...{p}...?"
+        hide luci
 
         "You go around to the holding cells of each of the suspects, insert the key, hush them, and quietly release them.{w} Easy."
-        scene bg questura interrogation
+        show val smirk blank behind grain, reel
+        with fade
+        v "Well, aren't you a sight for sore eyes.{w} Thanks for hearing me out. Now, let's get out of here."
+        hide val with dissolve
+
+        "Score. Prisoners rounded up, you lead them to the back entrance, same place criminals get brought in. Guess they can't really be brought through the front where civilians come in."
+        scene bg questura front
         show grain
         show reel
-        show val
         with dissolve
-        v "Well, aren't you a sight for sore eyes.{w}Thanks for hearing me out. Now, let's get out of here."
-        hide val
         """
-        Score. Prisoners rounded up, you lead them to the back entrance, same place criminals get brought in. Guess they can't really be brought through the front where civilians come in.
-
         Everything is going to plan. And it's so quiet in here, maybe your boss went out on patrol?{w} His office isn't {i}too{/i} close, just gotta creep to the back door...
 
         There's a tap on your shoulder.
         """
+        show angiolo at left behind grain, reel
+        show domani at right behind grain, reel
+        with dissolve
         d "Is that... your friend?"
         a "Huh-?"
         q "Angiolo?"
-        a "Ggk!"
+        a wide upset "Ggk!"
+        hide domani with dissolve
 
-        show quinn
+        show quinn at right behind grain, reel with dissolve
+        show angiolo -upset
         "It only takes him a moment to look over your little procession and put together what's going on."
         q "Sigh... Couldn't you at least have run this by me first?"
         a "Ahhhhahaha. Whoops."
+        
+        hide quinn with dissolve
+        show felicien at right behind grain, reel
         f "MOVE IT, ASSHOLES!" with vpunch
+
+        hide felicien
         "Before you can do anything to fix this, Felicien has bolted for the door. His entourage obediently follows suit, and only Kaj glances back at you. But also..."
-        d "AAAAAAAAHHHHH!!!!!{p}{size=+20}AAAAAAAAAAAAAAAAAAAAAAAHHHHHH{/size}"
+        show domani at right behind grain, reel with dissolve
+        d "AAAAAAAAHHHHH!!!!!{p}{size=+40}AAAAAAAAAAAAAAAAAAAAAAAHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH{/size}"
+        hide domani with dissolve
+
         "You watch him run out of the door and headlong into the wall of the neighboring building and rebound. Poor guy seems too frightened to think."
+        show quinn at right behind grain, reel with dissolve
 
         menu:
             q "Ah, jeez."
             "Go after them. You know the Carabinieri, you know how to help them escape.":
+                show angiolo -wide
+                hide quinn with dissolve
                 jump chase
 
             "Stay behind and try to reason with your boss, buy them time.":
@@ -660,9 +654,11 @@ label day1:
             # Running
 
             "You break away from your boss and tear out of that place, grabbing Domani and pushing him along ahead of you to get him running."
-            a "Let's get those legs moving, yeah?!"
-            d "BAAAHHHH!!{p}O God, if you want me dead, just strike me down??! Even with savescumming, this is all too scary!!"
-            d "O Santa Maria, Madre di Dio, prega per noi peccatoti, adesso e nell'ora della nostra morte..."
+            show bg venice street behind grain, reel with dissolve
+            show domani at right behind grain, reel with dissolve
+            a downturned "Let's get those legs moving, yeah?!"
+            d "BAAAHHHH!!{p}O God, if you want me dead, just strike me down??! Even with savescumming, this is all too scary!!!"
+            d "{i}O Santa Maria, Madre di Dio, prega per noi peccatoti, adesso e nell'ora della nostra morte...{/i}"
             """
             Once Domani is running, he's actually kinda fast. You do your best to keep up with him, tearing after the others.
 
@@ -678,11 +674,11 @@ label day1:
                 """
                 A hand flashes out of the dark and closes tight around your wrist, and you're yanked sideways so hard you lose balance.
 
-                Luckily, he catches you before you tumble pussy-over-teakettle into the dirt. For those slender arms, he sure is strong-- oof!
+                Luckily, he catches you before you tumble pussy-over-teakettle into the dirt. For those slender arms, he sure is strong— oof!
                 """
                 f "Clumsy ass."
                 "His voice is a hiss, irritated as always. He has you shoved hard against the wall, and my God, he towers over you in those heels."
-                a "Hey, I--"
+                a "Hey, I—"
                 """
                 His hand clamps over your mouth so hard, you think he knocked some of your teeth in a little. Staring out at the street, he mouths the words, 'shut up'.
                 
@@ -692,7 +688,7 @@ label day1:
 
                 Felicien stands over you, stock-still, staring with those hard eyes for what feels like an eternity after the guy you {i}think{/i} was your boss ran past.
                 """
-                # inserting a pause here would be nice
+                pause
                 "...He releases you and shakes out his slender-fingered hand with an air of disgust."
                 f "Ew. You breathe so God damned much."
                 a "Sorry?"
@@ -703,14 +699,14 @@ label day1:
             else:
                 # he pushes you into the street to keep Quinn occupied. FIGHT FIGHT
                 """
-                You don't see who, but someone must have collided into you, because you're launched off your feet -- you try to catch yourself, but your shocked wrists buckle under you and your face smacks the stone ground. {i}Yowch.{/i}
+                You don't see who, but someone must have collided into you, because you're launched off your feet — you try to catch yourself, but your shocked wrists buckle under you and your face smacks the stone ground.{w} {i}Yowch.{/i}
                 
                 But behind you, your boss isn't stopping; no, he's coming up fast. Those thundering, booted footsteps. He's too close. You have to get up.
 
                 You have to get up.
-
-                {w}You scramble to your feet, clumsy in your daze. The adrenaline in your veins is leaving you shaky. 
                 """
+                pause
+                "You scramble to your feet, clumsy in your daze. The adrenaline in your veins is leaving you shaky."
                 q "Down, soldier!"
                 """
                 He doesn't even sound winded.
@@ -736,6 +732,7 @@ label day1:
                         "You whip your sword out of its sheath?!?!"
                         # continues below
                     
+                show quinn at right behind grain, reel with dissolve
                 "He slows down and comes to a stop before you."
                 q "...What are you doing, soldier?"
                 a "Uh, what I was taught, sir. To draw my weapon on instinct."
@@ -755,14 +752,16 @@ label day1:
                 The next one comes fast. He's trying to disarm you. You again sweep your blade to the side to drive his away, but he's not only stronger than you but also generally {i}better{/i} than you. You never thought you'd {i}actually{/i} have to fight for your life like this, okay!
 
                 You need to find your opening. You can only hold him off for so long before your twig arms break off.
+
+                another move or two
                 """
 
                 menu:
                     "Kill him.":
-                        "yeah"
+                        "you Get Him"
                         jump .success
                     "Man, as much as I hate my job, he {i}is{/i} a nice guy... Probably has a wife and kids...":
-                        "no"
+                        "you give him an opening"
                         jump .failure
             
             label .failure:
@@ -831,6 +830,7 @@ label day1:
 
     label train:
         # regroup
+        "you go meet back up with the gang to regroup and there's some conversation in here and you decide to call the mafia guy"
 
         # v "Sorry, man. This can't be what you thought you were signing up for."
 
@@ -858,12 +858,13 @@ label day1:
 
         # v "So. You're born into the mafia."
         # "They tick off on their fingers."
-        # v "You don't kill, you don't do the job your boss gives you, you can't help in a medical emergency, and --"
+        # v "You don't kill, you don't do the job your boss gives you, you can't help in a medical emergency, and—"
         # "They look him up and down."
-        # v "-- I doubt you could hold your own in a fight. So what're you good for?"
+        # v "—I doubt you could hold your own in a fight. So what're you good for?"
 
         # Train from Palermo along the coast of Sicily to Messina takes ~3 hours, and at the end includes a ferry ride. Tend to Val on the way.
         # I need a train interior bg image
+        "hop on the train (there's some stuff that sounds like this isn't a train bc I hadn't worked out all the details yet dw abt it)"
 
         "As you settle into the place, you notice Val slump hard against a wall, closing their eyes and breathing deliberately.{p}They must be in some wicked pain."
 
@@ -894,6 +895,7 @@ label day1:
             l "Angiolo is correct, Felicien."
             l "They will simply give unenlightening answers to any questions."
             a "Yeah. I'm smart enough for that."
+            "and they went to the hospital and got caught by the authorities"
 
             jump badEnd
 
@@ -943,6 +945,7 @@ label day1:
             a "Ready?"
             "They nod once."
             "With your other hand, you reach two fingers into the bullet hole. First they tense to rigidity, then they jolt and hiss."
+            "pretend this scene reaches a conclusion"
             # continue
 
             return

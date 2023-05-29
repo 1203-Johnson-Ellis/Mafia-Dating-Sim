@@ -74,15 +74,15 @@ label nighttime:
         # It is called after the description for the current night has been run through
 
         if partner == 1:
-            call felicien
+            call felicien from _call_felicien
         elif partner == 2:
-            call domani
+            call domani from _call_domani
         elif partner == 3:
-            call kaj
+            call kaj from _call_kaj
         elif partner == 4:
-            call val
+            call val from _call_val
         elif partner == 5:
-            call luci
+            call luci from _call_luci
         
         # Once the partner dialogue has finished, it will return to this label
         # So we end the current day

@@ -169,16 +169,14 @@ layeredimage luci:
 #    always "elhoeva"
 
 
-## Background images ##
-
-#image venice = "images/backgrounds/bg venice.png"
-
-
 ## Film reel grain ##
+
+# This defines the visuals of the grain
 
 image grain:
     "images/backgrounds/bg grain.png"
     matrixcolor OpacityMatrix(0.25)
+    #zorder 10
     xalign 1.0
     yalign 1.0
     parallel:
@@ -202,8 +200,12 @@ image grain:
         easeout 30.0 xzoom 1.25
         repeat
 
+
+# This defines the visuals of the film reel that scrolls past
+
 image reel:
     "bg reel"
+    #zorder 11
     yalign 0.0
     parallel:
         xalign 50.0
