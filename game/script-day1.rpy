@@ -194,17 +194,19 @@ label day1:
             show reel
             with dissolve
 
-            "Val is sitting stiffly, looking weary, but their eyes focus on you when you enter."
-            a "Long day?"
-            v "You could say that."
-            "You cross your legs and take the cigarette from between your lips."
-            a "You want anything? We can go on a date or something. I don't much like doing interrogations."
-            v raised "Is that so? I'd be happy to go out with you somewhere. Beats this. No one's so much as given me laudanum for the bullet in my arm."
-            "You shake your head."
-            a closed @ shut downturned "Fuckin' animals."
-            v -raised "I'll say. Can I have a smoke?"
+            a "I'm here for an interrogation. Either that, or I'll take money. Whatever."
+            a "Listen, I don't like doing interrogations. I'd rather be out on the town right now, really."
+            v "I think I'm hallucinating.{w} I got shot today, you know."
+            "You look up at them. They're sitting stiffly, looking weary and staring vaguely out the window. Looks like there was an autombile crash out there?"
+            "When they realize you're looking at them, though, their eyes focus on you."
+            a "Oh."
+            "You take the cigarette from between your lips."
+            a "You want anything? We can go on a date or something."
+            v @ smile "Beats this. No one's so much as given me laudanum for the bullet in my arm."
+            a @ closed shut downturned "Fuckin' animals."
+            v "I'll say. Can I have a smoke?"
             "You shrug, pull out your cigarette pack, and frown to yourself."
-            a @ upturned -closed "I'm all out..."
+            a @ upturned "I'm all out..."
 
             menu:
                 "Give them your cigarette?"
@@ -529,7 +531,7 @@ label day1:
             jump interrogateLuci
 
         label .question2:
-            l downturned angry frown "It seemed like a good fit."
+            l downturned angry frown "It seemed to be a good fit for me."
 
             if LuciInterrogated2 == False:
                 menu:
@@ -655,12 +657,21 @@ label day1:
 
 
         label chase:
+            # Running
+
             "You break away from your boss and tear out of that place, grabbing Domani and pushing him along ahead of you to get him running."
-            a "Go, go, go!"
-            "imagine there's more action here"
+            a "Let's get those legs moving, yeah?!"
+            d "BAAAHHHH!!{p}O God, if you want me dead, just strike me down??! Even with savescumming, this is all too scary!!"
+            d "O Santa Maria, Madre di Dio, prega per noi peccatoti, adesso e nell'ora della nostra morte..."
+            """
+            Once Domani is running, he's actually kinda fast. You do your best to keep up with him, tearing after the others.
+
+            imagine there's more action here
+            """
             #running around
 
-            # can choose to hide in the strip club where you meet Eligio. I think this might be a whole new path
+            # can choose to hide in the strip club where you meet Eligio
+            # I think this might be a whole new path a la Azami Hatoful Boyfriend
 
             # must have a score of 1 with Felicien for him to care enough to save you
             if Felicien_score >= 1:
@@ -766,6 +777,8 @@ label day1:
 
 
         label stayBehind:
+            # Staying behind with Quinn
+
             a "Ay boss, I'm running it by you now."
             "You try to position yourself in his way as casually as possible. Which is {i}terrifying{/i}, because he could break you like a twig."
             "He smiles pleasantly."

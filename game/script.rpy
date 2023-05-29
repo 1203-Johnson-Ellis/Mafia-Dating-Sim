@@ -44,6 +44,8 @@ label start:
     call day1
     if dead == True:
         return
+        
+    jump demo
 
     # All night labels are contained in `script-night.rpy`
     call nighttime
@@ -90,7 +92,7 @@ label start:
         jump finale
 
 
-    ## Placeholder end screens and score tests ##
+    ## PLACEHOLDERS ##
 
     # Bad ending screen
     label badEnd:
@@ -103,7 +105,15 @@ label start:
 
         call screen bad_end
 
-    return
+        return
+    
+
+    #
+    label demo:
+        scene black with dissolve
+        "Demo done. thank u for playing:)"
+        return
+
 
     # Good end partnership selection
     label finale:
