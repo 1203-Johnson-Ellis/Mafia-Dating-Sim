@@ -21,10 +21,9 @@ label day1:
 
     scene bg questura desk
     show angiolo at left
-    with dissolve
-
     show grain
     show reel
+    with dissolve
 
 
     ## Dialogue begins ##
@@ -664,6 +663,9 @@ label day1:
 
             imagine there's more action here
             """
+
+            hide domani with dissolve
+
             #running around
 
             # can choose to hide in the strip club where you meet Eligio
@@ -829,6 +831,9 @@ label day1:
     ########################################
 
     label train:
+        scene black
+        with dissolve
+
         # regroup
         "you go meet back up with the gang to regroup and there's some conversation in here and you decide to call the mafia guy"
 
@@ -865,6 +870,11 @@ label day1:
         # Train from Palermo along the coast of Sicily to Messina takes ~3 hours, and at the end includes a ferry ride. Tend to Val on the way.
         # I need a train interior bg image
         "hop on the train (there's some stuff that sounds like this isn't a train bc I hadn't worked out all the details yet dw abt it)"
+
+        scene bg palermo train
+        show grain
+        show reel
+        with dissolve
 
         "As you settle into the place, you notice Val slump hard against a wall, closing their eyes and breathing deliberately.{p}They must be in some wicked pain."
 

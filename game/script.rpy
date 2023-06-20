@@ -27,6 +27,9 @@
 # This file outlines the plot structure day-by-day
 # It contains no dialogue itself, only jumps between the files that do contain dialogue
 
+# `jump` does not allow you to return to where you jumped from
+# `call` allows you to return to where you jumped from
+
 ############################################
 
 label start:
@@ -45,7 +48,7 @@ label start:
     if dead == True:
         return
         
-    jump demo
+    #jump demo
 
     # All night labels are contained in `script-night.rpy`
     call nighttime from _call_nighttime

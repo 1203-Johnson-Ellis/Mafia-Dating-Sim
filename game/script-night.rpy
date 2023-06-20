@@ -25,17 +25,26 @@ label nighttime:
     # Because the first night behaves differently from the others, we check for it first
     if day == 1:
         jump night1
-    else:
+    elif day > 1:
         # Then carry out the procedure for the other nights
 
         play sound "audio/crackle start.wav"
         pause 1.0
         play music "audio/bgm/inst night.mp3"
 
+        # Give a description of the current night
+
+        if day == 2:
+            call night2
+        elif day == 3:
+            call night3
+        elif day == 4:
+            call night4
+
         # Get the user's input
 
         menu:
-            "Who will you set up your bed beside?"
+            "Who will you set up your bed beside tonight?"
 
             "Felicien":
                 $ Felicien_score += 2
@@ -57,21 +66,10 @@ label nighttime:
                 $ Luci_score += 2
                 $ Luci_nights += 1
                 $ partner = 5
-        
-        # Jump to a description corresponding to the current night
-
-        if day == 2:
-            jump night2
-        elif day == 3:
-            jump night3
-        elif day == 4:
-            jump night4
 
 
     label choose_partner:
-
         # This label uses the `partner` variable to determine which partner the night is being spent with
-        # It is called after the description for the current night has been run through
 
         if partner == 1:
             call felicien from _call_felicien
@@ -83,11 +81,6 @@ label nighttime:
             call val from _call_val
         elif partner == 5:
             call luci from _call_luci
-        
-        # Once the partner dialogue has finished, it will return to this label
-        # So we end the current day
-
-        jump endNight
 
 
     # End nighttime sequence and move to the next day
@@ -121,8 +114,6 @@ label nighttime:
         scene bg reggio train
         with dissolve
 
-        "night 1"
-
         ########################################
         ## Awoken in the night #################
         ########################################
@@ -131,17 +122,23 @@ label nighttime:
         # (If there are any ties, it will default to whoever appears first on this list)
 
         if Felicien_score == min(Felicien_score, Domani_score, Kaj_score, Val_score, Luci_score):
+            $ partner = 1
             jump felicien.night1
         elif Domani_score == min(Felicien_score, Domani_score, Kaj_score, Val_score, Luci_score):
+            $ partner = 2
             jump domani.night1
         elif Kaj_score == min(Felicien_score, Domani_score, Kaj_score, Val_score, Luci_score):
+            $ partner = 3
             jump kaj.night1
         elif Val_score == min(Felicien_score, Domani_score, Kaj_score, Val_score, Luci_score):
+            $ partner = 4
             jump val.night1
         elif Luci_score == min(Felicien_score, Domani_score, Kaj_score, Val_score, Luci_score):
+            $ partner = 5
             jump luci.night1
         else:
             # If no lowest score can be determined, it will default to Felicien
+            $ partner = 1
             jump felicien.night1
 
         # These `suspicion` scenes require the user to answer a number of questions in ways the character (chosen above) likes
@@ -155,12 +152,12 @@ label nighttime:
     label night2:
         # At the farm
 
-        scene bg rooftops
+        scene bg reggio farm
         with dissolve
 
         "night 2"
 
-        jump choose_partner
+        return
 
 
     ## Third night ##
@@ -168,12 +165,12 @@ label nighttime:
     label night3:
         # At the farm again?
 
-        scene bg hotel room
+        scene bg reggio farm
         with dissolve
 
         "night 3"
 
-        jump choose_partner
+        return
 
 
     ## Fourth night ##
@@ -181,12 +178,12 @@ label nighttime:
     label night4:
         # In the city
 
-        #scene bg somewhere
-        #with dissolve
+        scene bg reggio buildings
+        with dissolve
 
         "night 4"
 
-        jump choose_partner
+        return
 
 
     ## CHARACTER DIALOGUE ##
@@ -198,7 +195,6 @@ label nighttime:
     #
 
     label felicien:
-
         # Check how many times this character has been slept with, and call a different scene depending
         # Pray, tell me why python doesn't have switch/case
         # This mass of elifs is a nightmare
@@ -241,7 +237,6 @@ label nighttime:
     #
 
     label domani:
-
         # Check how many times this character has been slept with, and call a different scene depending
 
         if Domani_nights == 1:
@@ -258,7 +253,7 @@ label nighttime:
         label .night1:
             "domani is threatening you"
 
-            return
+            jump endNight
         
         label .night2:
             "domani 2"
@@ -281,7 +276,6 @@ label nighttime:
     #
 
     label kaj:
-
         # Check how many times this character has been slept with, and call a different scene depending
 
         if Kaj_nights == 1:
@@ -298,7 +292,7 @@ label nighttime:
         label .night1:
             "kaj is threatening you"
 
-            return
+            jump endNight
         
         label .night2:
             "kaj 2"
@@ -321,7 +315,6 @@ label nighttime:
     #
 
     label val:
-
         # Check how many times this character has been slept with, and call a different scene depending
 
         if Val_nights == 1:
@@ -396,7 +389,7 @@ label nighttime:
                 with dissolve
                 jump badEnd
 
-            return
+            jump endNight
         
         label .night2:
             "val 2"
@@ -419,7 +412,6 @@ label nighttime:
     #
 
     label luci:
-
         # Check how many times this character has been slept with, and call a different scene depending
 
         if Luci_nights == 1:
@@ -436,7 +428,7 @@ label nighttime:
         label .night1:
             "luci is threatening you"
 
-            return
+            jump endNight
         
         label .night2:
             "luci 2"
