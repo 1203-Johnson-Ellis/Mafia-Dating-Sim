@@ -155,7 +155,7 @@ label nighttime:
         scene bg reggio farm
         with dissolve
 
-        "night 2"
+        "With everyone settling in for the night, the farm is peaceful as ever. The bustle of the city is far away, leaving room for the cool night air to breeze through the branches of the trees outside."
 
         return
 
@@ -168,7 +168,7 @@ label nighttime:
         scene bg reggio farm
         with dissolve
 
-        "night 3"
+        "Isn't this country air getting a little boring? Time to seek out some company to keep you occupied through the night..."
 
         return
 
@@ -181,7 +181,7 @@ label nighttime:
         scene bg reggio buildings
         with dissolve
 
-        "night 4"
+        "Reggio is a pleasant city. Anyone still out at this hour is on foot, and their chatter echoes off the cobblestone streets. The buildings are dotted with dimly lit windows."
 
         return
 
