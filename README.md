@@ -51,7 +51,6 @@ Shoot me a message for any troubleshooting or debugging issues.
 
 ## RUNNING THE GAME
 
-### For the current demo:
 Mafia is now [up on itch.io](https://becquerelian.itch.io/mafia-dating-sim/download/C0DU0g7RUxx915gQr3L65U1S8e8vGAQobVoioK2B) for your convenience! I'll try to keep it relatively up-to-date on there, but for code access, Github is still the place to go.
 
 ```
