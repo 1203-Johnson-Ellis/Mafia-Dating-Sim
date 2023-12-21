@@ -50,22 +50,22 @@ label nighttime:
                 $ Felicien_score += 2
                 $ Felicien_nights += 1
                 $ partner = 1
-            "Domani":
-                $ Domani_score += 2
-                $ Domani_nights += 1
-                $ partner = 2
-            "Kaj":
-                $ Kaj_score += 2
-                $ Kaj_nights += 1
-                $ partner = 3
-            "Val":
-                $ Val_score += 2
-                $ Val_nights += 1
-                $ partner = 4
-            "Luci":
-                $ Luci_score += 2
-                $ Luci_nights += 1
-                $ partner = 5
+            #"Domani":
+            #    $ Domani_score += 2
+            #    $ Domani_nights += 1
+            #    $ partner = 2
+            #"Kaj":
+            #    $ Kaj_score += 2
+            #    $ Kaj_nights += 1
+            #    $ partner = 3
+            #"Val":
+            #    $ Val_score += 2
+            #    $ Val_nights += 1
+            #    $ partner = 4
+            #"Luci":
+            #    $ Luci_score += 2
+            #    $ Luci_nights += 1
+            #    $ partner = 5
 
 
     label choose_partner:
@@ -163,12 +163,12 @@ label nighttime:
     ## Third night ##
 
     label night3:
-        # At the farm again?
+        # In the city
 
         scene bg reggio farm
         with dissolve
 
-        "Isn't this country air getting a little boring? Time to seek out some company to keep you occupied through the night..."
+        "Reggio is a pleasant city. Anyone still out at this hour is on foot, and their chatter echoes off the cobblestone streets. The buildings are dotted with dimly lit windows."
 
         return
 
@@ -176,12 +176,12 @@ label nighttime:
     ## Fourth night ##
 
     label night4:
-        # In the city
+        # At the farm again
 
         scene bg reggio buildings
         with dissolve
 
-        "Reggio is a pleasant city. Anyone still out at this hour is on foot, and their chatter echoes off the cobblestone streets. The buildings are dotted with dimly lit windows."
+        "Isn't this country air getting a little boring? Time to seek out some company to keep you occupied through the night..."
 
         return
 
@@ -213,24 +213,28 @@ label nighttime:
         
         label .night1:
             # Felicien roughly does you up in bondage and threatens you at knifepoint. And if you’re good maybe next time you’ll get it
+
             "felicien is threatening you"
 
             return
         
         label .night2:
             # Get it. Felicien says ouhhhh I’m sorry I was so evil today, daddy was just a little annoyed about work you understand. Now drink my piss
+
             "felicien 2"
 
             return
         
         label .night3:
             # Tells you about killing Kaj. You and Val are his puppies. Will you help me next time~? Threesome
-            "felicien 3"
+
+            f "Yeah, don't get too cocky. *Cock* is my job. Yours is *hole*."
 
             return
         
         label .night4:
-            # Kill Domani homoerotically which leads directly into
+            # Kill Domani homoerotically which leads directly into day 5
+
             "felicien 4"
 
             return
@@ -250,26 +254,34 @@ label nighttime:
         elif Domani_nights == 3:
             jump .night4
         else:
-            "wtf you doing boy? (this is an error message)"
+            "uhoh! if you see this then tell ellis that something went wrong in the nighttime counters"
         
         # Once this night's dialogue is finished, return to `choose_partner` label
         
         label .night1:
+            # 
+
             "domani is threatening you"
 
             jump endNight
         
         label .night2:
+            # 
+            
             "domani 2"
 
             return
         
         label .night3:
+            # 
+            
             "domani 3"
 
             return
         
         label .night4:
+            # 
+            
             "domani 4"
 
             return
@@ -289,26 +301,34 @@ label nighttime:
         elif Kaj_nights == 3:
             jump .night4
         else:
-            "wtf you doing boy? (this is an error message)"
+            "uhoh! if you see this then tell ellis that something went wrong in the nighttime counters"
         
         # Once this night's dialogue is finished, return to `choose_partner` label
         
         label .night1:
+            # 
+            
             "kaj is threatening you"
 
             jump endNight
         
         label .night2:
+            # 
+            
             "kaj 2"
 
             return
         
         label .night3:
+            # 
+            
             "kaj 3"
 
             return
         
         label .night4:
+            # 
+            
             "kaj 4"
 
             return
@@ -328,7 +348,7 @@ label nighttime:
         elif Val_nights == 3:
             jump .night4
         else:
-            "wtf you doing boy? (this is an error message)"
+            "uhoh! if you see this then tell ellis that something went wrong in the nighttime counters"
         
         # Once this night's dialogue is finished, return to `choose_partner` label
         
@@ -396,16 +416,22 @@ label nighttime:
             jump endNight
         
         label .night2:
+            # 
+            
             "val 2"
 
             return
         
         label .night3:
+            # 
+            
             "val 3"
 
             return
         
         label .night4:
+            # 
+            
             "val 4"
 
             return
@@ -425,26 +451,42 @@ label nighttime:
         elif Luci_nights == 3:
             jump .night4
         else:
-            "wtf you doing boy? (this is an error message)"
+            "uhoh! if you see this then tell ellis that something went wrong in the nighttime counters"
         
         # Once this night's dialogue is finished, return to `choose_partner` label
         
         label .night1:
+            # 
+            
             "luci is threatening you"
 
             jump endNight
         
         label .night2:
-            "luci 2"
+            # Luci humming and his tits
+
+            l "I'm. Not. Interested. In you."
+            a "Damn. Someone else beat me to the punch?"
+            l "What?!"
+            a "You interested in someone else, I mean?"
+            l ".....................................................................................
+            ........................................................................................
+            ........................................................................................
+            ......{w}No."
+            a "Well, color me convinced."
 
             return
         
         label .night3:
+            # 
+            
             "luci 3"
 
             return
         
         label .night4:
+            # 
+            
             "luci 4"
 
             return

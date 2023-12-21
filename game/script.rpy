@@ -109,16 +109,10 @@ label start:
         call screen bad_end
 
         return
-    
-
-    #
-    label demo:
-        scene black with dissolve
-        "Demo done. thank u for playing:)"
-        return
 
 
     # Good end partnership selection
+    # I think I'm getting rid of this system
     label finale:
         play sound "audio/crackle start.wav"
         pause 1.0
