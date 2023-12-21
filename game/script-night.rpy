@@ -207,26 +207,30 @@ label nighttime:
             jump .night4
         else:
             # This should never happen, but it's coded in for debugging and edge cases
-            "wtf you doing boy? (this is an error message)"
+            "uhoh! if you see this then tell ellis that something went wrong in the nighttime counters"
 
         # Once this night's dialogue is finished, return to `choose_partner` label
         
         label .night1:
+            # Felicien roughly does you up in bondage and threatens you at knifepoint. And if you’re good maybe next time you’ll get it
             "felicien is threatening you"
 
             return
         
         label .night2:
+            # Get it. Felicien says ouhhhh I’m sorry I was so evil today, daddy was just a little annoyed about work you understand. Now drink my piss
             "felicien 2"
 
             return
         
         label .night3:
+            # Tells you about killing Kaj. You and Val are his puppies. Will you help me next time~? Threesome
             "felicien 3"
 
             return
         
         label .night4:
+            # Kill Domani homoerotically which leads directly into
             "felicien 4"
 
             return

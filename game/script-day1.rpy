@@ -3,9 +3,8 @@
 
 # Contains all scenes and dialogue for day 1
 # + Interrogations, character introductions, breaking out of prison
+# + Getaway to Messina
 # + Calling the big boss
-# + Quinn chase scene
-# + Catching the train to Messina
 # + Patch up Val's bullet wound
 
 ######################################
@@ -35,16 +34,22 @@ label day1:
     
     And because you are an idiot, you are in the middle of it all, in a Carabinieri Comando Stazione.
     
-    You are working at your desk, eyes glazing over endless piles of paperwork, when the door opens.{p}You look up.
+    You are working at your desk, eyes glazing over endless piles of paperwork (positivvely daydreaming, really), when the door opens.{p}You look up.
     """
     a "Hey, boss."
     show quinn at right behind grain, reel with dissolve
-    q "Hello, Angiolo. I have a job I'd like you to handle."
-    a @ flat "Right..."
+    q "Look alive, Angiolo. I have a job I'd like you to handle."
+    a @ flat "Right... Just what I  needed."
+    q "Come on, let's keep up the professionalism here. Anyway, you're smart, Angiolo. If you just take a little interest... you've got this one in the bag."
     q "We have a handful of eyewitnesses from a shooting today. It was at their establishment, and some of them may be culprits."
-    q "To make things messier, said establishment is suspected to be a front for the mafia. Would you interrogate them?"
+    a "Huh? You telling me these people shot up their own place?"
+    q "First rule of the Carabinieri, Angiolo: Never rule out homicide. From what they had on them, there's something criminal going on either way."
+    q "Well, interrogate them for me and find out, would you?"
     a "Whatever you say."
-    "He hands you a list of suspects."
+    "He slips you a sheet of notebook paper."
+    q "We're looking into backgrounds right now, but here's what we have from on-scene."
+    q "Good luck, soldier!"
+
 
 
     # Begin background music
@@ -73,9 +78,6 @@ label day1:
 
             "Domani - Confessed at the scene of the crime to having fired his guns. Suspected criminal higher-up\nCharges: Second degree murder, aggravated assault with a deadly weapon, suspected involvement in organized crime" if (DomaniInterrogated1 == False and DomaniInterrogated2 == False):
                 $ partner = 2
-
-            "Kaj - Wearing the uniform for the establishment, but was the caller who dialed 1-1-3; suspected victim forced through coercion.\nCharges: None" if (KajInterrogated1 == False and KajInterrogated2 == False):
-                $ partner = 3
 
             "Valheo - Found in conflict with a customer; weapons found on their person. Injured in the crossfire.\nCharges: Assault, battery, suspected involvement in organized crime" if canBreakout == False:
                 $ partner = 4
@@ -107,6 +109,8 @@ label day1:
 
         if partner == 1:
             # Felicien
+            # Confiscated items: dagger, dildo
+
             show felicien at right behind grain, reel with dissolve
 
             "Felicien already has one hand free of his cuffs and is working at the other when you enter. He looks up with a sly smile."
@@ -119,81 +123,85 @@ label day1:
             f "Sucks like your mouth on my-"
             a "Hey, if you're so desperate, hit me up anytime."
             "He scowls, but seems to be reevaluating you. He tosses the cuffs to the ground.{w} Oh, well. Things are cheap."
+            
             if interrogateBegin == False:
                 "You sit down before him, resting your elbows on your knees."
                 $ interrogateBegin = True
+
             a "I got some questions for you, though, if you feel like answering."
             f "We'll see."
+
             jump interrogateFelicien
         
         elif partner == 2:
             # Domani
+            # Confiscated items: mask, handguns, ID
+
+            "Uhhh.... what am I supposed to do with this. Is it even real? Shouldn't this be sent to forensics or whatever? Is that the right department..."
+
             show domani at right behind grain, reel with dissolve
 
-            "You enter the interrogation room to a lone figure with his head in his hands so that you can't see his face. He startles when you enter, but doesn't raise his head."
-            if interrogateBegin == False:
-                "You sit down before him, resting your elbows on your knees. He seems to cringe away from you."
-                $ interrogateBegin = True
-            a "Woah, easy there."
-            d "I'm sorry, I'm sorry, I did it! I killed them all!"
-            "His voice is a tearful young man's."
-            a "Yeah, so I've heard. Let's just settle down now."
-            d "You caught me, you have who you want, so do anything you like to me! Please... Val, I'm so sorry..."
-            a "Look, it's time to chill a bit. I don't really have the authority to 'do' anything to you."
+            a "Woah."
+            "The figure sitting in the center of the interrogation room is in full, extravagant festival costume. Their head in their hands, they're giving full, wracking sobs. Yikes."
+            a "Yikes. Bad time?"
+            "They startle at the sound of your voice, but still only peer at you through their fingers."
+            d "Am I... being executed?"
+            a "Executed??"
+            "You're at a loss. Two seconds in, and you've never seen an interrogation like this before."
+            d "I've been caught, so, please, God, just get it over with..."
+            a "....Look, man, are you lost? It looks like you're coming from another city. And another time..."
+            d "I... my dress? Is it illegal here, too?"
+            a "Uhhhhh. I dunno. No? I mean, festival is a Venetian thing? But. Uh. You're not getting executed for that."
+            d "But, for the shooting..."
+            a "Is that a confession?"
+            d "Do I get forgiven for a confession?"
+            a "Um."
+            "Do they?"
+            a "Look, I just gotta ask you some questions real quick before jumping to executions."
+            "They whimper and sniffle, awaiting doom."
 
-            if domaniInterrogated == False:
-                "Something catches your eye.{p}On the table nearby lies a fancifully-decorated Venetian-style mask. It looks like one of its ribbons is torn partway off, and it's been partially crushed."
-                menu:
-                    "Looks like something one of the guys took from him. Is that why he's covering his face like a skittish animal?"
-                    "Give him the mask back.":
-                        a "Hey. This yours?"
-                        "You pick up the mask."
-                        "He whimpers."
-                        d "My... mask?"
-                        a "Yup.{p}You can have it back, if you want."
-                        d "Yes, please..."
-                        "You hand the somewhat-worse-for-wear mask to him and watch him slowly put it on. Even through these movements, he's careful not to give you a glimpse of his face."
-                        "He finishes tying the strings,{w} sighs,{w} and looks up."
-                        $ Domani_score += 1
-                    "He doesn't need that. Looks like some kind of criminal thing.":
-                        "You sit back and ignore the mask."
-                
-                $ domaniInterrogated = True
-
-            a "I just gotta ask you some questions real quick, 'kay?"
-            "Domani sniffles miserably, awaiting his doom."
+            $ domaniInterrogated = True
             jump interrogateDomani
 
-        elif partner == 3:
-            # Kaj
-            show kaj afraid hold at right behind grain, reel with dissolve
+            # give him back mask
+            a "Looks like they took this from you. And, uh, you don't seem too happy without it."
+            d "Oh... oh, thank God!"
+            "He turns away to quickly and nimbly afix the mask to his face. Once it's on, he breathes a sigh of relief and seems to calm somewhat."
 
-            "Kaj had been sitting with his head in his hands until you walked in, at which point he jerked up to look at you. He looks wretched."
-            k -hold "Hello, Carabiniere..."
-            a "Hey."
+            # ask him about ID
+            a "Is this your real ID?"
+            d "Ah? Oh. Oh, my God."
+            "They sound embarrassed. Actually, worse. Deeply humiliated. Convinced of failure. Well... that's not too conclusive?"
+            a "At least tell me what your pronouns are. I need to adjust my internal monologue over here."
+            d "I'm... a man?"
+            "Why does he sound so uncertain?"
+            a "Cool. Nice."
 
-            if interrogateBegin == False:
-                "You sit down before him, resting your elbows on your knees."
-                $ interrogateBegin = True
+            # give him back handguns
+            a "These yours?"
+            "He cringes back from the guns and doesn't take them from you."
+            d "Oh. I… can't. I'll kill again.. Please, I don't care what you do with them. I don't deserve them anymore."
+            a "Oooookay. Well."
+            "He stares at them longingly. Hard to blame him. They're gorgeous puppies, with flower designs burned into the wood handles. You… keep them, I guess."
 
-            a "Mind if I ask you some questions? Nothing crazy."
-            k "Alright."
-            jump interrogateKaj
+            jump interrogateDomani
 
         elif partner == 4:
             # Val
+            # Confiscated items: multiple knives, single handgun, water-damaged photo
+
             show val blank at right behind grain, reel with dissolve
 
-            a shut closed "I'm here for an interrogation. Either that, or I'll take money. Whatever."
-            a "Listen, I don't like doing interrogations. I'd rather be out on the town right now, really."
+            a shut closed "I'm here for an interrogation."
+            "You stare at your shitty sheet of notebook paper. For a long time. Your mind completely glazes over. God, this is so boring."
+            a "Either that, or I'll take money. Whatever.{w} Listen, I don't like doing interrogations. I'd rather be out on the town right now, really."
             v "I think I'm hallucinating.{w} I got shot today, you know."
             show angiolo -shut
             "You look up at them. They're sitting stiffly, looking weary and staring vaguely out the window. Looks like there was an autombile crash out there?"
             "When they realize you're looking at them, though, their eyes focus on you."
             a "Oh."
-            "You take the cigarette from between your lips."
             a -closed "You want anything? We can go on a date or something."
-            v @ smile "Beats this. No one's so much as given me laudanum for the bullet in my arm."
+            v @ smile "Beats this. No one's so much as given me laudanum or anything for the bullet in my arm."
             a @ closed shut downturned "Fuckin' animals."
             v "I'll say. Can I have a smoke?"
             "You shrug, pull out your cigarette pack, and frown to yourself."
@@ -217,13 +225,18 @@ label day1:
             v "You ready?"
             a "Yeah, let's get out of here."
             "You open the door to the interrogation room and lead them out of the Carabinieri Comando Stazione, and into the streets of Palermo."
+            
             jump interrogateVal
 
         elif partner == 5:
             # Luci
+            # Confiscated items: expensive sleek weapon, cash
+
+
             show luci at right behind grain, reel with dissolve
 
-            "Luciano is standing in the interrogation room with his arms folded."
+            "The suspect is ignoring his chair to stand in the middle of the room, stiff as a board, with his arms folded."
+            "He's legit just standing there, but for some reason your immediate impression is that he's beautiful. It tugs at your memory somehow... But your memory is shit, anyway."
 
             if interrogateBegin == False:
                 "You sit down before him, resting your elbows on your knees."
@@ -234,6 +247,7 @@ label day1:
             a "I'm Angiolo. I'm supposed to come in and interrogate you."
             l "..."
             a "Not much of a talker? Well, alright. We'll see what we can do."
+            
             jump interrogateLuci
 
 
@@ -268,15 +282,10 @@ label day1:
             else:
                 a "Eh, maybe I'll find out."
                 f "Do that. My business is suffering because of him."
-                a "Yeah, well, speaking of business. What kind of place are you running, anyway?"
-                f "A host club."
-                a "Aha. You get a lot of regulars there?"
-                f "This was actually our opening night."
-                a "Oh. Landing in town with a bang, then. So..."
             
             a "You didn't know the client, did you? The guy who got shot."
             f "I didn't see who got shot, idiot. I wasn't there."
-            a "No ideas floating around up there?"
+            a "No ideas floating around up there? Any weird regulars or anything?"
             f "No."
             a "Alright, then."
 
@@ -304,7 +313,7 @@ label day1:
                         a "I'm just saying. Can't really ignore the facts."
                         f "You said it yourself. It's been a bad day. I'd advise against making it any worse."
                         a "Woof. There's another one for the case file, I guess."
-                        f "..."
+                        f "Scary. Dipshit."
 
             $ FelicienInterrogated2 = True
             jump interrogateFelicien
@@ -354,7 +363,7 @@ label day1:
             d "Oh, um..."
             a "Just curious. Seems like the kind of thing some criminal higher-up would wear. But you seem alright."
             d "No, it's not that..."
-            "He sounds embarassed."
+            "He sounds embarrassed."
             a "Well, that's good. If you were that kind of scary guy, I wouldn't stand a chance."
             d "W...what do you mean? In combat?{w} But you're polizia, aren't you?"
             a "Carabinieri."
@@ -378,75 +387,6 @@ label day1:
             "He looks down."
             d "...Okay."
             a "Hey, cheer up. You confessed — counts for something.{p}See you around, maybe."
-
-            jump notes
-
-    #
-    ## KAJ ##
-    #
-
-    label interrogateKaj:
-        show kaj normal neutral
-        menu:
-            a "Let's see..."
-            "Can you give me a rundown of what happened?":
-                jump .question1
-            "What do you think of your boss? Felicien, right?":
-                jump .question2
-            "I think we can wrap this up.":
-                jump .finish
-
-        label .question1:
-            k speaking "I didn't see most of it..."
-            k "A customer was getting aggressive. Really aggressive. So I ran to get help?"
-            a "Huh."
-            a "What were they doing that was aggressive?"
-            k -speaking "He was demanding, yelling in Val's face and using violently sexual language. It looked like he could have killed someone, so...I got you all."
-            a "Oh. Sounds crazy."
-            k "Yeah, especially considering that when I got back he was a corpse."
-            a "Damn."
-            a "Are your coworkers normally this rambunctious?"
-            k unimpressed "Rambunctious?"
-            k "...They're weird, but it was that guy that was the danger."
-            a @ closed "Mmkay."
-
-            $ KajInterrogated1 = True
-            jump interrogateKaj
-
-        label .question2:
-            k @ afraid "Huh? He's fine..?"
-            k "No, actually. He's pretentious and mean. Can I ask why?"
-            a "My boss thinks he's a mob boss."
-            k "...Oh."
-            a "..."
-
-            if KajInterrogated2 == False:
-                a "...Do you want a cigarette?"
-                k "Okay."
-                "You lean back in your chair and rummage in your pockets for the pack of cigarettes. You hand Kaj one and take one for yourself."
-                show kaj dying none
-                "Once his is lit, Kaj takes one drag and then bursts into a coughing fit."
-
-                menu:
-                    "Laugh.":
-                        a @ grin "You never smoked before?"
-                        k normal angry -dying "No. But with how the day is going, I thought..."
-
-                    "I'm not going to be mean.":
-                        $ Kaj_score += 1
-                        a "Easy, deep breaths."
-                        k hold afraid "*cough cough*... Thanks."
-                        
-                "His voice rasps. Poor guy."
-                "You take a few puffs of your own and check your notes."
-
-                $ KajInterrogated2 = True
-            jump interrogateKaj
-            
-        label .finish:
-            a "Is there anything else of importance you want me to know?"
-            k @ speaking "...No, that's all."
-            a "Alright. Thanks for chatting."
 
             jump notes
 
@@ -494,44 +434,63 @@ label day1:
             a "Let's see..."
             "Can you give me a rundown of what happened?":
                 jump .question1
-            "Why did you start working at that place?":
+            "Exactly what sort of establishment were we talkin' about again?":
                 jump .question2
             "I think we can wrap this up.":
                 jump .finish
 
         label .question1:
             l "...We were working. And a man came in and demanded that we...did what he saw in porn."
-            "You raise your eyebrows."
-            a "Then your shop doesn't do that?"
-            l downturned "No."
             a "Okay. So, what happened?"
             l @ frown "...The man was getting aggressive. My coworker pulled out a knife."
             l -downturned "...My other coworker pulled out their gun and started shooting."
-            a "Huh. Can I ask which coworkers?"
+            a "Wait, wait, names please?"
             l "Valheo and Domani."
-            "You nod and write in your notes."
+            "You scribble this all down."
+            a "Gotcha. Well, this isn't much of a mystery. You people must be pretty new to the life of crime, huh?"
+            l "..."
+            l "... Yes."
+            a "Well, they can't crack down on you too hard, then. Besides, it was a mistake, yeah?"
+            l ".. Yes."
+            a "See, you'll be fine."
 
             $ LuciInterrogated1 = True
             jump interrogateLuci
 
         label .question2:
-            l downturned angry frown "It seemed to be a good fit for me."
+            l "..."
+            l "......."
+            l "................."
+            l "............................ A night club."
+            a "No way. It's not the one on .. god, what was it.... "
+            """
+            Now you can't remember the STREET name, but you CAN remember...
 
-            if LuciInterrogated2 == False:
-                menu:
-                    "Really? Wouldn't have thought so, looking at you.":
-                        "..."
+            You visited almost on a whim some boring night. You were never really 'in' on the dating scene, you still weren't really sure if you /liked/ that kind of thing, but isn't this what people do to have fun? You decided to scope it out.
 
-                    "Huh. Yeah, you are very pretty. Makes sense.":
-                        show luci -downturned -angry -frown
-                        $ Luci_score += 1
-                        l "..."
+            You went into the first club on the street that didn't seem too loud and crowded, almost swirling with lights and sounds and conversation, all so much you could hardly focus on trying to read a person's lips and definitely wouldn't even enjoy it.
+            
+            This one was quiet, nearly empty. And let's be real, it was ass.
+            
+            Even now, focusing with all your pathetic brain power, you can't even remember who was sitting with you. What overwhelmingly dominates is...
+            """
+            f "What the fuck do I pay you for?"
+            "... Up on the shitty little stage they had sat on one end of the room."
+            f "You're under my jurisdiction now. We have a paying customer. So you get up there and put on a show for them."
+            l "I. Will. Not."
+            "He grabbed Luciano."
+            f "You'll stand up there and sing or I'll open a hole in that pretty little throat. And your daddy will thank me."
+            "Even then, his face cold and hard as steel, you couldn't help but think how gorgeous he looked. All angelic justice. Like Michael or something."
+            
+            a "...I saw you there!"
+            "He stares at you in horror."
+            l ".. No you didn't."
 
-                $ LuciInterrogated2 = True
+            $ LuciInterrogated2 = True
             jump interrogateLuci
 
         label .finish:
-            a "Alright. Be seeing you."
+            a "Alright, cool. Thanks. Be seeing you."
             l "..."
 
             jump notes
@@ -556,6 +515,8 @@ label day1:
         q "Now, I'm heading home for the night. Leave your report outside my office when you're done."
         a flat "Yeah, okay, thanks..."
 
+        # this is actually the secret Quinn route
+
         jump badEnd
 
 
@@ -564,6 +525,8 @@ label day1:
     ########################################
 
     label breakOut:
+        # I need to rework this sequence
+
         """
         You sit in your office for a bit, contemplating how to pull this off.
         
@@ -637,229 +600,27 @@ label day1:
 
         "You watch him run out of the door and headlong into the wall of the neighboring building and rebound. Poor guy seems too frightened to think."
         show quinn at right behind grain, reel with dissolve
+        q "Ah, jeez."
 
-        menu:
-            q "Ah, jeez."
-            "Go after them. You know the Carabinieri, you know how to help them escape.":
-                show angiolo -wide
-                hide quinn with dissolve
-                jump chase
-
-            "Stay behind and try to reason with your boss, buy them time.":
-                jump stayBehind
-
-
-        label chase:
-            # Running
-
-            "You break away from your boss and tear out of that place, grabbing Domani and pushing him along ahead of you to get him running."
-            show bg venice street behind grain, reel with dissolve
-            show domani at right behind grain, reel with dissolve
-            a downturned "Let's get those legs moving, yeah?!"
-            d "BAAAHHHH!!{p}O God, if you want me dead, just strike me down??! Even with savescumming, this is all too scary!!!"
-            d "{i}O Santa Maria, Madre di Dio, prega per noi peccatoti, adesso e nell'ora della nostra morte...{/i}"
-            """
-            Once Domani is running, he's actually kinda fast. You do your best to keep up with him, tearing after the others.
-
-            imagine there's more action here
-            """
-
-            hide domani with dissolve
-
-            #running around
-
-            # can choose to hide in the strip club where you meet Eligio
-            # I think this might be a whole new path a la Azami Hatoful Boyfriend
-
-            # must have a score of 1 with Felicien for him to care enough to save you
-            if Felicien_score >= 1:
-                """
-                A hand flashes out of the dark and closes tight around your wrist, and you're yanked sideways so hard you lose balance.
-
-                Luckily, he catches you before you tumble pussy-over-teakettle into the dirt. For those slender arms, he sure is strong— oof!
-                """
-                f "Clumsy ass."
-                "His voice is a hiss, irritated as always. He has you shoved hard against the wall, and my God, he towers over you in those heels."
-                a "Hey, I—"
-                """
-                His hand clamps over your mouth so hard, you think he knocked some of your teeth in a little. Staring out at the street, he mouths the words, 'shut up'.
-                
-                He has you caught like a fish, so you can only move your eyes to watch as best you can. Felicien pulled you on the other side of some crates, so the view is terrible, but you can just see through some of the slats... Maybe?
-                
-                Someone seems to be running past, at least.{w} There's no way you actually pulled ahead enough that he didn't see that little maneuver, right?
-
-                Felicien stands over you, stock-still, staring with those hard eyes for what feels like an eternity after the guy you {i}think{/i} was your boss ran past.
-                """
-                pause
-                "...He releases you and shakes out his slender-fingered hand with an air of disgust."
-                f "Ew. You breathe so God damned much."
-                a "Sorry?"
-                f "Yeah, you should be."
-
-                jump .success
-
-            else:
-                # he pushes you into the street to keep Quinn occupied. FIGHT FIGHT
-                """
-                You don't see who, but someone must have collided into you, because you're launched off your feet — you try to catch yourself, but your shocked wrists buckle under you and your face smacks the stone ground.{w} {i}Yowch.{/i}
-                
-                But behind you, your boss isn't stopping; no, he's coming up fast. Those thundering, booted footsteps. He's too close. You have to get up.
-
-                You have to get up.
-                """
-                pause
-                "You scramble to your feet, clumsy in your daze. The adrenaline in your veins is leaving you shaky."
-                q "Down, soldier!"
-                """
-                He doesn't even sound winded.
-
-                Of course you couldn't outrun him. For all your military training, you now work a {i}desk job{/i} while he's on the field. Save the times he's conveniently breathing down your neck.
-                
-                You turn to face your boss as steadily as you can, determined not to let him past.{p}Oh, God. He's intending on just barrelling past you. Or {i}through{/i} you?
-                """
-
-                menu:
-                    "HE'S HUGE AND RUNNING AT ME, WHAT THE HELL DO I DO??":
-                        a "{size=+20}BOSS!!{/size}"
-                        """
-                        He's... not stopping. He's going to run full-force into you. And you're going to implode like a little grape. He's-
-                        
-                        ...Running right past you.{p}Oh, thank the almighty Lord.
-
-                        {w}Wait, how the hell are you going to save your escapees now?
-                        """
-                        jump badEnd
-
-                    "DRAW SWORD??!":
-                        "You whip your sword out of its sheath?!?!"
-                        # continues below
-                    
-                show quinn at right behind grain, reel with dissolve
-                "He slows down and comes to a stop before you."
-                q "...What are you doing, soldier?"
-                a "Uh, what I was taught, sir. To draw my weapon on instinct."
-                q "On your commanding officer."
-                q "That's an unfortunate choice, Angiolo. By law, I can't take this kind of breach of orders lightly."
-                "Now he's drawing his own blade. Yikes yikes yikes, this was {i}not{/i} where you would have liked this to go."
-                q "Sigh.{p}I'd better take care of this quickly so I can find our suspects."
-                "He's advancing on you. You raise your blade."
-                a "Uhhhhhhhhhhhhhhhhhh, boss? The charge for this kind of thing isn't, like, firing squad, right?"
-                """
-                He moves suddenly, and his blade comes down hard on yours. Jesus! Just that blow struck your fingers numb. Or maybe that's a side effect of the creeping feeling that you're completely screwed. It's all you can do not to drop the thing.
-
-                Okay, so the charge is definitely death. Well, what were you supposed to do? If you hadn't been tripped in the street by some jerk...
-
-                He moves again, and you just manage to deflect the blow to your shoulder. ADHD brain be damned, you have to focus!
-
-                The next one comes fast. He's trying to disarm you. You again sweep your blade to the side to drive his away, but he's not only stronger than you but also generally {i}better{/i} than you. You never thought you'd {i}actually{/i} have to fight for your life like this, okay!
-
-                You need to find your opening. You can only hold him off for so long before your twig arms break off.
-
-                another move or two
-                """
-
-                menu:
-                    "Kill him.":
-                        "you Get Him"
-                        jump .success
-                    "Man, as much as I hate my job, he {i}is{/i} a nice guy... Probably has a wife and kids...":
-                        "you give him an opening"
-                        jump .failure
-            
-            label .failure:
-                # Bad end: die. this is utter betrayal
-                "Bro you die"
-                jump badEnd
-            
-            label .success:
-                # Good end: run away to find and reunite with your comrades
-                "You get away yippee!"
-                jump train
-
-
-        label stayBehind:
-            # Staying behind with Quinn
-
-            a "Ay boss, I'm running it by you now."
-            "You try to position yourself in his way as casually as possible. Which is {i}terrifying{/i}, because he could break you like a twig."
-            "He smiles pleasantly."
-            q "Well, this is mighty inconvenient!"
-
-            menu:
-                a "Uh, I'll make it quick. So look here..."
-                "They're not who we're after.":
-                    q "Give us the full report, soldier."
-                    a "Nothing but lies. Lies, lies, lies, lies, lies lieslieslLIESLIESLEISL"
-
-                    # Val score must be at least 1 to pull off this lie
-                    if Val_score >= 1:
-                        jump .success
-
-                    else:
-                        q "Who do you think you're fooling, little man?"
-                        jump .failure
-
-                "They're not so bad.":
-                    q "No?"
-                    a "Yeah. We had a nice chat. I think they could have a change of heart if we just give 'em a chance."
-                    jump .failure
-
-                "Their story's kinda sad, really.":
-                    q "Aww. You're a kindhearted guy, Angiolo. And it's hard being kindhearted in this line of work. You really hear the worst of it, don't you?"
-                    a "Yeah..."
-                    jump .success
-            
-            label .failure:
-                # Bad end: convinced to stay with the Carabinieri (Quinn ending)
-
-                q "Sorry, Angiolo."
-                jump badEnd
-            
-            label .success:
-                # Good end: Quinn lets you go, have to go and find them. but with Doubt in your heart (Quinn wooing opportunity)
-
-                q "..."
-                q "You know, I think you made a good call, soldier."
-                a "Yeah?!"
-                q "Don't make those calls again without talking to me."
-                a "Yeah.{w} Yessir."
-                jump train
+        jump car
     
 
     ########################################
-    ## TRAIN RIDE AND WOUND TENDING ########
+    ## CAR RIDE AND WOUND TENDING ##########
     ########################################
 
-    label train:
+    label car:
+        # Stop at safehouse to figure out next plan and tend to wounded
+        
         scene black
         with dissolve
 
-        # regroup
-        "you go meet back up with the gang to regroup and there's some conversation in here and you decide to call the mafia guy"
+        "He sticks his handgun into the cup holder. He has to fumble and maneuver and hammer it in a bit to fit it between the other guns and the hot pink toy already in there."
+        # insert image
+        k "Sir, please don't use my car as storage."
+        f "Look, I know you're a little {i}bitch{/i}, but in this business you've got to be prepared for anything."
 
         # v "Sorry, man. This can't be what you thought you were signing up for."
-
-        # Vittore put Luci under Felicien as punishment for something
-        # idk if I actually want this conversation on-screen
-        f "Hello, boss."
-        boss "{i}Felicien. I'm surprised to hear your voice. I was under the impression you useless group of baccalà got yourselves imprisoned.{/i}"
-        f "We ran into a bit of trouble. Nothing we can't handle."
-        boss "{i}Why are you calling, then?{/i}"
-        f "We'd be able to handle it a bit better if we had somewhere to stay until the cops are off our asses."
-        boss "{i}Do one better: get them off{/i} my {i}ass. Fucking moron.{p}What secrets can we expect them to know now?{/i}"
-        f "I am {i}not{/i} stupid enough to let anything slip."
-        boss "{i}And your team?{/i}"
-        "Felicien turns and looks dirently at Domani."
-        f "If they did, I don't think they should be involved in cosa nostra."
-        boss "{i}No. But unfortunately if you want to get anything done in this world, you'll have to work with idiots. They're impossible to avoid.{p}God fuck it, Felicien. If you want to try to do something right, then get out of Palermo. Tonight.{/i}"
-        f "Excuse me?"
-        boss "{i}You heard me. You know the damn prime minister and his guys have been out here recently, and they're quickly making an enemy of us.{/i}"
-        boss "{i}Since you so badly want to draw attention to yourselves, lead the feds to Reggio. I have a contact you can stay with. A clementine farmer. Get her and yourselves killed, I don't care. My business is here, in the west.{/i}"
-        f "I have wounded, I can't cross Sicily tonight."
-        boss "{i}All the better. They'll be able to follow the blood trail you leave behind.{/i}"
-        f "Fucking great..."
-        boss "{i}Play stupid games, win stupid prizes. Don't call again.{/i}{w} Bzzzt..."
-        "Felicien slams the phone back onto its holder and steps out of the booth."
 
         # v "So. You're born into the mafia."
         # "They tick off on their fingers."
@@ -867,14 +628,7 @@ label day1:
         # "They look him up and down."
         # v "—I doubt you could hold your own in a fight. So what're you good for?"
 
-        # Train from Palermo along the coast of Sicily to Messina takes ~3 hours, and at the end includes a ferry ride. Tend to Val on the way.
-        # I need a train interior bg image
-        "hop on the train (there's some stuff that sounds like this isn't a train bc I hadn't worked out all the details yet dw abt it)"
-
-        scene bg palermo train
-        show grain
-        show reel
-        with dissolve
+        # Car from Palermo along the coast of Sicily to Messina takes ~3 hours, and at the end includes a ferry ride
 
         "As you settle into the place, you notice Val slump hard against a wall, closing their eyes and breathing deliberately.{p}They must be in some wicked pain."
 
@@ -979,8 +733,28 @@ label day1:
             When you look up, you notice Luci staring at you. Why are his eyes always so scary and intense like that?
 
             And just as you were thinking about saying something, he's turned away again. Yeesh. Okay, then.
-
-            Well, it's time for lights out and go to sleep. The rumbling and gentle swaying of the train car knocks you right out...
             """
+
+        # Vittore put Luci under Felicien as punishment for something
+        # idk if I actually want this conversation on-screen
+        f "Hello, boss."
+        boss "{i}Felicien. I'm surprised to hear your voice. I was under the impression you useless group of baccalà got yourselves imprisoned.{/i}"
+        f "We ran into a bit of trouble. Nothing we can't handle."
+        boss "{i}Why are you calling, then?{/i}"
+        f "We'd be able to handle it a bit better if we had somewhere to stay until the cops are off our asses."
+        boss "{i}Do one better: get them off{/i} my {i}ass. Fucking moron.{p}What secrets can we expect them to know now?{/i}"
+        f "I am {i}not{/i} stupid enough to let anything slip."
+        boss "{i}And your team?{/i}"
+        "Felicien turns and looks dirently at Domani."
+        f "If they did, I don't think they should be involved in cosa nostra."
+        boss "{i}No. But unfortunately if you want to get anything done in this world, you'll have to work with idiots. They're impossible to avoid.{p}God fuck it, Felicien. If you want to try to do something right, then get out of Palermo. Tonight.{/i}"
+        f "Excuse me?"
+        boss "{i}You heard me. You know the damn prime minister and his guys have been out here recently, and they're quickly making an enemy of us.{/i}"
+        boss "{i}Since you so badly want to draw attention to yourselves, lead the feds to Reggio. I have a contact you can stay with. A clementine farmer. Get her and yourselves killed, I don't care. My business is here, in the west.{/i}"
+        f "I have wounded, I can't cross Sicily tonight."
+        boss "{i}All the better. They'll be able to follow the blood trail you leave behind.{/i}"
+        f "Fucking great..."
+        boss "{i}Play stupid games, win stupid prizes. Don't call again.{/i}{w} Bzzzt..."
+        "Felicien slams the phone back onto its holder and steps out of the booth."
 
     return
