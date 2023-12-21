@@ -52,18 +52,7 @@ Shoot me a message for any troubleshooting or debugging issues.
 ## RUNNING THE GAME
 
 ### For the current demo:
-Follow [this Google Drive link](https://drive.google.com/drive/folders/1h7F7e6lqW6Ig1GBdyNH_8iHI1IlcdFMv?usp=drive_link) and download the .zip file that corresponds to your machine's OS (unfortunately cannot be mobile, must be Mac or Windows/Linux).
-
-Extract the files and navigate to the executable: `MafiaDatingSim.exe` for Windows; I believe `MafiaDatingSim.app` for Mac; and `MafiaDatingSim.sh` for Linux. This should run the game.
-
-### For the most up-to-date version of the full game:
-Navigate up to the green `<> Code` button on the main GitHub page and hit `Download ZIP`. Extract the files.
-
-Go [here](https://www.renpy.org/latest.html) to install Ren'py (this will also give you a couple of coding tutorial games which, on launch, you will see listed in the sidebar as "Tutorial" and "The Question").
-
-Launch Ren'py and navigate down through `Preferences` -> `General` -> `Projects Directory:`. Click on the current projects directory, then navigate to the folder where the Mafia files are saved and select it. This will update your projects directory to the new folder.
-
-Hit `Return`, and finally `Refresh`. You should now see `Mafia-Dating-Sim` listed on the sidebar. You can run the game by hitting `Launch Project`.
+Mafia is now [up on itch.io](https://becquerelian.itch.io/mafia-dating-sim/download/C0DU0g7RUxx915gQr3L65U1S8e8vGAQobVoioK2B) for your convenience! I'll try to keep it relatively up-to-date on there, but for code access, Github is still the place to go.
 
 ```
 (Don't be shocked if anything is broken, but do let me know so I can check it out.)

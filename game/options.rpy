@@ -23,7 +23,11 @@ define gui.show_name = True
 
 ## The version of the game.
 
-define config.version = "1.51"
+define config.version = "1.6"
+
+
+## The itch.io project name.
+define build.itch_project = "becquerelian/mafia-dating-sim"
 
 
 ## Text that is placed on the game's about screen. Place the text between the

@@ -35,11 +35,11 @@ label nighttime:
         # Give a description of the current night
 
         if day == 2:
-            call night2
+            call night2 from _call_night2
         elif day == 3:
-            call night3
+            call night3 from _call_night3
         elif day == 4:
-            call night4
+            call night4 from _call_night4
 
         # Get the user's input
 
