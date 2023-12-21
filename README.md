@@ -1,11 +1,11 @@
 # Mafia Dating Sim
-Shot through the heart. Bang. Visual novel about about a carabiniere getting up-close and personal to investigate suspected members of cosa nostra in fantasy Sicily, 1924, during the rise of fascism and anti-mafia government protocals.
+Shot through the heart. Bang. Visual novel about about a carabiniere getting up-close and personal to investigate suspected members of cosa nostra in fantasy Sicily, 1924, during the rise of fascism and anti-mafia government protocols.
 
 <picture>
   <img alt="Header image of Venisian canals" src="https://github.com/1203-Johnson-Ellis/Mafia-Dating-Sim/blob/main/game/images/backgrounds/bg%20venice%20canals.png">
  </picture>
 
-## GAME HELP
+## FILE NAVIGATION
 All dialogue is contained in .rpy files whose names start with `script`. `script.rpy` lays out the overall structure and jumps between other files as scene transitions occur.
 
 All other .rpy files (whose names do NOT start with `script`) control technical aspects of setting up and running the game, such as displayables and variable definitions.
@@ -32,16 +32,18 @@ The first line will be narration, the second line will be said by a character ca
 If you want just a little more detail, the [Quickstart guide](https://www.renpy.org/doc/html/quickstart.html#a-simple-game) is a great place to get started writing scenes (it provides simple examples of images, scene transitions, and use of labels and variables). For even more information, see the full [Ren'py documentation](https://www.renpy.org/doc/html/).
 
 ## EDITING AND ACCESS
-If you have a GitHub account, I will add it to the repository. (GitHub isn't scary, I promise.)
+If you have a GitHub account, I will add it to the repository.
 
-You can edit directly through GitHub by opening the page for any file and hitting `Edit this file`.
+Once you are added, you can edit directly through GitHub by opening the page for any file and hitting `Edit this file`.
 
-Using an IDE could also prove helpful, as it will improve readability by color-coding keywords, make file navigation easier, and will catch typoes and bugs. GitHub has an online IDE, called the web editor, built in. To access it, simply go to any page in the repository and press the full stop `.` key on your keyboard.
+Alternatively, for improved readability and file navigation when editing, press the full stop `.` key on your keyboard to open the web editor. Do it right now.
 
 ### Committing and pushing:
 Once you have reached a point where you would like to save your edits to the repository, you will need to commit your changes and push the code.
 
-When working directly through GitHub, you will find the option to commit at the bottom of the page; in the web editor, you will need to go to the left-hand sidebar and navigate to `Source Control` (beneath the `Search` button).
+When working directly through GitHub, you will find the option to commit at the bottom of the page.
+
+In the web editor, you will need to go to the left-hand sidebar and navigate to `Source Control` (beneath the `Search` button).
 
 In both environments, there will be a field to add a commit message; the message can be anything (it can even be left blank, and GitHub will automate a message for you), but its intention is to briefly describe the work you have done on the code.
 
