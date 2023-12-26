@@ -236,6 +236,24 @@ screen bad_end():
             action Return()
 
 
+
+### DIALOGUE ###
+
+# Automation for all dialogue to pause after punctuation
+init python:
+    def slow_punctuation(str_to_test):
+        str_to_test = str_to_test
+        return str_to_test.replace(
+            ", ", "{cps=20}, {/cps}").replace( ### 2 characters ", " takes 0.1 second
+            "... ", "{cps=6}...{/cps} ").replace( ### 4 characters "... " takes 0.5 second-ish
+            ". ", "{cps=6}. {/cps}").replace( ### 2 characters ". " takes 0.3 second-ish
+            "? ", "{cps=6}. {/cps} ").replace(
+            "! ", "{cps=6}! {/cps} ")
+    
+    config.say_menu_text_filter = slow_punctuation
+
+
+
 ### CHARACTERS ###
 
 # Main characters
