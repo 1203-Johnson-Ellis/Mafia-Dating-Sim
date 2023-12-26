@@ -26,15 +26,13 @@ define gui.show_name = True
 define config.version = "1.6"
 
 
-## The itch.io project name.
-define build.itch_project = "becquerelian/mafia-dating-sim"
-
-
 ## Text that is placed on the game's about screen. Place the text between the
 ## triple-quotes, and leave a blank line between paragraphs.
 
 define gui.about = _p("""
 Mafia Dating Sim. Date the hottest mafia members on the market.
+
+Primarily written by Regent.
 
 If you come across any exceptions or out of place text, please let me know.
 
@@ -215,4 +213,4 @@ init python:
 ## The username and project name associated with an itch.io project, separated
 ## by a slash.
 
-# define build.itch_project = "renpytom/test-project"
+define build.itch_project = "becquerelian/mafia-dating-sim"
