@@ -47,30 +47,36 @@ label nighttime:
             "Who will you set up your bed beside tonight?"
 
             "Felicien":
-                $ Felicien_score += 2
-                $ Felicien_nights += 1
+                $ F_score += 2
+                $ F_numNights += 1
                 $ partner = 1
+
+            # Since I'm only writing Felicien route,
+            # I'm making the other nighttime scenes inaccessible for now
+
             #"Domani":
-            #    $ Domani_score += 2
-            #    $ Domani_nights += 1
+            #    $ D_score += 2
+            #    $ D_numNights += 1
             #    $ partner = 2
+
             #"Kaj":
-            #    $ Kaj_score += 2
-            #    $ Kaj_nights += 1
+            #    $ K_score += 2
+            #    $ K_numNights += 1
             #    $ partner = 3
+
             #"Val":
-            #    $ Val_score += 2
-            #    $ Val_nights += 1
+            #    $ V_score += 2
+            #    $ V_numNights += 1
             #    $ partner = 4
+
             #"Luci":
-            #    $ Luci_score += 2
-            #    $ Luci_nights += 1
+            #    $ L_score += 2
+            #    $ L_numNights += 1
             #    $ partner = 5
 
 
+    ## This label uses the `partner` variable to determine which partner the night is being spent with
     label choose_partner:
-        # This label uses the `partner` variable to determine which partner the night is being spent with
-
         if partner == 1:
             call felicien from _call_felicien
         elif partner == 2:
@@ -83,7 +89,7 @@ label nighttime:
             call luci from _call_luci
 
 
-    # End nighttime sequence and move to the next day
+    ## End nighttime sequence and move to the next day
 
     label endNight:
         scene black
@@ -109,31 +115,30 @@ label nighttime:
     # Describes the scenery for each night and sets up for ensuing dialogue
 
     ## First night ##
+    ## Suspicion
+    # This night functions differently from the others
+    # The player does not get a choice in who wakes them
 
     label night1:
         scene bg reggio train
         with dissolve
 
-        ########################################
-        ## Awoken in the night #################
-        ########################################
-
         # Checking to see who the user has the lowest score with
         # (If there are any ties, it will default to whoever appears first on this list)
 
-        if Felicien_score == min(Felicien_score, Domani_score, Kaj_score, Val_score, Luci_score):
+        if F_score == min(F_score, D_score, K_score, V_score, L_score):
             $ partner = 1
             jump felicien.night1
-        elif Domani_score == min(Felicien_score, Domani_score, Kaj_score, Val_score, Luci_score):
+        elif D_score == min(F_score, D_score, K_score, V_score, L_score):
             $ partner = 2
             jump domani.night1
-        elif Kaj_score == min(Felicien_score, Domani_score, Kaj_score, Val_score, Luci_score):
+        elif K_score == min(F_score, D_score, K_score, V_score, L_score):
             $ partner = 3
             jump kaj.night1
-        elif Val_score == min(Felicien_score, Domani_score, Kaj_score, Val_score, Luci_score):
+        elif V_score == min(F_score, D_score, K_score, V_score, L_score):
             $ partner = 4
             jump val.night1
-        elif Luci_score == min(Felicien_score, Domani_score, Kaj_score, Val_score, Luci_score):
+        elif L_score == min(F_score, D_score, K_score, V_score, L_score):
             $ partner = 5
             jump luci.night1
         else:
@@ -148,10 +153,9 @@ label nighttime:
 
 
     ## Second night ##
+    # At the farm
 
     label night2:
-        # At the farm
-
         scene bg reggio farm
         with dissolve
 
@@ -161,10 +165,9 @@ label nighttime:
 
 
     ## Third night ##
+    # In the city
 
     label night3:
-        # In the city
-
         scene bg reggio farm
         with dissolve
 
@@ -174,10 +177,9 @@ label nighttime:
 
 
     ## Fourth night ##
+    # At the farm again
 
     label night4:
-        # At the farm again
-
         scene bg reggio buildings
         with dissolve
 
@@ -187,30 +189,31 @@ label nighttime:
 
 
     ## CHARACTER DIALOGUE ##
-    # Dialogue with the character of the user's choice
-    # This depends on how many nights the user has spent with this character previously
+    # Contains the dialogue with the character of the user's choice
+    # Checks how many times this character has been slept with, and calls a different scene depending
+    # Once the night's dialogue is finished, returns to `choose_partner` label
 
     #
     ## Felicien ##
     #
 
     label felicien:
-        # Check how many times this character has been slept with, and call a different scene depending
         # Pray, tell me why python doesn't have switch/case
         # This mass of elifs is a nightmare
 
-        if Felicien_nights == 1:
+        if F_numNights == 1:
             jump .night2
-        elif Felicien_nights == 2:
+        elif F_numNights == 2:
             jump .night3
-        elif Felicien_nights == 3:
+        elif F_numNights == 3:
             jump .night4
         else:
             # This should never happen, but it's coded in for debugging and edge cases
             "uhoh! if you see this then tell ellis that something went wrong in the nighttime counters"
-
-        # Once this night's dialogue is finished, return to `choose_partner` label
         
+
+        ## Dialogue below
+
         label .night1:
             # Felicien roughly does you up in bondage and threatens you at knifepoint. And if you’re good maybe next time you’ll get it
 
@@ -245,18 +248,17 @@ label nighttime:
     #
 
     label domani:
-        # Check how many times this character has been slept with, and call a different scene depending
-
-        if Domani_nights == 1:
+        if D_numNights == 1:
             jump .night2
-        elif Domani_nights == 2:
+        elif D_numNights == 2:
             jump .night3
-        elif Domani_nights == 3:
+        elif D_numNights == 3:
             jump .night4
         else:
             "uhoh! if you see this then tell ellis that something went wrong in the nighttime counters"
         
-        # Once this night's dialogue is finished, return to `choose_partner` label
+
+        ## Dialogue below
         
         label .night1:
             # 
@@ -292,18 +294,17 @@ label nighttime:
     #
 
     label kaj:
-        # Check how many times this character has been slept with, and call a different scene depending
-
-        if Kaj_nights == 1:
+        if K_numNights == 1:
             jump .night2
-        elif Kaj_nights == 2:
+        elif K_numNights == 2:
             jump .night3
-        elif Kaj_nights == 3:
+        elif K_numNights == 3:
             jump .night4
         else:
             "uhoh! if you see this then tell ellis that something went wrong in the nighttime counters"
         
-        # Once this night's dialogue is finished, return to `choose_partner` label
+
+        ## Dialogue below
         
         label .night1:
             # 
@@ -339,18 +340,17 @@ label nighttime:
     #
 
     label val:
-        # Check how many times this character has been slept with, and call a different scene depending
-
-        if Val_nights == 1:
+        if V_numNights == 1:
             jump .night2
-        elif Val_nights == 2:
+        elif V_numNights == 2:
             jump .night3
-        elif Val_nights == 3:
+        elif V_numNights == 3:
             jump .night4
         else:
             "uhoh! if you see this then tell ellis that something went wrong in the nighttime counters"
         
-        # Once this night's dialogue is finished, return to `choose_partner` label
+
+        ## Dialogue below
         
         label .night1:
             "You wake with cold steel at your throat."
@@ -369,42 +369,42 @@ label nighttime:
                 "You think I'd rat you out?":
                     v ""
                 "Look, I meant it when I said I didn't want to be police anymore.":
-                    $ Val_score += 2
+                    $ V_score += 2
                     v ""
                 "I want to like you, too. I don't want to see you behind bars.":
-                    $ Val_score += 1
+                    $ V_score += 1
                     v ""
 
             menu:
                 "The blade presses hard against your throat."
                 "option":
-                    $ Val_score += 2
+                    $ V_score += 2
                     v "dialogue"
                 "option":
                     v "dialogue"
                 "option":
-                    $ Val_score += 1
+                    $ V_score += 1
                     v "dialogue"
 
             menu:
                 "Is that a drop of blood you feel dripping down your skin?"
                 "option":
-                    $ Val_score += 1
+                    $ V_score += 1
                 "option":
-                    $ Val_score += 0
+                    $ V_score += 0
                 "option":
-                    $ Val_score += 2
+                    $ V_score += 2
 
             "Val stares at you in silence, their eyes glinting fiercely in the darkness."
 
-            if Val_score >= 3:
+            if V_score >= 3:
                 v "Alright."
                 "They release you, bringing the knife away from your neck and vanishing it with a gesture."
                 v "You seem like a good guy. You'll forgive me for wanting to check."
                 "You can't help but gasp a little, your hand going to feel the small cut left on your throat."
                 a "Yeah..."
 
-            elif Val_score < 3:
+            elif V_score < 3:
                 "You see them draw the knife in a clean line and see it catching red in the moonlight. You taste blood. You choke on it."
                 "But there is no pain."
                 v "Can't risk it."
@@ -442,18 +442,17 @@ label nighttime:
     #
 
     label luci:
-        # Check how many times this character has been slept with, and call a different scene depending
-
-        if Luci_nights == 1:
+        if L_numNights == 1:
             jump .night2
-        elif Luci_nights == 2:
+        elif L_numNights == 2:
             jump .night3
-        elif Luci_nights == 3:
+        elif L_numNights == 3:
             jump .night4
         else:
             "uhoh! if you see this then tell ellis that something went wrong in the nighttime counters"
         
-        # Once this night's dialogue is finished, return to `choose_partner` label
+
+        ## Dialogue below
         
         label .night1:
             # 

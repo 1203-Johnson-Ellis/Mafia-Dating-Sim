@@ -15,11 +15,11 @@
 
 # Score that is used to determine how much each romance option likes you
 
-default Felicien_score = 0
-default Domani_score = 0
-default Kaj_score = 0
-default Val_score = 0
-default Luci_score = 0
+default F_score = 0
+default D_score = 0
+default K_score = 0
+default V_score = 0
+default L_score = 0
 
 default Quinn_score = 0
 default Eligio_score = 0
@@ -44,11 +44,11 @@ default partner = 0
 
 # How many nights have you spend with this character?
 
-default Felicien_nights = 0
-default Domani_nights = 0
-default Kaj_nights = 0
-default Val_nights = 0
-default Luci_nights = 0
+default F_numNights = 0
+default D_numNights = 0
+default K_numNights = 0
+default V_numNights = 0
+default L_numNights = 0
 
 
 
@@ -61,18 +61,32 @@ default Luci_nights = 0
 default interrogateBegin = False
 
 
-# Determine which questions the user has asked each character. Used to show/hide interrogation options and prevent point grinding
+# Determines which questions the user has asked each character. Used to show/hide interrogation options and prevent point grinding
 
-default FelicienInterrogated1 = False
-default FelicienInterrogated2 = False
-default DomaniInterrogated1 = False
-default DomaniInterrogated2 = False
-default KajInterrogated1 = False
-default KajInterrogated2 = False
-default LuciInterrogated1 = False
-default LuciInterrogated2 = False
+default FQuestion1 = False
+default FQuestion2 = False
 
-default domaniInterrogated = False
+default DQuestion1 = False
+default DQuestion2 = False
+default DInterrogated = False
+
+default LQuestion1 = False
+default LQuestion2 = False
+
+
+# Determines what items the player has in their inventory
+
+default FDagger = False
+default FDildo = False
+
+default DMask = False
+default DGuns = False
+
+default VKnives = False
+default VPhoto = False
+
+default LWeapon = False
+default LCash = False
 
 
 # Determines whether Val has been spoken to, allowing the story to progress

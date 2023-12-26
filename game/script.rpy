@@ -137,15 +137,15 @@ label start:
 
         # Score calculations for determining eligible marriage options
 
-        if Felicien_score == max(Felicien_score, Domani_score, Kaj_score, Val_score, Luci_score):
+        if F_score == max(F_score, D_score, K_score, V_score, L_score):
             $ MarryFelicien = True
-        if Domani_score == max(Felicien_score, Domani_score, Kaj_score, Val_score, Luci_score):
+        if D_score == max(F_score, D_score, K_score, V_score, L_score):
             $ MarryDomani = True
-        if Kaj_score == max(Felicien_score, Domani_score, Kaj_score, Val_score, Luci_score):
+        if K_score == max(F_score, D_score, K_score, V_score, L_score):
             $ MarryKaj = True
-        if Val_score == max(Felicien_score, Domani_score, Kaj_score, Val_score, Luci_score):
+        if V_score == max(F_score, D_score, K_score, V_score, L_score):
             $ MarryVal = True
-        if Luci_score == max(Felicien_score, Domani_score, Kaj_score, Val_score, Luci_score):
+        if L_score == max(F_score, D_score, K_score, V_score, L_score):
             $ MarryLuci = True
 
         scene black
