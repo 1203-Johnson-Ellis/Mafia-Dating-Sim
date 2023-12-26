@@ -51,6 +51,11 @@ default V_numNights = 0
 default L_numNights = 0
 
 
+# Inventory
+
+default playerInventory = set()
+
+
 
 ## NON-GLOBAL ##
 
