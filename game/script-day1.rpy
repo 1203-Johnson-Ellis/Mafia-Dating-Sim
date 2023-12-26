@@ -7,15 +7,18 @@
 # + Calling the big boss
 # + Patch up Val's bullet wound
 
+# I will want to go through and check all the {w} and {p} tags with the new pause automation
+
 ######################################
 
 
+########################################
+# Setting the scene ####################
+########################################
+
+## Introductory sequence
+
 label day1:
-
-    ########################################
-    # Setting the scene ####################
-    ########################################
-
     play audio "<loop 3.0>audio/projector.mp3"
 
     scene bg questura desk
@@ -37,7 +40,9 @@ label day1:
     You are working at your desk, eyes glazing over endless piles of paperwork (positivvely daydreaming, really), when the door opens.{p}You look up.
     """
     a "Hey, boss."
+
     show quinn at right behind grain, reel with dissolve
+
     q "Look alive, Angiolo. I have a job I'd like you to handle."
     a @ flat "Right... Just what I  needed."
     q "Come on, let's keep up the professionalism here. Anyway, you're smart, Angiolo. If you just take a little interest... you've got this one in the bag."
@@ -73,16 +78,16 @@ label day1:
         # Options
 
         menu:
-            "Felicien - Known owner of the establishment; weapons found on his person; uncooperative.\nCharges: Suspected money laundering, involvement in organized crime" if (FelicienInterrogated1 == False and FelicienInterrogated2 == False):
+            "Felicien, she/her/he/him - Known owner of the establishment; weapons found on person; uncooperative.\nCharges: Suspected money laundering, involvement in organized crime" if (FQuestion1 == False and FQuestion2 == False):
                 $ partner = 1
 
-            "Domani - Confessed at the scene of the crime to having fired his guns. Suspected criminal higher-up\nCharges: Second degree murder, aggravated assault with a deadly weapon, suspected involvement in organized crime" if (DomaniInterrogated1 == False and DomaniInterrogated2 == False):
+            "Domani, he/him - Confessed at the scene of the crime to having fired guns. Suspected criminal higher-up\nCharges: Second degree murder, aggravated assault with a deadly weapon, suspected involvement in organized crime" if (DQuestion1 == False and DQuestion2 == False):
                 $ partner = 2
 
-            "Valheo - Found in conflict with a customer; weapons found on their person. Injured in the crossfire.\nCharges: Assault, battery, suspected involvement in organized crime" if canBreakout == False:
+            "Valheo, any pronouns - Found in conflict with a customer; weapons found on person. Injured in the crossfire.\nCharges: Assault, battery, suspected involvement in organized crime" if canBreakout == False:
                 $ partner = 4
 
-            "Luciano - Employee at the establishment; found standing near the suspected source of the conflict. Has largely refused to speak.\nCharges: Suspected involvement in organized crime" if (LuciInterrogated1 == False and LuciInterrogated2 == False):
+            "Luciano, he/him - Employee at the establishment; found standing near the suspected source of the conflict. Has largely refused to speak.\nCharges: Suspected involvement in organized crime" if (LQuestion1 == False and LQuestion2 == False):
                 $ partner = 5
 
             # Options which will only appear if Val has been interrogated:
@@ -93,12 +98,66 @@ label day1:
             "I actually think I should do my job for once and let these guys go through the system..." if canBreakout:
                 jump system
         
-        jump questioning
+        "Looks like some items were confiscated from the suspect."
+        jump confiscatedItems
     
 
     ########################################
     ### INTERROGATIONS #####################
     ########################################
+
+    # Go through these labels when a suspect is selected for interrogation
+
+    ## Loops through this until all desired items have been taken
+
+    label confiscatedItems:
+        menu:
+            a "I could take some of these, if I think they'll be useful. Unless they're better kept out of reach."
+
+            # Felicien options
+            "Take the dagger." if partner == 1:
+                a "It kinda looks like a ceremonial thing."
+                $ FDagger = True
+            
+            "Take the sparkly fun toy." if partner == 1:
+                "You're gonna touch that? Is it {i}washed{/i}?"
+                a "Yeesh... I don't get paid enough to deal with this."
+                $ FDildo = True
+            
+            # Domani options
+            "Take the mask." if partner == 2:
+                a "This is like those masks at the Venetian festival thing that was outlawed. I guess that's evidence."
+                $ DMask = True
+            
+            "Take the handguns." if partner == 2:
+                a "Pretty incriminating."
+                $ DGuns = True
+
+            # Val options
+            "Take the knives." if partner == 4:
+                a "Why are there so many..."
+                $ VKnives = True
+            
+            "Take the water-damaged photo." if partner == 4:
+                "The photo depicts four kids of varying ages hangin out with their dad."
+                $ VPhoto = True
+
+            # Luci options
+            "Take the sleek, expensive weapon." if partner == 5:
+                a "This thing is swank."
+                $ LWeapon = True
+            
+            "Take the thick wad of cash." if partner == 5:
+                a "Hell yea, this is why you work with criminals. Rob 'em and make bank."
+                $ LCash = True
+
+            "I'm set.":
+                jump questioning
+        
+        jump confiscatedItems
+
+
+    ## Dialogue sequence for introducing the selected suspect
 
     label questioning:
         scene bg questura interrogation
@@ -107,15 +166,14 @@ label day1:
         show reel
         with dissolve
 
-        if partner == 1:
-            # Felicien
-            # Confiscated items: dagger, dildo
 
+        ## Felicien
+        if partner == 1:
             show felicien at right behind grain, reel with dissolve
 
             "Felicien already has one hand free of his cuffs and is working at the other when you enter. He looks up with a sly smile."
             a "Hey. Looking cozy there."
-            "Felicien tosses his head."
+            "Felicien tosses her head."
             f "Yeah. Fuck you."
             a "Yeowch. Pretty bad day, I guess."
             f "No need to play coy with me."
@@ -125,7 +183,7 @@ label day1:
             "He scowls, but seems to be reevaluating you. He tosses the cuffs to the ground.{w} Oh, well. Things are cheap."
             
             if interrogateBegin == False:
-                "You sit down before him, resting your elbows on your knees."
+                "You sit down before her, resting your elbows on your knees."
                 $ interrogateBegin = True
 
             a "I got some questions for you, though, if you feel like answering."
@@ -133,18 +191,15 @@ label day1:
 
             jump interrogateFelicien
         
+
+        ## Domani
         elif partner == 2:
-            # Domani
-            # Confiscated items: mask, handguns, ID
-
-            "Uhhh.... what am I supposed to do with this. Is it even real? Shouldn't this be sent to forensics or whatever? Is that the right department..."
-
             show domani at right behind grain, reel with dissolve
 
             a "Woah."
-            "The figure sitting in the center of the interrogation room is in full, extravagant festival costume. Their head in their hands, they're giving full, wracking sobs. Yikes."
+            "The figure sitting in the center of the interrogation room is in full, extravagant festival costume. His head in his hands, he's giving full, wracking sobs. Yikes."
             a "Yikes. Bad time?"
-            "They startle at the sound of your voice, but still only peer at you through their fingers."
+            "He startles at the sound of your voice, but still only peers at you through his fingers."
             d "Am I... being executed?"
             a "Executed??"
             "You're at a loss. Two seconds in, and you've never seen an interrogation like this before."
@@ -156,40 +211,16 @@ label day1:
             a "Is that a confession?"
             d "Do I get forgiven for a confession?"
             a "Um."
-            "Do they?"
+            "Does he?"
             a "Look, I just gotta ask you some questions real quick before jumping to executions."
-            "They whimper and sniffle, awaiting doom."
+            "He whimpers and sniffles, awaiting doom."
 
-            $ domaniInterrogated = True
+            $ DInterrogated = True
             jump interrogateDomani
 
-            # give him back mask
-            a "Looks like they took this from you. And, uh, you don't seem too happy without it."
-            d "Oh... oh, thank God!"
-            "He turns away to quickly and nimbly afix the mask to his face. Once it's on, he breathes a sigh of relief and seems to calm somewhat."
 
-            # ask him about ID
-            a "Is this your real ID?"
-            d "Ah? Oh. Oh, my God."
-            "They sound embarrassed. Actually, worse. Deeply humiliated. Convinced of failure. Well... that's not too conclusive?"
-            a "At least tell me what your pronouns are. I need to adjust my internal monologue over here."
-            d "I'm... a man?"
-            "Why does he sound so uncertain?"
-            a "Cool. Nice."
-
-            # give him back handguns
-            a "These yours?"
-            "He cringes back from the guns and doesn't take them from you."
-            d "Oh. I… can't. I'll kill again.. Please, I don't care what you do with them. I don't deserve them anymore."
-            a "Oooookay. Well."
-            "He stares at them longingly. Hard to blame him. They're gorgeous puppies, with flower designs burned into the wood handles. You… keep them, I guess."
-
-            jump interrogateDomani
-
+        ## Val
         elif partner == 4:
-            # Val
-            # Confiscated items: multiple knives, single handgun, water-damaged photo
-
             show val blank at right behind grain, reel with dissolve
 
             a shut closed "I'm here for an interrogation."
@@ -209,8 +240,10 @@ label day1:
 
             menu:
                 "Give them your cigarette?"
+
                 "Yes":
-                    $ Val_score += 1
+                    $ V_score += 1
+
                     a "Here."
                     "You hand your cigarette to Val."
                     a @ grin "You deserve one for getting shot and walking it off like this, crazy bastard!"
@@ -228,11 +261,9 @@ label day1:
             
             jump interrogateVal
 
+
+        ## Luci
         elif partner == 5:
-            # Luci
-            # Confiscated items: expensive sleek weapon, cash
-
-
             show luci at right behind grain, reel with dissolve
 
             "The suspect is ignoring his chair to stand in the middle of the room, stiff as a board, with his arms folded."
@@ -251,6 +282,8 @@ label day1:
             jump interrogateLuci
 
 
+    ## The below labels include the questioning itself
+
     #
     ## FELICIEN ##
     #
@@ -258,12 +291,22 @@ label day1:
     label interrogateFelicien:
         menu:
             a "Let's see..."
+
             "Can you give me a rundown of what happened?":
                 jump .question1
+
             "So. You a mob boss?":
                 jump .question2
+
+            "Give back his dagger." if FDagger == True:
+                jump .dagger
+            
+            "Give back his toy." if FDildo == True:
+                jump .dildo
+
             "I think we can wrap this up.":
                 jump .finish
+
 
         label .question1:
             f "Yeah, my fucking club got shot up by one of my useless employees."
@@ -272,7 +315,7 @@ label day1:
             a "Pretty big screw-up this time."
             f "Mmhmm. Who knows what's going on in that thick skull of his?"
 
-            if domaniInterrogated == True:
+            if DInterrogated == True:
                 a "I do. Well, maybe. His interrogation wasn't {i}too{/i} enlightening?"
                 f "Fuck, I can't imagine. Trying to get anything out of him is like pulling teeth. But bloodier."
                 a "Yeah, he's interesting. He does have a violent streak, huh?"
@@ -289,8 +332,9 @@ label day1:
             f "No."
             a "Alright, then."
 
-            $ FelicienInterrogated1 = True
+            $ FQuestion1 = True
             jump interrogateFelicien
+
 
         label .question2:
             f "Subtle. Is that supposed to scare me?"
@@ -298,10 +342,10 @@ label day1:
             f "And if I say no... will you believe me?"
 
             # These if statements are here in an effort to keep score farming from happening
-            if FelicienInterrogated2 == False:
+            if FQuestion2 == False:
                 menu:
                     "Yeah. I'll take you at your word.":
-                        $ Felicien_score += 1
+                        $ F_score += 1
                         f "Obedient little doggie."
                         f "I think I like you. Will you be coming back here?"
                         a "I can make time, if you want me to."
@@ -315,8 +359,22 @@ label day1:
                         a "Woof. There's another one for the case file, I guess."
                         f "Scary. Dipshit."
 
-            $ FelicienInterrogated2 = True
+            $ FQuestion2 = True
             jump interrogateFelicien
+        
+
+        label .dagger:
+            "You give back his dagger"
+            $ FDagger = False
+            jump interrogateFelicien
+
+        
+        label .dildo:
+            "You give back his toy"
+
+            $ FDildo = False
+            jump interrogateFelicien
+
 
         label .finish:
             a "Got anything else for me?"
@@ -335,12 +393,22 @@ label day1:
     label interrogateDomani:
         menu:
             a "Let's see..."
+
             "Can you give me a rundown of what happened?":
                 jump .question1
+
             "What's up with the mask? Kinda scary.":
                 jump .question2
+            
+            "Give him back his mask." if DMask == True:
+                jump .mask
+            
+            "Give him back his handguns." if DGuns == True:
+                jump .handguns
+
             "I think we can wrap this up.":
                 jump .finish
+
 
         label .question1:
             d "I... I..."
@@ -356,8 +424,9 @@ label day1:
             d "Some terrible bloodlust came over me..."
             a "That's okay, we hear that all the time. We'll get it all sorted."
 
-            $ DomaniInterrogated1 = True
+            $ DQuestion1 = True
             jump interrogateDomani
+
 
         label .question2:
             d "Oh, um..."
@@ -378,8 +447,29 @@ label day1:
             "He crosses himself."
             d "God save us..."
 
-            $ DomaniInterrogated2 = True
+            $ DQuestion2 = True
             jump interrogateDomani
+
+
+        label .mask:
+            a "Looks like they took this from you. And, uh, you don't seem too happy without it."
+            d "Oh... oh, thank God!"
+            "He turns away to quickly and nimbly afix the mask to his face. Once it's on, he breathes a sigh of relief and seems to calm somewhat."
+
+            $ DMask = False
+            jump interrogateDomani
+
+
+        label .handguns:
+            a "These yours?"
+            "He cringes back from the guns and doesn't take them from you."
+            d "Oh. I… can't. I'll kill again.. Please, I don't care what you do with them. I don't deserve them anymore."
+            a "Oooookay. Well."
+            "He stares at them longingly. Hard to blame him. They're gorgeous puppies, with flower designs burned into the wood handles. You… keep them, I guess."
+
+            $ DGuns = False
+            jump interrogateDomani
+
 
         label .finish:
             d "When will I be going to my execution?"
@@ -409,7 +499,9 @@ label day1:
         v -upset "Is that an offer?"
         "You shrug."
         a closed "Yeah."
+
         show val -raised
+
         "They walk in silence for a long time."
         v "I'm inclined to accept, if you cover your ass well enough. Don't want to get into trouble."
         v "And my buddies?"
@@ -418,10 +510,50 @@ label day1:
         v "Let's get you those cigarettes, hm? My coin is yours."
         a @ smile "Okay."
         a "We'll have to head back and pretend I'm working until my coworkers are out, then I can help you guys."
+
+        if (VKnives == True or VPhoto == True):
+            call .itemMenu
+
         "You go to the convenience store where Val buys you a new pack of cigarettes, then return to the comando stazione."
 
         $ canBreakout = True
         jump notes
+
+
+        label .itemMenu:
+            menu:
+                "You have some of their stuff. If you want to give it back, this is your last chance."
+
+                "Give back their knives." if VKnives == True:
+                    jump .knives
+                
+                "Give back their photo." if VPhoto == True:
+                    jump .photo
+                
+                "It's better to hold onto this for now.":
+                    return
+
+
+        label .knives:
+            "You give back their knives"
+
+            $ VKnives = False
+
+            if VPhoto == True:
+                jump .itemMenu
+            
+            return
+
+
+        label .photo:
+            "You give back their photo"
+
+            $ VPhoto = False
+
+            if VKnives == True:
+                jump .itemMenu
+            
+            return
 
 
     #
@@ -432,12 +564,22 @@ label day1:
         show luci neutral normal
         menu:
             a "Let's see..."
+
             "Can you give me a rundown of what happened?":
                 jump .question1
+
             "Exactly what sort of establishment were we talkin' about again?":
                 jump .question2
+            
+            "Give back his cool weapon." if LWeapon == True:
+                jump .weapon
+            
+            "Give back his cash. Wait, what?!" if LCash == True:
+                jump .cash
+
             "I think we can wrap this up.":
                 jump .finish
+
 
         label .question1:
             l "...We were working. And a man came in and demanded that we...did what he saw in porn."
@@ -454,8 +596,9 @@ label day1:
             l ".. Yes."
             a "See, you'll be fine."
 
-            $ LuciInterrogated1 = True
+            $ LQuestion1 = True
             jump interrogateLuci
+
 
         label .question2:
             l "..."
@@ -486,8 +629,23 @@ label day1:
             "He stares at you in horror."
             l ".. No you didn't."
 
-            $ LuciInterrogated2 = True
+            $ LQuestion2 = True
             jump interrogateLuci
+        
+
+        label .weapon:
+            "You give back his weapon"
+
+            $ LWeapon = False
+            jump interrogateLuci
+
+        
+        label .cash:
+            "You give back his money"
+
+            $ LCash = False
+            jump interrogateLuci
+
 
         label .finish:
             a "Alright, cool. Thanks. Be seeing you."
@@ -501,6 +659,10 @@ label day1:
     # (Bad ending)
     ########################################
 
+    # I actually want to find a good way to eliminate the consequences of bad endings
+    # One way of doing that is making this not actually a bad ending
+    # But instead the beginning of the secret Quinn route
+
     label system:
         show angiolo at left
         """
@@ -511,11 +673,10 @@ label day1:
         Your boss claps you on the shoulder.
         """
         show quinn at right
+        
         q "Keep it up, Angiolo, you're doing great. I've never seen you come so close to doing an average amount of work. I knew you had it in you."
         q "Now, I'm heading home for the night. Leave your report outside my office when you're done."
         a flat "Yeah, okay, thanks..."
-
-        # this is actually the secret Quinn route
 
         jump badEnd
 
@@ -523,6 +684,8 @@ label day1:
     ########################################
     ## BREAK OUT ###########################
     ########################################
+
+    ## Breaking the suspects out of the stazione
 
     label breakOut:
         # I need to rework this sequence
@@ -609,9 +772,10 @@ label day1:
     ## CAR RIDE AND WOUND TENDING ##########
     ########################################
 
+    ## Getaway drive
+    ## Stop at safehouse to figure out next plan and tend to wounded
+
     label car:
-        # Stop at safehouse to figure out next plan and tend to wounded
-        
         scene black
         with dissolve
 
@@ -723,7 +887,7 @@ label day1:
             a "Want some?{w} It's no laudanum, but..."
             "Their eyes open and focus on the bottle in your hand."
 
-            $ Val_score += 1
+            $ V_score += 1
 
             v "Where'd you get that, in a place run by Mr. Stickler? Yes, {i}please{/i}."
             "You hand it to them, and they take a mighty swig."
