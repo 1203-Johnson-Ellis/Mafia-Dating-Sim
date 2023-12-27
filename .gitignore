@@ -36,6 +36,7 @@ lint.txt
 saves/
 tmp/
 cache/
+old-game/
 
 # Executables.
 /renpy.exe
