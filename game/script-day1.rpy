@@ -126,46 +126,47 @@ label day1:
                 # May not need these additional vars if can just add it to the set
                 # Unless the indication that it was taken once ends up being useful
                 $ FDagger = True
-                playerInventory.add("Ceremonial Dagger")
+                #playerInventory.add("Ceremonial Dagger")
+                # Figure out why these don't work
             
             "Take the sparkly fun toy." if partner == 1:
                 "You're gonna touch that? Is it {i}washed{/i}?"
                 a "Yeesh... I don't get paid enough to deal with this."
                 $ FDildo = True
-                playerInventory.add("Sparkly Toy")
+                #playerInventory.add("Sparkly Toy")
             
             # Domani options
             "Take the mask." if partner == 2:
                 a "This is like those masks at the Venetian festival thing that was outlawed. I guess that's evidence."
                 $ DMask = True
-                playerInventory.add("Venetian Mask")
+                #playerInventory.add("Venetian Mask")
             
             "Take the handguns." if partner == 2:
                 a "Pretty incriminating. But a very nice pair of custom Rafficas."
                 $ DGuns = True
-                playerInventory.add("Dual Rafficas")
+                #playerInventory.add("Dual Rafficas")
 
             # Val options
             "Take the knives." if partner == 4:
                 a "Why are there so many..."
                 $ VKnives = True
-                playerInventory.add("Too Many Knives")
+                #playerInventory.add("Too Many Knives")
             
             "Take the water-damaged photo." if partner == 4:
                 "The photo depicts four kids of varying ages hangin out with their dad."
                 $ VPhoto = True
-                playerInventory.add("Water-Damaged Photo")
+                #playerInventory.add("Water-Damaged Photo")
 
             # Luci options
             "Take the sleek, expensive handgun." if partner == 5:
                 a "It's a single, small Glisenti. This thing is swank."
                 $ LWeapon = True
-                playerInventory.add("Sleek Glisenti")
+                #playerInventory.add("Sleek Glisenti")
             
             "Take the thick wad of cash." if partner == 5:
                 a "Hell yea, this is why you work with criminals. Rob 'em and make bank."
                 $ LCash = True
-                playerInventory.add("Wad of Cash")
+                #playerInventory.add("Wad of Cash")
                 # Consider adding a currency function (if it would be useful for anything)
 
             "I'm set.":
@@ -384,14 +385,14 @@ label day1:
         label .dagger:
             "You give back his dagger"
 
-            playerInventory.remove("Ceremonial Dagger")
+            #playerInventory.remove("Ceremonial Dagger")
             jump interrogateFelicien
 
         
         label .dildo:
             "You give back his toy"
 
-            playerInventory.remove("Sparkly Toy")
+            #playerInventory.remove("Sparkly Toy")
             jump interrogateFelicien
 
 
@@ -475,7 +476,7 @@ label day1:
             d "Oh... oh, thank God!"
             "He turns away to quickly and nimbly afix the mask to his face. Once it's on, he breathes a sigh of relief and seems to calm somewhat."
 
-            playerInventory.remove("Venetian Mask")
+            #playerInventory.remove("Venetian Mask")
             jump interrogateDomani
 
 
@@ -486,7 +487,7 @@ label day1:
             a "Oooookay. Well."
             "He stares at them longingly. Hard to blame him. They're gorgeous puppies, with flower designs burned into the wood handles. You... keep them, I guess."
 
-            playerInventory.remove("Dual Rafficas")
+            #playerInventory.remove("Dual Rafficas")
             jump interrogateDomani
 
 
@@ -556,7 +557,7 @@ label day1:
         label .knives:
             "You give back their knives"
 
-            playerInventory.remove("Too Many Knives")
+            #playerInventory.remove("Too Many Knives")
 
             if VPhoto == True:
                 jump .itemMenu
@@ -567,7 +568,7 @@ label day1:
         label .photo:
             "You give back their photo"
 
-            playerInventory.remove("Water-Damaged Photo")
+            #playerInventory.remove("Water-Damaged Photo")
 
             if VKnives == True:
                 jump .itemMenu
@@ -655,14 +656,14 @@ label day1:
         label .weapon:
             "You give back his handgun."
 
-            playerInventory.remove("Sleek Glisenti")
+            #playerInventory.remove("Sleek Glisenti")
             jump interrogateLuci
 
         
         label .cash:
             "You give back his money. Why did you pick that option??"
 
-            playerInventory.remove("Wad of Cash")
+            #playerInventory.remove("Wad of Cash")
             jump interrogateLuci
 
 
