@@ -9,7 +9,7 @@
 
 
 label day2:
-    "day 2"
+    "Get on the ferry scene"
     
     # Be good. Felicien is just getting us out of here so we don’t leave a blood trail leading directly to where we’re going.
     # You’ve been demoted, you don’t get your own business anymore, you have to watch oranges.
@@ -21,10 +21,12 @@ label day2:
     ########################################
 
     label ferry:
-
-    # Ferry ride and spin the bottle? Whoever you have the lowest current score with is who you spin.
+        "Ferry ride scene"
+        # Ferry ride and spin the bottle? Whoever you have the lowest current score with is who you spin.
+    
     # Arrival in Reggio. Some time in the city, monument.
+    "In Reggio scene"
     # Then meet back up and head to the clementine farm
-    # Encounter Luci humming alone in his room.
+    "Arrive at farm scene"
 
 return

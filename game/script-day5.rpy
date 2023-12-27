@@ -13,6 +13,6 @@ label day5:
     # Decide whether or not to rat out Val’s questioning loyalty, to either kill them or keep them at your side.
     # We rule now
 
-    "day 5"
+    "Kill scene"
 
     return

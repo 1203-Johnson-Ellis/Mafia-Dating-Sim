@@ -95,6 +95,18 @@ label nighttime:
         scene black
         with dissolve
 
+        # For testing purposes
+        """
+        - For testing purposes, would you please tell Ellis these are your scores as of day [day] -
+
+        Felicien: [F_score]
+        {p}Domani: [D_score]
+        {p}Kaj: [K_score]
+
+        Val: [V_score]
+        {p}Luci: [L_score]
+        """
+
         $ day += 1
 
         # Reset `partner` variable in case it is used elsewhere
@@ -217,28 +229,29 @@ label nighttime:
         label .night1:
             # Felicien roughly does you up in bondage and threatens you at knifepoint. And if you’re good maybe next time you’ll get it
 
-            "felicien is threatening you"
+            "Felicien threat scene"
 
             return
         
         label .night2:
             # Get it. Felicien says ouhhhh I’m sorry I was so evil today, daddy was just a little annoyed about work you understand. Now drink my piss
 
-            "felicien 2"
+            "Felicien Nighttime scene 1"
 
             return
         
         label .night3:
             # Tells you about killing Kaj. You and Val are his puppies. Will you help me next time~? Threesome
 
-            f "Yeah, don't get too cocky. *Cock* is my job. Yours is *hole*."
+            "Felicien nighttime scene 2"
+            #f "Yeah, don't get too cocky. *Cock* is my job. Yours is *hole*."
 
             return
         
         label .night4:
             # Kill Domani homoerotically which leads directly into day 5
 
-            "felicien 4"
+            "Felicien nighttime scene 3"
 
             return
 
@@ -263,28 +276,28 @@ label nighttime:
         label .night1:
             # 
 
-            "domani is threatening you"
+            "Domani threat scene"
 
             jump endNight
         
         label .night2:
             # 
             
-            "domani 2"
+            "Domani nighttime scene 1"
 
             return
         
         label .night3:
             # 
             
-            "domani 3"
+            "Domani nighttime scene 2"
 
             return
         
         label .night4:
             # 
             
-            "domani 4"
+            "Domani nighttime scene 3"
 
             return
 
@@ -309,7 +322,7 @@ label nighttime:
         label .night1:
             # 
             
-            "kaj is threatening you"
+            "Kaj threat scene"
 
             jump endNight
         
@@ -457,7 +470,7 @@ label nighttime:
         label .night1:
             # 
             
-            "luci is threatening you"
+            "Luci threat scene"
 
             jump endNight
         
