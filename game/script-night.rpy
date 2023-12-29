@@ -133,6 +133,7 @@ label nighttime:
 
     label night1:
         scene bg reggio train
+        # that ain't right
         with dissolve
 
         # Checking to see who the user has the lowest score with
@@ -180,7 +181,7 @@ label nighttime:
     # In the city
 
     label night3:
-        scene bg reggio farm
+        scene bg reggio buildings
         with dissolve
 
         "Reggio is a pleasant city. Anyone still out at this hour is on foot, and their chatter echoes off the cobblestone streets. The buildings are dotted with dimly lit windows."
@@ -192,7 +193,7 @@ label nighttime:
     # At the farm again
 
     label night4:
-        scene bg reggio buildings
+        scene bg reggio farm
         with dissolve
 
         "Isn't this country air getting a little boring? Time to seek out some company to keep you occupied through the night..."
