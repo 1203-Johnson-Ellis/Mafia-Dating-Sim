@@ -83,16 +83,16 @@ label day1:
             # The option to interrogate a suspect will disappear if they have been asked all available questions
             # Otherwise, I want them to remain in case the player changes their mind about not asking a question, or wants a refresher
 
-            "Felicien, she/her/he/him - Known owner of the establishment; weapons found on person; uncooperative.\nCharges: Suspected money laundering, involvement in organized crime" if (FQuestion1 == False and FQuestion2 == False):
+            "Felicien, she/her/he/him - Known owner of the establishment; weapons found on person; uncooperative.\nCharges: Suspected money laundering, involvement in organized crime" if (FQ1Asked == False and FQ2Asked == False):
                 $ partner = 1
 
-            "Domani, he/him - Confessed at the scene of the crime to having fired guns. Suspected criminal higher-up\nCharges: Second degree murder, aggravated assault with a deadly weapon, suspected involvement in organized crime" if (DQuestion1 == False and DQuestion2 == False):
+            "Domani, he/him - Confessed at the scene of the crime to having fired guns. Suspected criminal higher-up\nCharges: Second degree murder, aggravated assault with a deadly weapon, suspected involvement in organized crime" if (DQ1Asked == False and DQ2Asked == False):
                 $ partner = 2
 
             "Valheo, any pronouns - Found in conflict with a customer; weapons found on person. Injured in the crossfire.\nCharges: Assault, battery, suspected involvement in organized crime" if canBreakout == False:
                 $ partner = 4
 
-            "Luciano, he/him - Employee at the establishment; found standing near the suspected source of the conflict. Has largely refused to speak.\nCharges: Suspected involvement in organized crime" if (LQuestion1 == False and LQuestion2 == False):
+            "Luciano, he/him - Employee at the establishment; found standing near the suspected source of the conflict. Has largely refused to speak.\nCharges: Suspected involvement in organized crime" if (LQ1Asked == False and LQ2Asked == False):
                 $ partner = 5
 
             ## Story progression
@@ -125,46 +125,46 @@ label day1:
                 a "Nice. It looks old."
                 # May not need these additional vars if can just add it to the set
                 # Unless the indication that it was taken once ends up being useful
-                $ FDagger = True
+                $ FDaggerPickedUp = True
                 $ playerInventory.add("Ceremonial Dagger")
             
             "Take the sparkly fun toy." if partner == 1:
                 "You're gonna touch that? Is it {i}washed{/i}?"
                 a "Yeesh... I don't get paid enough to deal with this."
-                $ FDildo = True
+                $ FDildoPickedUp = True
                 $ playerInventory.add("Sparkly Toy")
             
             # Domani options
             "Take the mask." if partner == 2:
                 a "This is like those masks at the Venetian festival thing that was outlawed. I guess that's evidence."
-                $ DMask = True
+                $ DMaskPickedUp = True
                 $ playerInventory.add("Venetian Mask")
             
             "Take the handguns." if partner == 2:
                 a "Pretty incriminating. But a very nice pair of custom Rafficas."
-                $ DGuns = True
+                $ DGunsPickedUp = True
                 $ playerInventory.add("Dual Rafficas")
 
             # Val options
             "Take the knives." if partner == 4:
                 a "Why are there so many..."
-                $ VKnives = True
+                $ VKnivesPickedUp = True
                 $ playerInventory.add("Too Many Knives")
             
             "Take the water-damaged photo." if partner == 4:
                 "The photo depicts four kids of varying ages hangin out with their dad."
-                $ VPhoto = True
+                $ VPhotoPickedUp = True
                 $ playerInventory.add("Water-Damaged Photo")
 
             # Luci options
             "Take the sleek, expensive handgun." if partner == 5:
                 a "It's a single, small Glisenti. This thing is swank."
-                $ LWeapon = True
+                $ LGunPickedUp = True
                 $ playerInventory.add("Sleek Glisenti")
             
             "Take the thick wad of cash." if partner == 5:
                 a "Hell yea, this is why you work with criminals. Rob 'em and make bank."
-                $ LCash = True
+                $ LCashPickedUp = True
                 $ playerInventory.add("Wad of Cash")
                 # Consider adding a currency function (if it would be useful for anything)
 
@@ -200,9 +200,9 @@ label day1:
             a "Hey, if you're so desperate, hit me up anytime."
             "He scowls, but seems to be reevaluating you. He tosses the cuffs to the ground.{w} Oh, well. Things are cheap."
             
-            if interrogateBegin == False:
+            if beganInterrogations == False:
                 "You sit down before her, resting your elbows on your knees."
-                $ interrogateBegin = True
+                $ beganInterrogations = True
 
             a "I got some questions for you, though, if you feel like answering."
             f "We'll see."
@@ -260,7 +260,7 @@ label day1:
                 "Give them your cigarette?"
 
                 "Yes":
-                    $ V_score += 1
+                    $ VScore += 1
 
                     a "Here."
                     "You hand your cigarette to Val."
@@ -287,9 +287,9 @@ label day1:
             "The suspect is ignoring his chair to stand in the middle of the room, stiff as a board, with his arms folded."
             "He's legit just standing there, but for some reason your immediate impression is that he's beautiful. It tugs at your memory somehow... But your memory is shit, anyway."
 
-            if interrogateBegin == False:
+            if beganInterrogations == False:
                 "You sit down before him, resting your elbows on your knees."
-                $ interrogateBegin = True
+                $ beganInterrogations = True
 
             a "Hey."
             l "..."
@@ -316,10 +316,10 @@ label day1:
             "So. You a mob boss?":
                 jump .question2
 
-            "Give back his dagger." if FDagger == True:
+            "Give back his dagger." if FDaggerPickedUp == True:
                 jump .dagger
             
-            "Give back his toy." if FDildo == True:
+            "Give back his toy." if FDildoPickedUp == True:
                 jump .dildo
 
             "I think we can wrap this up.":
@@ -350,7 +350,7 @@ label day1:
             f "No."
             a "Alright, then."
 
-            $ FQuestion1 = True
+            $ FQ1Asked = True
             jump interrogateFelicien
 
 
@@ -360,10 +360,10 @@ label day1:
             f "And if I say no... will you believe me?"
 
             # These if statements are here in an effort to keep score farming from happening
-            if FQuestion2 == False:
+            if FQ2Asked == False:
                 menu:
                     "Yeah. I'll take you at your word.":
-                        $ F_score += 1
+                        $ FScore += 1
                         f "Obedient little doggie."
                         f "I think I like you. Will you be coming back here?"
                         a "I can make time, if you want me to."
@@ -377,7 +377,7 @@ label day1:
                         a "Woof. There's another one for the case file, I guess."
                         f "Scary. Dipshit."
 
-            $ FQuestion2 = True
+            $ FQ2Asked = True
             jump interrogateFelicien
         
 
@@ -419,10 +419,10 @@ label day1:
             "What's up with the mask? Kinda scary.":
                 jump .question2
             
-            "Give him back his mask." if DMask == True:
+            "Give him back his mask." if DMaskPickedUp == True:
                 jump .mask
             
-            "Give him back his handguns." if DGuns == True:
+            "Give him back his handguns." if DGunsPickedUp == True:
                 jump .handguns
 
             "I think we can wrap this up.":
@@ -443,7 +443,7 @@ label day1:
             d "Some terrible bloodlust came over me..."
             a "That's okay, we hear that all the time. We'll get it all sorted."
 
-            $ DQuestion1 = True
+            $ DQ1Asked = True
             jump interrogateDomani
 
 
@@ -466,7 +466,7 @@ label day1:
             "He crosses himself."
             d "God save us..."
 
-            $ DQuestion2 = True
+            $ DQ2Asked = True
             jump interrogateDomani
 
 
@@ -486,7 +486,6 @@ label day1:
             a "Oooookay. Well."
             "He stares at them longingly. Hard to blame him. They're gorgeous puppies, with flower designs burned into the wood handles. You... keep them, I guess."
 
-            $ playerInventory.remove("Dual Rafficas")
             jump interrogateDomani
 
 
@@ -530,7 +529,7 @@ label day1:
         a @ smile "Okay."
         a "We'll have to head back and pretend I'm working until my coworkers are out, then I can help you guys."
 
-        if (VKnives == True or VPhoto == True):
+        if (VKnivesPickedUp == True or VPhotoPickedUp == True):
             call .itemMenu from _call_interrogateVal_itemMenu
 
         "You go to the convenience store where Val buys you a new pack of cigarettes, then return to the comando stazione."
@@ -543,10 +542,10 @@ label day1:
             menu:
                 "You have some of their stuff. If you want to give it back, this is your last chance."
 
-                "Give back their knives." if VKnives == True:
+                "Give back their knives." if (VKnivesPickedUp == True and VKnivesReturned == False):
                     jump .knives
                 
-                "Give back their photo." if VPhoto == True:
+                "Give back their photo." if (VPhotoPickedUp == True and VPhotoReturned == False):
                     jump .photo
                 
                 "It's better to hold onto this for now.":
@@ -557,8 +556,9 @@ label day1:
             "You give back their knives"
 
             $ playerInventory.remove("Too Many Knives")
+            $ VKnivesReturned = True
 
-            if VPhoto == True:
+            if (VPhotoPickedUp == True and VPhotoReturned == False):
                 jump .itemMenu
             
             return
@@ -568,8 +568,9 @@ label day1:
             "You give back their photo"
 
             $ playerInventory.remove("Water-Damaged Photo")
+            $ VPhotoReturned = True
 
-            if VKnives == True:
+            if (VKnivesPickedUp == True and VKnivesReturned == False):
                 jump .itemMenu
             
             return
@@ -590,10 +591,10 @@ label day1:
             "Exactly what sort of establishment were we talkin' about again?":
                 jump .question2
             
-            "Give back his cool weapon." if LWeapon == True:
+            "Give back his cool weapon." if LWeaponPickedUp == True:
                 jump .weapon
             
-            "Give back his cash. Wait, what?!" if LCash == True:
+            "Give back his cash. Wait, what?!" if LCashPickedUp == True:
                 jump .cash
 
             "I think we can wrap this up.":
@@ -615,7 +616,7 @@ label day1:
             l ".. Yes."
             a "See, you'll be fine."
 
-            $ LQuestion1 = True
+            $ LQ1Asked = True
             jump interrogateLuci
 
 
@@ -648,7 +649,7 @@ label day1:
             "He stares at you in horror."
             l ".. No you didn't."
 
-            $ LQuestion2 = True
+            $ LQ2Asked = True
             jump interrogateLuci
         
 
@@ -817,7 +818,7 @@ label day1:
         "Okay."
         "You brace yourself as firmly against the walls of the automobile as you can, which is tough but necessary as the driver whips around corners. Don't wanna get flung around {i}too{/i} much."
 
-        if FDagger == True:
+        if FDaggerPickedUp == True:
             "Felicien sticks his dagger into the cup holder. He has to fumble and maneuver and hammer it in a bit to fit it between the handguns and the hot pink toy already in there."
             # insert image
             k "Sir, please don't use my car as storage."
@@ -988,7 +989,7 @@ label day1:
             a "Want some?{w} It's no laudanum, but..."
             "Their eyes open and focus on the bottle in your hand."
 
-            $ V_score += 1
+            $ VScore += 1
 
             v "Where'd you get that, in a place run by Mr. Stickler? Yes, {i}please{/i}."
             "You hand it to them, and they take a mighty swig."

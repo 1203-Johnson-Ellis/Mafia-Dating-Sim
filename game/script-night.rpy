@@ -47,31 +47,31 @@ label nighttime:
             "Who will you set up your bed beside tonight?"
 
             "Felicien":
-                $ F_score += 2
-                $ F_numNights += 1
+                $ FScore += 2
+                $ FNightsCompleted += 1
                 $ partner = 1
 
             # Since I'm only writing Felicien route,
             # I'm making the other nighttime scenes inaccessible for now
 
             #"Domani":
-            #    $ D_score += 2
-            #    $ D_numNights += 1
+            #    $ DScore += 2
+            #    $ DNightsCompleted += 1
             #    $ partner = 2
 
             #"Kaj":
-            #    $ K_score += 2
-            #    $ K_numNights += 1
+            #    $ KScore += 2
+            #    $ KNightsCompleted += 1
             #    $ partner = 3
 
             #"Val":
-            #    $ V_score += 2
-            #    $ V_numNights += 1
+            #    $ VScore += 2
+            #    $ VNightsCompleted += 1
             #    $ partner = 4
 
             #"Luci":
-            #    $ L_score += 2
-            #    $ L_numNights += 1
+            #    $ LScore += 2
+            #    $ LNightsCompleted += 1
             #    $ partner = 5
 
 
@@ -99,12 +99,12 @@ label nighttime:
         """
         - For testing purposes, would you please tell Ellis these are your scores as of day [day] -
 
-        Felicien: [F_score]
-        {p}Domani: [D_score]
-        {p}Kaj: [K_score]
+        Felicien: [FScore]
+        {p}Domani: [DScore]
+        {p}Kaj: [KScore]
 
-        Val: [V_score]
-        {p}Luci: [L_score]
+        Val: [VScore]
+        {p}Luci: [LScore]
         """
 
         $ day += 1
@@ -138,19 +138,19 @@ label nighttime:
         # Checking to see who the user has the lowest score with
         # (If there are any ties, it will default to whoever appears first on this list)
 
-        if F_score == min(F_score, D_score, K_score, V_score, L_score):
+        if FScore == min(FScore, DScore, KScore, VScore, LScore):
             $ partner = 1
             jump felicien.night1
-        elif D_score == min(F_score, D_score, K_score, V_score, L_score):
+        elif DScore == min(FScore, DScore, KScore, VScore, LScore):
             $ partner = 2
             jump domani.night1
-        elif K_score == min(F_score, D_score, K_score, V_score, L_score):
+        elif KScore == min(FScore, DScore, KScore, VScore, LScore):
             $ partner = 3
             jump kaj.night1
-        elif V_score == min(F_score, D_score, K_score, V_score, L_score):
+        elif VScore == min(FScore, DScore, KScore, VScore, LScore):
             $ partner = 4
             jump val.night1
-        elif L_score == min(F_score, D_score, K_score, V_score, L_score):
+        elif LScore == min(FScore, DScore, KScore, VScore, LScore):
             $ partner = 5
             jump luci.night1
         else:
@@ -213,11 +213,11 @@ label nighttime:
         # Pray, tell me why python doesn't have switch/case
         # This mass of elifs is a nightmare
 
-        if F_numNights == 1:
+        if FNightsCompleted == 1:
             jump .night2
-        elif F_numNights == 2:
+        elif FNightsCompleted == 2:
             jump .night3
-        elif F_numNights == 3:
+        elif FNightsCompleted == 3:
             jump .night4
         else:
             # This should never happen, but it's coded in for debugging and edge cases
@@ -261,11 +261,11 @@ label nighttime:
     #
 
     label domani:
-        if D_numNights == 1:
+        if DNightsCompleted == 1:
             jump .night2
-        elif D_numNights == 2:
+        elif DNightsCompleted == 2:
             jump .night3
-        elif D_numNights == 3:
+        elif DNightsCompleted == 3:
             jump .night4
         else:
             "uhoh! if you see this then tell ellis that something went wrong in the nighttime counters"
@@ -307,11 +307,11 @@ label nighttime:
     #
 
     label kaj:
-        if K_numNights == 1:
+        if KNightsCompleted == 1:
             jump .night2
-        elif K_numNights == 2:
+        elif KNightsCompleted == 2:
             jump .night3
-        elif K_numNights == 3:
+        elif KNightsCompleted == 3:
             jump .night4
         else:
             "uhoh! if you see this then tell ellis that something went wrong in the nighttime counters"
@@ -353,11 +353,11 @@ label nighttime:
     #
 
     label val:
-        if V_numNights == 1:
+        if VNightsCompleted == 1:
             jump .night2
-        elif V_numNights == 2:
+        elif VNightsCompleted == 2:
             jump .night3
-        elif V_numNights == 3:
+        elif VNightsCompleted == 3:
             jump .night4
         else:
             "uhoh! if you see this then tell ellis that something went wrong in the nighttime counters"
@@ -382,42 +382,42 @@ label nighttime:
                 "You think I'd rat you out?":
                     v ""
                 "Look, I meant it when I said I didn't want to be police anymore.":
-                    $ V_score += 2
+                    $ VScore += 2
                     v ""
                 "I want to like you, too. I don't want to see you behind bars.":
-                    $ V_score += 1
+                    $ VScore += 1
                     v ""
 
             menu:
                 "The blade presses hard against your throat."
                 "option":
-                    $ V_score += 2
+                    $ VScore += 2
                     v "dialogue"
                 "option":
                     v "dialogue"
                 "option":
-                    $ V_score += 1
+                    $ VScore += 1
                     v "dialogue"
 
             menu:
                 "Is that a drop of blood you feel dripping down your skin?"
                 "option":
-                    $ V_score += 1
+                    $ VScore += 1
                 "option":
-                    $ V_score += 0
+                    $ VScore += 0
                 "option":
-                    $ V_score += 2
+                    $ VScore += 2
 
             "Val stares at you in silence, their eyes glinting fiercely in the darkness."
 
-            if V_score >= 3:
+            if VScore >= 3:
                 v "Alright."
                 "They release you, bringing the knife away from your neck and vanishing it with a gesture."
                 v "You seem like a good guy. You'll forgive me for wanting to check."
                 "You can't help but gasp a little, your hand going to feel the small cut left on your throat."
                 a "Yeah..."
 
-            elif V_score < 3:
+            elif VScore < 3:
                 "You see them draw the knife in a clean line and see it catching red in the moonlight. You taste blood. You choke on it."
                 "But there is no pain."
                 v "Can't risk it."
@@ -455,11 +455,11 @@ label nighttime:
     #
 
     label luci:
-        if L_numNights == 1:
+        if LNightsCompleted == 1:
             jump .night2
-        elif L_numNights == 2:
+        elif LNightsCompleted == 2:
             jump .night3
-        elif L_numNights == 3:
+        elif LNightsCompleted == 3:
             jump .night4
         else:
             "uhoh! if you see this then tell ellis that something went wrong in the nighttime counters"

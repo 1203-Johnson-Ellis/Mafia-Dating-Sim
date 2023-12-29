@@ -4,6 +4,7 @@
 # This file defines all variables that have a scope greater than a single label
 # This includes integers and booleans, as well as images, screens, and character identifiers
 # Should it include screens, considering `screens.rpy`? Probably not
+# I will want to go through and ensure all declared vars are actually used
 
 ############################################
 
@@ -15,20 +16,20 @@
 
 # Score that is used to determine how much each romance option likes you
 
-default F_score = 0
-default D_score = 0
-default K_score = 0
-default V_score = 0
-default L_score = 0
+default FScore = 0
+default DScore = 0
+default KScore = 0
+default VScore = 0
+default LScore = 0
 
-default Quinn_score = 0
-default Eligio_score = 0
-default Elhoeva_score = 0
+default QuinnScore = 0
+default EligioScore = 0
+default ElhoevaScore = 0
 
 
 # Check for whether the player has died
 
-default dead = False
+default playerIsDead = False
 
 
 # Check for what day it is
@@ -44,11 +45,11 @@ default partner = 0
 
 # How many nights have you spend with this character?
 
-default F_numNights = 0
-default D_numNights = 0
-default K_numNights = 0
-default V_numNights = 0
-default L_numNights = 0
+default FNightsCompleted = 0
+default DNightsCompleted = 0
+default KNightsCompleted = 0
+default VNightsCompleted = 0
+default LNightsCompleted = 0
 
 
 # Inventory
@@ -56,42 +57,58 @@ default L_numNights = 0
 default playerInventory = set()
 
 
+# Determines what items the player has picked up (even if not currently in inventory)
+
+default FDaggerPickedUp = False
+default FDildoPickedUp = False
+
+default DMaskPickedUp = False
+default DGunsPickedUp = False
+
+default VKnivesPickedUp = False
+default VPhotoPickedUp = False
+
+default LGunPickedUp = False
+default LCashPickedUp = False
+
+
+# Determines what items the player has given back to their owner
+
+default FDaggerReturned = False
+default FDildoReturned = False
+
+default DMaskReturned = False
+default DGunsReturned = False
+
+default VKnivesReturned = False
+default VPhotoReturned = False
+
+default LGunReturned = False
+default LCashReturned = False
+
+
 
 ## NON-GLOBAL ##
+# Can these be freed after the day is done?
 
-## Day 1 variables ##
+## -Day 1 variables- ##
 
 # Determines whether Angiolo has interrogated anyone yet. Used to trigger some flavor text
 
-default interrogateBegin = False
+default beganInterrogations = False
 
 
 # Determines which questions the user has asked each character. Used to show/hide interrogation options and prevent point grinding
 
-default FQuestion1 = False
-default FQuestion2 = False
+default FQ1Asked = False
+default FQ2Asked = False
 
-default DQuestion1 = False
-default DQuestion2 = False
+default DQ1Asked = False
+default DQ2Asked = False
 default DInterrogated = False
 
-default LQuestion1 = False
-default LQuestion2 = False
-
-
-# Determines what items the player has in their inventory
-
-default FDagger = False
-default FDildo = False
-
-default DMask = False
-default DGuns = False
-
-default VKnives = False
-default VPhoto = False
-
-default LWeapon = False
-default LCash = False
+default LQ1Asked = False
+default LQ2Asked = False
 
 
 # Determines whether Val has been spoken to, allowing the story to progress
@@ -99,16 +116,16 @@ default LCash = False
 default canBreakout = False
 
 
-## Day 2 variables ##
+## -Day 2 variables- ##
 
 
-## Day 3 variables ##
+## -Day 3 variables- ##
 
 
-## Day 4 variables ##
+## -Day 4 variables- ##
 
 
-## Day 5 variables ##
+## -Day 5 variables- ##
 
 
 # For character portraits
@@ -190,14 +207,22 @@ layeredimage luci:
 
 ## Film reel grain ##
 
-# This defines the visuals of the grain
+# Defines the visuals of the grain
 
 image grain:
+    # Image used
     "images/backgrounds/bg grain.png"
+
+    # Opacity
     matrixcolor OpacityMatrix(0.25)
+
+    # Initial placement
     #zorder 10
+    # wait why is that commented out it might be extremely convenient
     xalign 1.0
     yalign 1.0
+
+    # Animation
     parallel:
         yzoom 1.0
         pause 1.0
@@ -206,26 +231,34 @@ image grain:
         yzoom 1.75
         pause 4.0
         repeat
+
     parallel:
         easein 24.0 yzoom 1.5
         repeat
+
     parallel:
         xzoom 1.0
         pause 3.0
         xzoom 1.5
         pause 0.1
         repeat
+
     parallel:
         easeout 30.0 xzoom 1.25
         repeat
 
 
-# This defines the visuals of the film reel that scrolls past
+# Defines the visuals of the film reel that scrolls past
 
 image reel:
+    # Image used
     "bg reel"
+
+    # Initial placement
     #zorder 11
     yalign 0.0
+
+    # Animation
     parallel:
         xalign 50.0
         easeout 9.0 xalign -65.0
@@ -239,16 +272,24 @@ image reel:
 # Bad end
 
 screen bad_end():
+    # I don't remember what this means.
     modal True
 
+    # Placement of screen?
     frame:
         xalign 0.5
         yalign 0.5
 
+    # ???
     vbox:
+        # This sucks. It appears to assume a 1920x1080 screen
         xsize 1920
         ysize 1080
+
+        # Image
         add "youdied.jpg" xpos 615 ypos 100
+
+        # Button
         textbutton "Exit":
             xalign 0.67
             yalign 0
@@ -259,16 +300,22 @@ screen bad_end():
 ### DIALOGUE ###
 
 # Automation for all dialogue to pause after punctuation
+# Will probably want to adjust values to be slower
+# I wouldn't think it would be affected by set text speed, but test?
+
 init python:
     def slow_punctuation(str_to_test):
         str_to_test = str_to_test
+
+        # Defines what text should be replaced
         return str_to_test.replace(
-            ", ", "{cps=20}, {/cps}").replace( ### 2 characters ", " takes 0.1 second
-            "... ", "{cps=6}...{/cps} ").replace( ### 4 characters "... " takes 0.5 second-ish
-            ". ", "{cps=6}. {/cps}").replace( ### 2 characters ". " takes 0.3 second-ish
+            ", ", "{cps=20}, {/cps}").replace( # 2 characters ", " takes 0.1 second
+            "... ", "{cps=6}...{/cps} ").replace( # 4 characters "... " takes 0.5 second-ish
+            ". ", "{cps=6}. {/cps}").replace( # 2 characters ". " takes 0.3 second-ish
             "? ", "{cps=6}. {/cps} ").replace(
             "! ", "{cps=6}! {/cps} ")
     
+    # Automates the text replacement
     config.say_menu_text_filter = slow_punctuation
 
 

@@ -45,53 +45,53 @@ label start:
     ## Day 1 ##
     # Goes to `script-day1.rpy`
     call day1 from _call_day1
-    if dead == True:
+    if playerIsDead == True:
         return
         
     #jump demo
 
     # All night labels are contained in `script-night.rpy`
     call nighttime from _call_nighttime
-    if dead == True:
+    if playerIsDead == True:
         return
 
     ## Day 2 ##
     # Goes to `script-day2.rpy`
     call day2 from _call_day2
-    if dead == True:
+    if playerIsDead == True:
         return
 
     call nighttime from _call_nighttime_1
-    if dead == True:
+    if playerIsDead == True:
         return
 
     ## Day 3 ##
     # Goes to `script-day3.rpy`
     call day3 from _call_day3
-    if dead == True:
+    if playerIsDead == True:
         return
 
     call nighttime from _call_nighttime_2
-    if dead == True:
+    if playerIsDead == True:
         return
 
     ## Day 4 ##
     # Goes to `script-day4.rpy`
     call day4 from _call_day4
-    if dead == True:
+    if playerIsDead == True:
         return
 
     call nighttime from _call_nighttime_3
-    if dead == True:
+    if playerIsDead == True:
         return
 
     ## Day 5 ##
     # Goes to `script-day5.rpy`
     call day5 from _call_day5
-    if dead == True:
+    if playerIsDead == True:
         return
 
-    if dead == False:
+    if playerIsDead == False:
         jump finale
 
 
@@ -99,7 +99,7 @@ label start:
 
     # Bad ending screen
     label badEnd:
-        $ dead = True
+        $ playerIsDead = True
 
         stop sound
         pause 1.0
@@ -108,7 +108,7 @@ label start:
 
         call screen bad_end
 
-        return
+        "Hit \"Back\" or open a new save file.\nI'm hoping to replace all bad ends at some point."
 
 
     # Good end partnership selection
@@ -120,7 +120,7 @@ label start:
 
         # Variables
 
-        $ chosen_flag = False
+        $ chosen = False
 
         $ MarryFelicien = False
         $ MarryDomani = False
@@ -137,15 +137,15 @@ label start:
 
         # Score calculations for determining eligible marriage options
 
-        if F_score == max(F_score, D_score, K_score, V_score, L_score):
+        if FScore == max(FScore, DScore, KScore, VScore, LScore):
             $ MarryFelicien = True
-        if D_score == max(F_score, D_score, K_score, V_score, L_score):
+        if DScore == max(FScore, DScore, KScore, VScore, LScore):
             $ MarryDomani = True
-        if K_score == max(F_score, D_score, K_score, V_score, L_score):
+        if KScore == max(FScore, DScore, KScore, VScore, LScore):
             $ MarryKaj = True
-        if V_score == max(F_score, D_score, K_score, V_score, L_score):
+        if VScore == max(FScore, DScore, KScore, VScore, LScore):
             $ MarryVal = True
-        if L_score == max(F_score, D_score, K_score, V_score, L_score):
+        if LScore == max(FScore, DScore, KScore, VScore, LScore):
             $ MarryLuci = True
 
         scene black
@@ -159,7 +159,7 @@ label start:
         # (In its final form this should give a scene corresponding to each chosen partner)
 
         label marriageChoice:
-            if chosen_flag == False:
+            if chosen == False:
                 menu:
                     "My heart calls out to..."
                     "Felicien" if MarryFelicien == True and FelicienWedded == False:
@@ -183,9 +183,9 @@ label start:
                         $ LuciWedded = True
                         jump marriage
                     "I'm set":
-                        if chosen_flag == False:
+                        if chosen == False:
                             $ winner = "nobody"
-                            $ chosen_flag = True
+                            $ chosen = True
                             jump marriage
             else:
                 "Congratulations."
