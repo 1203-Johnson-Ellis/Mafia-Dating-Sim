@@ -39,7 +39,8 @@ label day1:
     
     And because you are an idiot, you are in the middle of it all, in a Carabinieri Comando Stazione.
     
-    You are working at your desk, eyes glazing over endless piles of paperwork (positivvely daydreaming, really), when the door opens.{p}You look up.
+    You are working at your desk, eyes glazing over endless piles of paperwork (positivvely daydreaming, really), when the door opens.{p}
+    You look up.
     """
     a "Hey, boss."
 
@@ -338,7 +339,8 @@ label day1:
                 f "Fuck, I can't imagine. Trying to get anything out of him is like pulling teeth. But bloodier."
                 a "Yeah, he's interesting. He does have a violent streak, huh?"
                 f "Hm. So do I."
-                a "Yikes.{p}Hey, speaking of which..."
+                a "Yikes.{p}
+                Hey, speaking of which..."
 
             else:
                 a "Eh, maybe I'll find out."
@@ -359,7 +361,7 @@ label day1:
             a "Nah, it's a question. My boss wants to know."
             f "And if I say no... will you believe me?"
 
-            # These if statements are here in an effort to keep score farming from happening
+            # These 'if' statements are here in an effort to prevent score farming
             if FQ2Asked == False:
                 menu:
                     "Yeah. I'll take you at your word.":
@@ -458,7 +460,8 @@ label day1:
             d "That's even worse!"
             d "Even here in military custody, I can't be stopped from killing people..."
             a "Hey, don't worry. I'm not the only one here. And they took your guns, right?"
-            d "Yes... {p}But..."
+            d "Yes... {p}
+            But..."
             a "Are you ripped, too?"
             d "Not... exactly?"
             a "Sounds like you're good, then. Unless you have some secret power you're hiding from us. Which I'd like to see."
@@ -494,7 +497,8 @@ label day1:
             a "Oh, probably in a week. Maybe two. Things are kinda slow-going around here."
             "He looks down."
             d "... Okay."
-            a "Hey, cheer up. You confessed — counts for something.{p}See you around, maybe."
+            a "Hey, cheer up. You confessed — counts for something.{p}
+            See you around, maybe."
 
             jump notes
 
@@ -532,7 +536,7 @@ label day1:
         if (VKnivesPickedUp == True or VPhotoPickedUp == True):
             call .itemMenu from _call_interrogateVal_itemMenu
 
-        "You go to the convenience store where Val buys you a new pack of cigarettes, then return to the comando stazione."
+        "Okay, cool. You go to the convenience store where Val buys you a new pack of cigarettes, then return to the comando stazione."
 
         $ canBreakout = True
         jump notes
@@ -565,7 +569,23 @@ label day1:
 
 
         label .photo:
-            "You give back their photo"
+            a "Oh, hey, by the way..."
+            "When you take the photo out of your pocket, you watch their eyes light on it with recognition."
+            a "You can have this back."
+            v "Oh, shit.{p}
+            ... Thanks."
+            "They take it from your hand and look at it for a minute."
+            a "I dunno why they'd hold onto something like that. I guess just for, y'know, ID..."
+            v "Yeah.{p}
+            Fair enough, it {i}is{/i} family."
+            v "..."
+            v "Did anyone else get a look at this?"
+            a "Well, I don't know. Obviously, whoever took it from you, but..."
+            a "... But there's no saying if they actually ID'd anyone from it."
+            v "Yeah, I guess not."
+            "They quickly disappear it with some kind of sleight of hand thing."
+            v "Well, thanks for giving it back."
+            a "'Course."
 
             $ playerInventory.remove("Water-Damaged Photo")
             $ VPhotoReturned = True
@@ -727,7 +747,7 @@ label day1:
         hide domani
         show felicien behind grain, reel
         with fade
-        f "Oh, puppy, you're back.{w}{size=-20} Damn. I was hoping for someone sexier.{/size}"
+        f "Oh, puppy, you're back.{w} {size=-20}Damn. I was hoping for someone sexier.{/size}"
 
         hide felicien
         show luci behind grain, reel
@@ -895,7 +915,8 @@ label day1:
             """
             You come forward and take the hem of the shirt from them. You guide their head out first.
 
-            From there you have to be careful of the fabric around the wound, unsticking it where it has been glued down by blood and carefully pulling it out of the hole.{p}They grit their teeth as it comes free.
+            From there you have to be careful of the fabric around the wound, unsticking it where it has been glued down by blood and carefully pulling it out of the hole.{p}
+            They grit their teeth as it comes free.
 
             Then you remove the shirt the rest of the way and toss it aside.
 
@@ -910,7 +931,8 @@ label day1:
             "They close their eyes, looking a little ill."
             v "Okay."
             a "You scared?"
-            "They shake their head.{p}So, you take their well-muscled arm firmly with one hand."
+            "They shake their head.{p}
+            So, you take their well-muscled arm firmly with one hand."
             a "Ready?"
             """
             They nod once.
@@ -983,7 +1005,8 @@ label day1:
 
         label .booze:
             "You thought you saw some earlier..."
-            "You open some cabinets and rummage through them. Bingo.{p}You turn back to Val."
+            "You open some cabinets and rummage through them. Bingo.{p}
+            You turn back to Val."
             a "Hey, you're not looking too good."
             "You hold up the bottle."
             a "Want some?{w} It's no laudanum, but..."
@@ -1022,7 +1045,7 @@ label day1:
             "Is he genuinely hurt by that?"
             a "Hey, maybe it's time for you to lay off the drink a little."
             v "What, am I wrong? What kinda mafia guy doesn't kill? Luc thinks he's special."
-            l ".....................{p}"
+            l "....................."
             "He seems to have had enough. He gets up and walks away. Except there aren't really any other rooms in this place, so he just goes to stare at one of the walls."
             a "I think you hurt his feelings."
             v "No way. Luc doesn't have those."
@@ -1033,21 +1056,25 @@ label day1:
         label .phonecall:
             "While you adjust to the place, you can't help but overhear Felicien's phone conversation."
 
-            f "Hello, boss."
+            f "Good evening, boss."
             boss "{i}Felicien. I'm surprised to hear your voice. I was under the impression you useless group of baccalà got yourselves imprisoned.{/i}"
             f "We ran into a bit of trouble. Nothing we can't handle."
             boss "{i}Why are you calling, then?{/i}"
             f "We'd be able to handle it a bit better if we had somewhere to stay until the cops are off our asses."
-            boss "{i}Do one better: get them off{/i} my {i}ass. Fucking moron.{p}What secrets can we expect them to know now?{/i}"
+            boss "{i}Do one better: get them off{/i} my {i}ass. Fucking moron.{p}
+            What secrets can we expect them to know now?{/i}"
             f "I am {i}not{/i} stupid enough to let anything slip."
             boss "{i}And your team?{/i}"
+
             "Felicien turns and looks directly at Domani, who's busy rocking in the corner in the fetal position."
+
             f "If they did, I don't think they should be involved in cosa nostra."
-            boss "{i}No. But unfortunately if you want to get anything done in this world, you'll have to work with idiots at some point.{p}God fuck it, Felicien. If you want to try to do something right, then get out of Palermo. Tonight.{/i}"
+            boss "{i}No. But unfortunately if you want to get anything done in this world, you'll have to work with idiots at some point.{p}
+            God fuck it, Felicien. If you want to try to do something right, then get out of Palermo. Tonight.{/i}"
             f "Excuse me?"
             boss "{i}You heard me. You know the damn prime minister and his guys have been out here recently, and they're quickly making an enemy of us.{/i}"
             boss "{i}Since you so badly want to draw attention to yourselves, lead the feds to Reggio. I have a contact you can stay with. A clementine farmer. Get yourselves killed out there, I don't care. My business is here, in the west.{/i}"
-            f "I have wounded, I can't cross Sicily tonight."
+            f "I have wounded. I can't cross Sicily tonight."
             boss "{i}All the better. They'll be able to follow the blood trail you leave behind.{/i}{w} Bzzzt..."
 
             jump day1WrapUp
@@ -1056,10 +1083,17 @@ label day1:
     label day1WrapUp:
         "Felicien slams the phone back onto its holder."
         f "Fucking great..."
-        # Reports back
-        "he reports back to the others on the phone call"
+        k "What's wrong?"
+        f "What the hell do you think is wrong? Someone in this room fucking outed us to the cops."
+        "He stares directly at Domani."
+        d "W-what?? {i}I{/i} didn't call them!!!!"
+        f "Great, so we have multiple fuck-ups in here."
 
         ## Car from Palermo along the coast of Sicily to Messina takes ~3 hours
-        "everyone drives out to Messina"
+        "Alright, well, you all jump back in the car. There's still not enough room for everyone."
+        f "Domani, get in the trunk."
+        d "Huh?"
+        f "Are you deaf? Did you huwt youw eaws in the shootout YOU fucking caused? GET IN THE TRUNK."
+        "Domani obediently gets in the trunk, and Felicien slams it shut. You all go on a little roadtrip to a new hideout in Messina, where you get settled in."
 
     return
