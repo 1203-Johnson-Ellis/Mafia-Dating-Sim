@@ -39,7 +39,7 @@ label day1:
     
     And because you are an idiot, you are in the middle of it all, in a Carabinieri Comando Stazione.
     
-    You are working at your desk, eyes glazing over endless piles of paperwork (positivvely daydreaming, really), when the door opens.{p}
+    You are working at your desk, eyes glazing over endless piles of paperwork (positively daydreaming, really), when the door opens.{p}
     You look up.
     """
     a "Hey, boss."
@@ -83,17 +83,18 @@ label day1:
             ## Suspects
             # The option to interrogate a suspect will disappear if they have been asked all available questions
             # Otherwise, I want them to remain in case the player changes their mind about not asking a question, or wants a refresher
+            # (^ should probably change to being greyed out when all questions have been asked or something)
 
-            "Felicien, she/her/he/him - Known owner of the establishment; weapons found on person; uncooperative.\nCharges: Suspected money laundering, involvement in organized crime" if (FQ1Asked == False and FQ2Asked == False):
+            "Felicien - Known owner of the establishment; weapons found on person; uncooperative.\nCharges: Suspected money laundering, involvement in organized crime" if (FQ1Asked == False and FQ2Asked == False):
                 $ partner = 1
 
-            "Domani, he/him - Confessed at the scene of the crime to having fired guns. Suspected criminal higher-up\nCharges: Second degree murder, aggravated assault with a deadly weapon, suspected involvement in organized crime" if (DQ1Asked == False and DQ2Asked == False):
+            "Domani - Confessed at the scene of the crime to having fired guns. Suspected criminal higher-up\nCharges: Second degree murder, aggravated assault with a deadly weapon, suspected involvement in organized crime" if (DQ1Asked == False and DQ2Asked == False):
                 $ partner = 2
 
-            "Valheo, any pronouns - Found in conflict with a customer; weapons found on person. Injured in the crossfire.\nCharges: Assault, battery, suspected involvement in organized crime" if canBreakout == False:
+            "Valheo - Found in conflict with a customer; weapons found on person. Injured in the crossfire.\nCharges: Assault, battery, suspected involvement in organized crime" if canBreakout == False:
                 $ partner = 4
 
-            "Luciano, he/him - Employee at the establishment; found standing near the suspected source of the conflict. Has largely refused to speak.\nCharges: Suspected involvement in organized crime" if (LQ1Asked == False and LQ2Asked == False):
+            "Luciano - Employee at the establishment; found standing near the suspected source of the conflict. Has largely refused to speak.\nCharges: Suspected involvement in organized crime" if (LQ1Asked == False and LQ2Asked == False):
                 $ partner = 5
 
             ## Story progression
@@ -105,7 +106,6 @@ label day1:
             "I actually think I should do my job for once and let these guys go through the system..." if canBreakout:
                 jump system
         
-        "Looks like some items were confiscated from the suspect."
         jump confiscatedItems
     
 
@@ -119,9 +119,10 @@ label day1:
 
     label confiscatedItems:
         menu:
-            a "I could take some of these, if I think they'll be useful. Unless they're better kept out of reach."
+            a "Looks like some items were confiscated from the suspect. I could take some of these, if I think they'll be useful. Unless they're better kept out of reach."
 
             # Felicien options
+            # Clean up coding on this so options are removed on subsequent loops
             "Take the dagger." if partner == 1:
                 a "Nice. It looks old."
                 # May not need these additional vars if can just add it to the set
@@ -153,7 +154,7 @@ label day1:
                 $ playerInventory.add("Too Many Knives")
             
             "Take the water-damaged photo." if partner == 4:
-                "The photo depicts four kids of varying ages hangin out with their dad."
+                "The photo depicts four kids of varying ages hangin' out with their dad."
                 $ VPhotoPickedUp = True
                 $ playerInventory.add("Water-Damaged Photo")
 
@@ -220,8 +221,7 @@ label day1:
             a "Yikes. Bad time?"
             "He startles at the sound of your voice, but still only peers at you through his fingers."
             d "Am I... being executed?"
-            a "Executed??"
-            "You're at a loss. Two seconds in, and you've never seen an interrogation like this before."
+            a "Executed?? Uh, we don't really-"
             d "I've been caught, so, please, God, just get it over with..."
             a "....Look, man, are you lost? It looks like you're coming from another city. And another time..."
             d "I... my dress? Is it illegal here, too?"
@@ -244,14 +244,15 @@ label day1:
 
             a shut closed "I'm here for an interrogation."
             "You stare at your shitty sheet of notebook paper. For a long time. Your mind completely glazes over. God, this is so boring."
-            a "Either that, or I'll take money. Whatever.{w} Listen, I don't like doing interrogations. I'd rather be out on the town right now, really."
-            v "I think I'm hallucinating.{w} I got shot today, you know."
+            a "Either that, or I'll take money. Whatever."
+            a "Listen, I don't like doing interrogations. I'd rather be out on the town right now, really."
+            v "What the hell kind of police...? I'm so out of it, dude.{w} I got shot today, you know."
             show angiolo -shut
-            "You look up at them. They're sitting stiffly, looking weary and staring vaguely out the window. Looks like there was an autombile crash out there?"
+            "You look up at them. They're sitting stiffly, looking weary and staring vaguely at the wall."
             "When they realize you're looking at them, though, their eyes focus on you."
             a "Oh."
             a -closed "You want anything? We can go on a date or something."
-            v @ smile "Beats this. No one's so much as given me laudanum or anything for the bullet in my arm."
+            v @ smile "Beats this. No one's so much as given me laudanum or anything."
             a @ closed shut downturned "Fuckin' animals."
             v "I'll say. Can I have a smoke?"
             "You shrug, pull out your cigarette pack, and frown to yourself."
@@ -329,7 +330,7 @@ label day1:
 
         label .question1:
             f "Yeah, my fucking club got shot up by one of my useless employees."
-            a "Hum? Any idea why?"
+            a "Any idea why?"
             f "No, I was in the back room doing much more important things. You can't trust Domani with anything, though, he screws up everything he touches somehow."
             a "Pretty big screw-up this time."
             f "Mmhmm. Who knows what's going on in that thick skull of his?"
@@ -345,12 +346,6 @@ label day1:
             else:
                 a "Eh, maybe I'll find out."
                 f "Do that. My business is suffering because of him."
-            
-            a "You didn't know the client, did you? The guy who got shot."
-            f "I didn't see who got shot, idiot. I wasn't there."
-            a "No ideas floating around up there? Any weird regulars or anything?"
-            f "No."
-            a "Alright, then."
 
             $ FQ1Asked = True
             jump interrogateFelicien
@@ -366,7 +361,7 @@ label day1:
                 menu:
                     "Yeah. I'll take you at your word.":
                         $ FScore += 1
-                        f "Obedient little doggie."
+                        f "Obedient little doggy."
                         f "I think I like you. Will you be coming back here?"
                         a "I can make time, if you want me to."
                         f "I would like that very much."
@@ -460,8 +455,7 @@ label day1:
             d "That's even worse!"
             d "Even here in military custody, I can't be stopped from killing people..."
             a "Hey, don't worry. I'm not the only one here. And they took your guns, right?"
-            d "Yes... {p}
-            But..."
+            d "Yes... {p}But..."
             a "Are you ripped, too?"
             d "Not... exactly?"
             a "Sounds like you're good, then. Unless you have some secret power you're hiding from us. Which I'd like to see."
@@ -494,11 +488,10 @@ label day1:
 
         label .finish:
             d "When will I be going to my execution?"
-            a "Oh, probably in a week. Maybe two. Things are kinda slow-going around here."
+            a "Probably in a week. Maybe two. Things are kinda slow-going around here."
             "He looks down."
             d "... Okay."
-            a "Hey, cheer up. You confessed — counts for something.{p}
-            See you around, maybe."
+            a "Hey, cheer up. You confessed — counts for something.{p}See you around, maybe."
 
             jump notes
 
@@ -525,18 +518,17 @@ label day1:
         show val -raised
 
         "They walk in silence for a long time."
-        v "I'm inclined to accept, if you cover your ass well enough. Don't want to get into trouble."
-        v "And my buddies?"
+        v "I'm inclined to accept, if you cover your ass well enough. {w}And my buddies?"
         a -closed "Oh. Yeah, I can do that."
         v smirk "Cool. If you're looking for another job after, my boss might have something for you."
         v "Let's get you those cigarettes, hm? My coin is yours."
         a @ smile "Okay."
-        a "We'll have to head back and pretend I'm working until my coworkers are out, then I can help you guys."
 
         if (VKnivesPickedUp == True or VPhotoPickedUp == True):
             call .itemMenu from _call_interrogateVal_itemMenu
 
-        "Okay, cool. You go to the convenience store where Val buys you a new pack of cigarettes, then return to the comando stazione."
+        "Okay, cool. You go to the convenience store where Val buys you a new pack of cigarettes and tells you that they have some getaway driver they'll go fetch."
+        "Guess they'll be fine? Anyway, you return alone to the comando stazione."
 
         $ canBreakout = True
         jump notes
@@ -572,12 +564,10 @@ label day1:
             a "Oh, hey, by the way..."
             "When you take the photo out of your pocket, you watch their eyes light on it with recognition."
             a "You can have this back."
-            v "Oh, shit.{p}
-            ... Thanks."
+            v "Oh, shit.{p}... Thanks."
             "They take it from your hand and look at it for a minute."
             a "I dunno why they'd hold onto something like that. I guess just for, y'know, ID..."
-            v "Yeah.{p}
-            Fair enough, it {i}is{/i} family."
+            v "Yeah.{p}Fair enough, it {i}is{/i} family."
             v "..."
             v "Did anyone else get a look at this?"
             a "Well, I don't know. Obviously, whoever took it from you, but..."
@@ -611,7 +601,7 @@ label day1:
             "Exactly what sort of establishment were we talkin' about again?":
                 jump .question2
             
-            "Give back his cool weapon." if LWeaponPickedUp == True:
+            "Give back his cool weapon." if LGunPickedUp == True:
                 jump .weapon
             
             "Give back his cash. Wait, what?!" if LCashPickedUp == True:
@@ -646,28 +636,37 @@ label day1:
             l "................."
             l "............................ A night club."
             a "No way. It's not the one on .. god, what was it.... "
+            "Now you can't remember the STREET name, but you CAN remember..."
+
+            show black
+            with fade
+
             """
-            Now you can't remember the STREET name, but you CAN remember...
+            You visited almost on a whim some boring night. You only recently realized it was even there, so you decided to scope it out.
 
-            You visited almost on a whim some boring night. You were never really 'in' on the dating scene (you big loner loser), you still weren't really sure if you {i}liked{/i} that kind of thing, but isn't this what people do to have fun? You decided to scope it out.
-
-            You went into the first club on the street that didn't seem too loud and crowded, almost swirling with lights and sounds and conversation, all so much you could hardly focus on trying to read a person's lips and definitely wouldn't even enjoy it.
+            It didn't seem too loud or crowded like they always are on a Friday night; swirling with lights and sounds and conversation, all so much you could hardly focus on anything.
             
-            This one was quiet, nearly empty. And let's be real, it was ass.
+            This one was quiet, nearly empty.{w} And let's be real: it was ass.
             
             Even now, focusing with all your pathetic brain power, you can't even remember who was sitting with you. What overwhelmingly dominates is...
             """
             f "What the fuck do I pay you for?"
             "... Up on the shitty little stage they had sat on one end of the room."
-            f "You're under my jurisdiction now. We have a paying customer. So you get up there and put on a show for them."
+            f "You're under my jurisdiction now. We have paying customers. So you get up there and put on a show for them."
             l "I. Will. Not."
             "He grabbed Luciano."
             f "You'll stand up there and sing or I'll open a hole in that pretty little throat. And your daddy will thank me."
             "Even then, his face cold and hard as steel, you couldn't help but think how gorgeous he looked. All angelic justice. Like Michael or something."
             
+            hide black
+            with fade
+            
             a "...I saw you there!"
             "He stares at you in horror."
             l ".. No you didn't."
+            "Okay, well, that was just straight lies."
+            "But he said it with {i}so much confidence{/i}. He shut you down so hard, all you can think to do is shrug it off and move on."
+            "It doesn't matter whether he admits to it or not, anyway."
 
             $ LQ2Asked = True
             jump interrogateLuci
@@ -756,18 +755,13 @@ label day1:
         hide luci
 
         "You go around to the holding cells of each of the suspects, insert the key, hush them, and quietly release them.{w} Easy."
-        show val smirk blank behind grain, reel
-        with fade
-        v "Well, aren't you a sight for sore eyes.{w} Thanks for hearing me out. Now, let's get out of here."
-        hide val with dissolve
-
         "Score. Prisoners rounded up, you lead them to the back entrance, same place criminals get brought in. Guess they can't really be brought through the front where civilians come in."
         scene bg questura front
         show grain
         show reel
         with dissolve
         """
-        Everything is going to plan. And it's so quiet in here, maybe your boss went out on patrol?{w} His office isn't {i}too{/i} close, just gotta creep to the back door...
+        Everything is going to plan. And it's so quiet in here, maybe your boss went out on patrol?{w} Her office isn't {i}too{/i} close, just gotta creep to the back door...
 
         There's a tap on your shoulder.
         """
@@ -782,10 +776,10 @@ label day1:
 
         show quinn at right behind grain, reel with dissolve
         show angiolo -upset
-        "It only takes him a moment to look over your little procession and put together what's going on."
+        "It only takes her a moment to look over your little procession and put together what's going on."
         q "Sigh... Couldn't you at least have run this by me first?"
         a "Ahhhhahaha. Whoops."
-        "An automobile pulls up to a screesching halt outside, and Felicien's face lightens for a moment."
+        "An automobile pulls up to a screesching halt outside, and Felicien's face lights up for a moment."
 
         hide quinn with dissolve
         show felicien at right behind grain, reel
@@ -800,15 +794,15 @@ label day1:
                 hide angiolo
                 with dissolve
 
-                "You run outside, too, and jump in the automobile."
+                "You run outside and hop in the automobile."
                 jump getaway
             
-            "No way, I should stay behind and explain everything to my boss.":
+            "No way, I should stay behind and buy them time.":
                 hide felicien
                 hide angiolo
                 with dissolve
 
-                "Yeah. Yeah. This way, I can buy them time, and/or save myself."
+                "Yeah. Yeah. This way, I can even explain myself."
                 jump badEnd
     
 
@@ -824,19 +818,19 @@ label day1:
         scene black
         with dissolve
 
-        "There's not enough seats in here!!! Domani yelps as you try to get settled."
+        "There's not enough seats in here!!! Domani yelps as you try to get settled, kind of standing all bent over him."
         "The getaway driver (as you assume her to be) is a hunched, scrawny little lady with sallow skin. Uhhh... is she ill? She also looks at you in alarm when you jump in."
 
         show kaj at right behind grain, reel with dissolve
         k "Uuuuuhhhhhhhhhhhhhhhhhmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm............................"
 
-        show felicien at right behind grain, reel with dissolve
+        show felicien at left behind grain, reel with dissolve
         f "Get us the fuck out of here."
-        "She steps on the gas, and you tumble over onto Domani so that he shrieks again. You pull yourself upright and try to calm him down."
+        "She steps on the gas, and you tumble into Domani's lap so that he shrieks again."
         a "Sorry, dude, I'm sorry."
         d "I've... never felt the touch of a man!"
         "Okay."
-        "You brace yourself as firmly against the walls of the automobile as you can, which is tough but necessary as the driver whips around corners. Don't wanna get flung around {i}too{/i} much."
+        "You brace yourself as firmly against the walls of the automobile as you can as the driver whips around corners, so you only get flung around a little."
 
         if FDaggerPickedUp == True:
             "Felicien sticks his dagger into the cup holder. He has to fumble and maneuver and hammer it in a bit to fit it between the handguns and the hot pink toy already in there."
@@ -860,7 +854,7 @@ label day1:
         "He spares Val a momentary glance."
         l "We should stop and regroup before moving on. My family has a safehouse on the edge of town."
         "Felicien gives an angry growl."
-        f "You think you override {i}my{/i} authority, wormdick? Remember, your daddy wants You to listen to Me."
+        f "You think you override {i}my{/i} authority, wormdick? Remember, your daddy wants {i}you{/i} to listen to {i}me{/i}."
         "Luci's face turns stoney and his eyes glint ferociously, but he shuts the fuck up."
         "Val looks at you sideways. They speak quietly."
         v "Sorry, man. This can't be what you thought you were signing up for."
@@ -870,7 +864,7 @@ label day1:
         ## Arrive at safehouse
 
         """
-        Despite her blustering, Felicien demands Luci give the instructions to the safehouse. He talks in stiff, clipped words.
+        Despite her blustering, Felicien demands Luci give the instructions to the safehouse. He directs in stiff, clipped words.
 
         You soon stop at a building. You hop out of the car and go inside.
 
@@ -900,7 +894,7 @@ label day1:
             a "Don't worry. I'm not {i}that{/i} bad at this."
             v "Ha, ha. I'm sure you're great. Just not excited about being poked and prodded."
             a "Yeah, I bet."
-            a "But trust me. And if you need me to stop, don't be scared to give a shout."
+            a "But trust me. And if you need me to stop, give a shout."
             "They eye you with equal parts embarrassment and gratitude."
             v "Okay.{w} Thanks."
             a "Aight, be right back."
@@ -911,18 +905,17 @@ label day1:
             a "Need some help getting that shirt off?"
             v "Guh, no..."
             "They use their good arm to pull it up, exposing a strong chest and surprisingly slender waist. From here, though, how they should move to remove the shirt further is unclear, and you watch them struggle for a bit."
-            a "Here, let me."
+            a "Lemme give you a hand."
             """
             You come forward and take the hem of the shirt from them. You guide their head out first.
 
-            From there you have to be careful of the fabric around the wound, unsticking it where it has been glued down by blood and carefully pulling it out of the hole.{p}
-            They grit their teeth as it comes free.
+            From there you have to be careful of the fabric around the wound, unsticking it where it has been glued down by blood and carefully pulling it out of the hole.{p}They grit their teeth as it comes free.
 
             Then you remove the shirt the rest of the way and toss it aside.
 
             Now you can see the bullet wound clearly. At least some of it came out the other side, and the impact looks to have pulverized the surrounding flesh painfully.
             """
-            a "Tsss, ouch. This stuff is brutal on you dikarycota."
+            a "Tsss, ouch. This stuff is brutal on you Solari."
             "You reach out a finger to prod the muscle along the outer damage, and they stiffen."
             v "Can you just get this over with?"
             a "Sure thing, boss."
@@ -931,8 +924,7 @@ label day1:
             "They close their eyes, looking a little ill."
             v "Okay."
             a "You scared?"
-            "They shake their head.{p}
-            So, you take their well-muscled arm firmly with one hand."
+            "They shake their head.{p}So, you take their well-muscled arm firmly with one hand."
             a "Ready?"
             """
             They nod once.
@@ -948,7 +940,7 @@ label day1:
 
             You return your focus to your work, careful to move slowly, paying close attention to how their body responds.
             
-            It's an almost intimate back-and-forth; their muscles tense, and you pause to give them hushed reassurance. When you ask if they're ready to continue, they close their eyes in preparation and nod.
+            It's a surprisingly intimate back-and-forth; their muscles tense, and you pause to give them hushed reassurance. When you ask if they're ready to continue, they close their eyes in preparation and nod.
 
             You feel your way progressively deeper, how their blood coats your fingers wetly, the texture of the walls of the wound pressing in around you. They don't make a sound through the whole thing, except to gasp occasionally.
 
@@ -958,14 +950,14 @@ label day1:
             """
             a "Got it. Just a little bit more."
             v "Okay."
-            "You draw your fingers out, and with it the bit of cloth. They hiss again as it drags its way out... And, it comes free."
+            "You draw your fingers out, and with it the bit of cloth. They hiss again as it drags its way out..."
             "And it's free. You inspect it, about an inch square, all stained dark blue with their blood. Your fingers are coated with it, too, almost up to the third knuckle."
             a "There, see? You don't want this stuff festering in there."
             v "Uh huh."
             "Poor guy's panting with the pain, and trying to pretend they're not."
             a "I still gotta clean this up a little and then stitch it..."
             v "Yeah."
-            a "... Hangin in there?"
+            a "... Hangin' in there?"
             v "I fucking hate stitches."
             a "Aha. I'll be gentle, promise."
             """
@@ -986,13 +978,13 @@ label day1:
             v "Try not to be so rough!"
             a "What! That was a normal jab."
             "They huff, seeming a bit embarrassed despite themself."
-            v "Fucking stitches..."
+            v "Fucking hell..."
             """
             You wait for them to get settled again, their eyes squeezed shut.
 
             You find the best angle to sit at, then get back to stitching. It really is only a few passes of the needle, but they wince every time.
             """
-            a "Come on, you're strong enough to walk off a gunshot, you're strong enough to get stabbed a few times."
+            a "Come on, you're strong enough to walk off a gunshot. You've got this, easy."
             "Finally, you finish up and tie it off, then bite off the tail end of the thread with your teeth."
             a "All done."
             "They open their eyes to look at your handiwork. Uh, well,, it's not {i}bad{/i}..."
@@ -1046,7 +1038,7 @@ label day1:
             a "Hey, maybe it's time for you to lay off the drink a little."
             v "What, am I wrong? What kinda mafia guy doesn't kill? Luc thinks he's special."
             l "....................."
-            "He seems to have had enough. He gets up and walks away. Except there aren't really any other rooms in this place, so he just goes to stare at one of the walls."
+            "He seems to have had enough. He gets up and walks away. {w}Except there aren't really any other rooms in this place, so he just goes to stare at one of the walls."
             a "I think you hurt his feelings."
             v "No way. Luc doesn't have those."
 
@@ -1085,12 +1077,13 @@ label day1:
         f "Fucking great..."
         k "What's wrong?"
         f "What the hell do you think is wrong? Someone in this room fucking outed us to the cops."
+        # This is a lie
         "He stares directly at Domani."
         d "W-what?? {i}I{/i} didn't call them!!!!"
-        f "Great, so we have multiple fuck-ups in here."
+        f "Great, so we have multiple fuck-ups in here. Whatever. We're jumping. Back in the car, {i}now{/i}."
 
         ## Car from Palermo along the coast of Sicily to Messina takes ~3 hours
-        "Alright, well, you all jump back in the car. There's still not enough room for everyone."
+        "Alright, well, you all hop in the car. There's still not enough room for everyone."
         f "Domani, get in the trunk."
         d "Huh?"
         f "Are you deaf? Did you huwt youw eaws in the shootout YOU fucking caused? GET IN THE TRUNK."
