@@ -39,8 +39,8 @@ label day1:
     
     And because you are an idiot, you are in the middle of it all, in a Carabinieri Comando Stazione.
     
-    You are working at your desk, eyes glazing over endless piles of paperwork (positively daydreaming, really), when the door opens.{p}
-    You look up.
+    You are working at your desk, eyes glazing over endless piles of paperwork (positively daydreaming, really), when the door opens.
+    {p}You look up.
     """
     a "Hey, boss."
 
@@ -103,8 +103,8 @@ label day1:
             "Let's break these poor bastards out of here." if canBreakout:
                 jump breakOut
 
-            "I actually think I should do my job for once and let these guys go through the system..." if canBreakout:
-                jump system
+            #"I actually think I should do my job for once and let these guys go through the system..." if canBreakout:
+            #    jump system
         
         jump confiscatedItems
     
@@ -340,8 +340,8 @@ label day1:
                 f "Fuck, I can't imagine. Trying to get anything out of him is like pulling teeth. But bloodier."
                 a "Yeah, he's interesting. He does have a violent streak, huh?"
                 f "Hm. So do I."
-                a "Yikes.{p}
-                Hey, speaking of which..."
+                a "Yikes.
+                {p}Hey, speaking of which..."
 
             else:
                 a "Eh, maybe I'll find out."
@@ -455,7 +455,8 @@ label day1:
             d "That's even worse!"
             d "Even here in military custody, I can't be stopped from killing people..."
             a "Hey, don't worry. I'm not the only one here. And they took your guns, right?"
-            d "Yes... {p}But..."
+            d "Yes...
+            {p}But..."
             a "Are you ripped, too?"
             d "Not... exactly?"
             a "Sounds like you're good, then. Unless you have some secret power you're hiding from us. Which I'd like to see."
@@ -491,7 +492,8 @@ label day1:
             a "Probably in a week. Maybe two. Things are kinda slow-going around here."
             "He looks down."
             d "... Okay."
-            a "Hey, cheer up. You confessed — counts for something.{p}See you around, maybe."
+            a "Hey, cheer up. You confessed — counts for something.
+            {p}See you around, maybe."
 
             jump notes
 
@@ -564,10 +566,12 @@ label day1:
             a "Oh, hey, by the way..."
             "When you take the photo out of your pocket, you watch their eyes light on it with recognition."
             a "You can have this back."
-            v "Oh, shit.{p}... Thanks."
+            v "Oh, shit.
+            {p}... Thanks."
             "They take it from your hand and look at it for a minute."
             a "I dunno why they'd hold onto something like that. I guess just for, y'know, ID..."
-            v "Yeah.{p}Fair enough, it {i}is{/i} family."
+            v "Yeah.
+            {p}Fair enough, it {i}is{/i} family."
             v "..."
             v "Did anyone else get a look at this?"
             a "Well, I don't know. Obviously, whoever took it from you, but..."
@@ -736,12 +740,14 @@ label day1:
 
         The stazione is so quiet. There are rarely many others here, after all. Most are out on patrol... or filling out paperwork. The quiet is honestly kind of nice.
 
-        And convenient. Who will notice or care if you just... get up from your desk... leave your office...{p}The keys jingle pleasantly in your hand.
+        And convenient. Who will notice or care if you just... get up from your desk... leave your office...
+        {p}The keys jingle pleasantly in your hand.
         """
         show bg questura interrogation behind grain, reel
         show domani behind grain, reel
         with fade
-        d "Snf...{w} snf...{w} huh?{w} W-what is this?!{p}Oh, God! Thank God!"
+        d "Snf...{w} snf...{w} huh?{w} W-what is this?!
+        {p}Oh, God! Thank God!"
 
         hide domani
         show felicien behind grain, reel
@@ -751,7 +757,8 @@ label day1:
         hide felicien
         show luci behind grain, reel
         with fade
-        l "...{p}...?"
+        l "...
+        {p}...?"
         hide luci
 
         "You go around to the holding cells of each of the suspects, insert the key, hush them, and quietly release them.{w} Easy."
@@ -797,13 +804,14 @@ label day1:
                 "You run outside and hop in the automobile."
                 jump getaway
             
-            "No way, I should stay behind and buy them time.":
-                hide felicien
-                hide angiolo
-                with dissolve
+            # This could be an alternate way of reaching Quinn route
+            #"No way, I should stay behind and buy them time.":
+            #    hide felicien
+            #    hide angiolo
+            #    with dissolve
 
-                "Yeah. Yeah. This way, I can even explain myself."
-                jump badEnd
+            #    "Yeah. Yeah. This way, I can even explain myself."
+            #    jump badEnd
     
 
     ########################################
@@ -870,7 +878,8 @@ label day1:
 
         The place is pretty nice inside. Guess that's what mafia money gets you. As you get settled, Felicien zeroes in on the phone and begins dialing someone up.
         
-        You notice Val slump hard against a wall, closing their eyes and seeming to focus on their breathing.{p}They must be in some wicked pain.
+        You notice Val slump hard against a wall, closing their eyes and seeming to focus on their breathing.
+        {p}They must be in some wicked pain.
         """
 
         menu:
@@ -909,7 +918,8 @@ label day1:
             """
             You come forward and take the hem of the shirt from them. You guide their head out first.
 
-            From there you have to be careful of the fabric around the wound, unsticking it where it has been glued down by blood and carefully pulling it out of the hole.{p}They grit their teeth as it comes free.
+            From there you have to be careful of the fabric around the wound, unsticking it where it has been glued down by blood and carefully pulling it out of the hole.
+            {p}They grit their teeth as it comes free.
 
             Then you remove the shirt the rest of the way and toss it aside.
 
@@ -924,7 +934,8 @@ label day1:
             "They close their eyes, looking a little ill."
             v "Okay."
             a "You scared?"
-            "They shake their head.{p}So, you take their well-muscled arm firmly with one hand."
+            "They shake their head.
+            {p}So, you take their well-muscled arm firmly with one hand."
             a "Ready?"
             """
             They nod once.
@@ -997,8 +1008,8 @@ label day1:
 
         label .booze:
             "You thought you saw some earlier..."
-            "You open some cabinets and rummage through them. Bingo.{p}
-            You turn back to Val."
+            "You open some cabinets and rummage through them. Bingo.
+            {p}You turn back to Val."
             a "Hey, you're not looking too good."
             "You hold up the bottle."
             a "Want some?{w} It's no laudanum, but..."
@@ -1053,16 +1064,16 @@ label day1:
             f "We ran into a bit of trouble. Nothing we can't handle."
             boss "{i}Why are you calling, then?{/i}"
             f "We'd be able to handle it a bit better if we had somewhere to stay until the cops are off our asses."
-            boss "{i}Do one better: get them off{/i} my {i}ass. Fucking moron.{p}
-            What secrets can we expect them to know now?{/i}"
+            boss "{i}Do one better: get them off{/i} my {i}ass. Fucking moron.
+            {p}What secrets can we expect them to know now?{/i}"
             f "I am {i}not{/i} stupid enough to let anything slip."
             boss "{i}And your team?{/i}"
 
             "Felicien turns and looks directly at Domani, who's busy rocking in the corner in the fetal position."
 
             f "If they did, I don't think they should be involved in cosa nostra."
-            boss "{i}No. But unfortunately if you want to get anything done in this world, you'll have to work with idiots at some point.{p}
-            God fuck it, Felicien. If you want to try to do something right, then get out of Palermo. Tonight.{/i}"
+            boss "{i}No. But unfortunately if you want to get anything done in this world, you'll have to work with idiots at some point.
+            {p}God fuck it, Felicien. If you want to try to do something right, then get out of Palermo. Tonight.{/i}"
             f "Excuse me?"
             boss "{i}You heard me. You know the damn prime minister and his guys have been out here recently, and they're quickly making an enemy of us.{/i}"
             boss "{i}Since you so badly want to draw attention to yourselves, lead the feds to Reggio. I have a contact you can stay with. A clementine farmer. Get yourselves killed out there, I don't care. My business is here, in the west.{/i}"
