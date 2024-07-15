@@ -244,8 +244,9 @@ label nighttime:
         label .night3:
             # Tells you about killing Kaj. You and Val are his puppies. Will you help me next time~? Threesome
 
-            "Felicien nighttime scene 2"
-            #f "Yeah, don't get too cocky. *Cock* is my job. Yours is *hole*."
+            "you walk in on them"
+            f "Yeah, don't get too cocky. *Cock* is my job. Yours is *hole*."
+            "an dthen have a threesome"
 
             return
         
@@ -432,7 +433,25 @@ label nighttime:
         label .night2:
             # 
             
-            "val 2"
+            a "Hey."
+            v "Hey."
+            a "I'm bored. These guys kinda suck. Wanna hang out?"
+            v "Yeah, sure. What did you have in mind?"
+            a "I dunno, we could like-- I found some booze."
+            v "Oh, sweet. Come on in."
+            "he comes on in and he plops down and pours them drinks"
+            a "*sighhhhhhhh* These guys are really tiring, aren't they?"
+            v "just starts going off"
+            v "something smart about the ferry"
+            a "Huh? You know about ferries?"
+            "and then they LotR"
+            v "*has a swig* blah blhl ahlb lhanalgnbh"
+            a "*leans back* Tell me moooore;)"
+            menu:
+                "make a move":
+                    "yeah dick sucking"
+                "don't":
+                    v "no moves"
 
             return
         
