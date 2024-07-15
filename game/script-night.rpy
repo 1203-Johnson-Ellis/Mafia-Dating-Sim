@@ -51,28 +51,25 @@ label nighttime:
                 $ FNightsCompleted += 1
                 $ partner = 1
 
-            # Since I'm only writing Felicien route,
-            # I'm making the other nighttime scenes inaccessible for now
+            "Domani":
+                $ DScore += 2
+                $ DNightsCompleted += 1
+                $ partner = 2
 
-            #"Domani":
-            #    $ DScore += 2
-            #    $ DNightsCompleted += 1
-            #    $ partner = 2
+            "Kaj":
+                $ KScore += 2
+                $ KNightsCompleted += 1
+                $ partner = 3
 
-            #"Kaj":
-            #    $ KScore += 2
-            #    $ KNightsCompleted += 1
-            #    $ partner = 3
+            "Val":
+                $ VScore += 2
+                $ VNightsCompleted += 1
+                $ partner = 4
 
-            #"Val":
-            #    $ VScore += 2
-            #    $ VNightsCompleted += 1
-            #    $ partner = 4
-
-            #"Luci":
-            #    $ LScore += 2
-            #    $ LNightsCompleted += 1
-            #    $ partner = 5
+            "Luci":
+                $ LScore += 2
+                $ LNightsCompleted += 1
+                $ partner = 5
 
 
     ## This label uses the `partner` variable to determine which partner the night is being spent with
