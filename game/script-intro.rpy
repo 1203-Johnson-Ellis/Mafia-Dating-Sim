@@ -721,7 +721,7 @@ label day1:
         q "Now, I'm heading home for the night. Leave your report outside my office when you're done."
         a flat "Yeah, okay, thanks..."
 
-        jump badEnd
+        return
 
 
     ########################################
@@ -811,7 +811,7 @@ label day1:
             #    with dissolve
 
             #    "Yeah. Yeah. This way, I can even explain myself."
-            #    jump badEnd
+            #    return
     
 
     ########################################

@@ -9,13 +9,10 @@
 ######################################
 
 
-label day3:
+label domani_route:
     # Giacomo Matteotti's assassination showing the prime minister's increasing vice grip. This does not bode well for the mafia.
     # Luci cutting ties with Catholicism due to the prime minister's actions, Domani more conflict over it more Catholic devotion.
     "Politics scene"
-
-    # Bored watching oranges
-    "Clementine watching scene"
 
     # Visit a cathedral
     # Kaj goes off to the coast and doesn't return

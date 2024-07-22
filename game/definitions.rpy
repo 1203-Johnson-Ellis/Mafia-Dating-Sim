@@ -15,6 +15,7 @@
 ## GLOBAL ##
 
 # Score that is used to determine how much each romance option likes you
+# May remove unless I find use for it in whether certain options appear and stuff
 
 default FScore = 0
 default DScore = 0

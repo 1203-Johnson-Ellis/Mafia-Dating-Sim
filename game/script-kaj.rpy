@@ -8,7 +8,7 @@
 ######################################
 
 
-label day4:
+label kaj_route:
     # Luci has been plotting all night, tries to take control of the group, talks to you and Val privately trying to win you over.
     "Luci scene
     "
