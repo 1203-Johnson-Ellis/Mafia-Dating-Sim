@@ -57,8 +57,8 @@ label start:
         call domani_route from _call_domani_route
     elif partner == 3:
         call kaj_route from _call_kaj_route
-    elif partner == 4:
-        call val_route from _call_val_route
+    #elif partner == 4:
+    #    call val_route from _call_val_route
     elif partner == 5:
         call luci_route from _call_luci_route
 
