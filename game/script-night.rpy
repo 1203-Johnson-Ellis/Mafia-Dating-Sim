@@ -4,8 +4,7 @@
 # Contains all nighttime scenes
 
 # This code should ask who you want to spend the night with,
-# then give a description of the area based on what night it is,
-# then give a conversation with the partner chosen
+# then give a conversation with the chosen partner
 
 ############################################
 
@@ -29,7 +28,8 @@ label nighttime:
     Felicien said something halfhearted about fighting over it before disappearing off with Val, but neither Kaj nor Domani had the balls to do anything when Luci claimed the room for his own.
     """
 
-    # Get the user's input
+    # Get the user's input and jump to the corresponding conversation
+    # Afterward, it will then return here and move forth to the endNight label
 
     menu:
         "Who will you set up your bed beside tonight?"
@@ -37,14 +37,17 @@ label nighttime:
         "Felicien":
             $ FScore += 2
             $ partner = 1
+            call felicien_night from _call_felicien_night
 
         "Domani":
             $ DScore += 2
             $ partner = 2
+            call domani_night from _call_domani_night
 
         "Kaj":
             $ KScore += 2
             $ partner = 3
+            call kaj_night from _call_kaj_night
 
         #"Val":
         #    $ VScore += 2
@@ -53,20 +56,7 @@ label nighttime:
         "Luci":
             $ LScore += 2
             $ partner = 5
-
-
-    ## This label uses the `partner` variable to determine which partner the night is being spent with
-    label choose_partner:
-        if partner == 1:
-            call felicien from _call_felicien
-        elif partner == 2:
-            call domani from _call_domani
-        elif partner == 3:
-            call kaj from _call_kaj
-        #elif partner == 4:
-        #    call val from _call_val
-        elif partner == 5:
-            call luci from _call_luci
+            call luci_night from _call_luci_night
 
 
     ## End nighttime sequence and move to the next day
@@ -76,16 +66,16 @@ label nighttime:
         with dissolve
 
         # For testing purposes
-        """
-        - For testing purposes, would you please tell Ellis these are your scores as of day [day] -
+        #"""
+        #- For testing purposes, would you please tell Ellis these are your scores as of day [day] -
 
-        Felicien: [FScore]
-        {p}Domani: [DScore]
-        {p}Kaj: [KScore]
+        #Felicien: [FScore]
+        #{p}Domani: [DScore]
+        #{p}Kaj: [KScore]
 
-        Val: [VScore]
-        {p}Luci: [LScore]
-        """
+        #Val: [VScore]
+        #{p}Luci: [LScore]
+        #"""
 
         $ day += 1
 
@@ -104,7 +94,7 @@ label nighttime:
     ## Felicien ##
     #
 
-    label felicien:
+    label felicien_night:
         # Felicien roughly does you up in bondage and threatens you at knifepoint. And if you’re good maybe next time you’ll get it
 
         "you walk in on them"
@@ -118,7 +108,7 @@ label nighttime:
     ## Domani ##
     #
 
-    label domani:
+    label domani_night:
         # 
 
         "Domani scene"
@@ -130,7 +120,7 @@ label nighttime:
     ## Kaj ##
     #
 
-    label kaj:
+    label kaj_night:
         # 
         
         "Kaj scene"
@@ -142,7 +132,7 @@ label nighttime:
     ## Val ##
     #
 
-    label val:
+    label val_night:
         # Might cut this since they get the bullet hole sex scene?
         # And then no Val route since idk what to do for it anyway
         
@@ -173,7 +163,9 @@ label nighttime:
     ## Luci ##
     #
 
-    label luci:
+    label luci_night:
+        # This will need rewriting and editing
+
         """
         As you approach, you think you hear his voice from the other side. It sounds... like he's singing?
 
