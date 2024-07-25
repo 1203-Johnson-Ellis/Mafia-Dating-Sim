@@ -120,17 +120,9 @@ default canBreakout = False
 ## -Day 2 variables- ##
 
 
-## -Day 3 variables- ##
-
-
-## -Day 4 variables- ##
-
-
-## -Day 5 variables- ##
-
 
 # For character portraits
-# (I think these don't work for some reason)
+# (These don't work for some reason)
 
 default blushing = False
 default blood = True
