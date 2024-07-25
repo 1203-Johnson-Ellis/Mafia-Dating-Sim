@@ -260,34 +260,12 @@ image reel:
 
 
 
-### SCREENS ###
+### VARIABLE PORTRAIT SHOWS ###
 
-# Bad end
+# Since I can't get the above vars to work
 
-screen bad_end():
-    # I don't remember what this means.
-    modal True
-
-    # Placement of screen?
-    frame:
-        xalign 0.5
-        yalign 0.5
-
-    # ???
-    vbox:
-        # This sucks. It appears to assume a 1920x1080 screen
-        xsize 1920
-        ysize 1080
-
-        # Image
-        add "youdied.jpg" xpos 615 ypos 100
-
-        # Button
-        textbutton "Exit":
-            xalign 0.67
-            yalign 0
-            action Return()
-
+label val_right:
+    show val at right
 
 
 ### DIALOGUE ###
