@@ -8,8 +8,9 @@
 
 
 label luci_route:
-    # Arriving back at the farm all covered in blood. Kill time now.
+    # track down felicien antics w/2 vers
+    # one where there are consequences such as injury and/or being unable to convince val to leave the abuse
 
-    "Kill scene"
+    # another where there's not that and you have the upper hand
 
     return

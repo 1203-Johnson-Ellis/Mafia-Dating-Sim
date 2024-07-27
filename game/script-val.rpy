@@ -13,6 +13,7 @@ label val_route:
     # Decide whether or not to rat out Val’s questioning loyalty, to either kill them or keep them at your side.
     # We rule now
 
-    "Kill scene"
+    # ^ ???
+    # maybe getting rid of this route
 
     return

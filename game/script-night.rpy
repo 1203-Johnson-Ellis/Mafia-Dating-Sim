@@ -154,9 +154,13 @@ label nighttime:
     #
 
     label domani_night:
-        # 
+        # This scene might have innuendos but is sexless
+        # Maybe one version for if you returned his mask and another if you didn't
 
         "Domani scene"
+        # If you returned it you get a touching scene where he reveals himself to you in all his flaws
+
+        # If you didn't you get a scene about setting boundaries and allow him to keep his mask on forever
 
         return
 
@@ -166,7 +170,8 @@ label nighttime:
     #
 
     label kaj_night:
-        # 
+        # This scene is sexless and sex-repulsed forsure
+        # Bonding about wanting something more... not wanting to be tied down to this stuff.....
         
         "Kaj scene"
 

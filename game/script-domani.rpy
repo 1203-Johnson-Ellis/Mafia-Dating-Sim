@@ -22,6 +22,11 @@ label domani_route:
     # Butting heads with Luci about the callousness.
     "Body scene"
 
-    # Staying in the city for the night
+    # ^ ???
+
+    # domani wins w/2 vers
+    # one where he wins the battle
+
+    # one where he ascends to godhood as well or smth??????
 
     return
