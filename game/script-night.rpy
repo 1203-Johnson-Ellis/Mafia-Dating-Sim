@@ -97,9 +97,54 @@ label nighttime:
     label felicien_night:
         # Felicien roughly does you up in bondage and threatens you at knifepoint. And if you’re good maybe next time you’ll get it
 
-        "you walk in on them"
+        "As you approach the door, you hear a voice from the other side."
+        v "Some smartass line"
         f "Yeah, don't get too cocky. *Cock* is my job. Yours is *hole*."
-        "an dthen have a threesome"
+        """
+        Oh my god. Are we about to walk in on them right now?
+
+        You open the door.
+
+        Oh my god. Felicien has his pretty pink strap-on in Val's ass. They have a blindfold on and a chain around their neck that he's tugging on.
+        
+        Felicien jerks her head up and stares piercingly at you. Then he carefully pulls out and arranges himself to sit neatly on the side of the bed.
+        """
+        f "Wanna join?"
+        a "... Hell yeah, I do."
+        "He gestures you into the room, and you shut the door behind you. You come over to the bed."
+        # show image
+        f "Kneel."
+        "You kneel at her feet. He towers over you, all with that toy at attention."
+        "She stands and struts around behind you where you can't see, but you hear him rummaging around."
+        a "Yowch!"
+        "She's roughly tying your arms together with thick leather straps."
+        f "If you want to be my bitch so bad, you'll shut the fuck up."
+        """
+        When he's satisfied, he comes back into your field of view, dragging Val along by their chain. She jerks your head up in her hand and holds it there so you're forced to look into her face.
+        """
+        f "My obedient little puppies. You'll do whatever I say, won't you?"
+        "Val is nodding. You follow suit, and even bark your agreement."
+        "He smiles at you and pats your head."
+        f "Good doggy. Now, stand up."
+        """
+        You do. She traces her long-nailed finger down your shirt, directly to your rising boner, and the hesitation lasts an eternity.
+
+        That's when he wrenches your pants down in one motion, unleashing your own throbbing dick.
+
+        Then, she goes in between the two of you, takes Val's hips in her long-fingered hands, and shoves her dick back into their ass.
+        """
+        f "Come, mutt."
+        "You go behind him. Her ass is magnificent, perfectly round. You feel his pussy with a finger, and it comes away utterly dry. She growls."
+        f "Don't waste my fucking time. Put it in."
+        """
+        You put it in. He refuses to let you do any of the work, instead demanding you hold still while she thrusts into Val and then back against you.
+
+        You can't help it. You sqiurm and pant, and his pussy gets moist and then wet as she works into you. Completely delicious.
+
+        She cums into Val's ass, and then immediately turns and swats you away.
+        """
+        f "Alright, dipshit, it's time to sleep."
+        "Good fucking god. He's hot as hell, and it was that easy to get in his pants."
 
         return
 
